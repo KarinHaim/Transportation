@@ -2,6 +2,8 @@
 #ifndef TRANSPORTATION_CAB_H
 #define TRANSPORTATION_CAB_H
 
+#include <boost/serialization/assume_abstract.hpp>
+#include <boost/serialization/base_object.hpp>
 #include "CarManufacturer.h"
 #include "Color.h"
 
@@ -26,5 +28,8 @@ public:
     virtual double getTariff() = 0;
     virtual int getID() = 0;
 };
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
+
 
 #endif //TRANSPORTATION_CAB_H

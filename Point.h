@@ -1,15 +1,49 @@
-
 #ifndef TRANSPORTATION_POINT_H
 #define TRANSPORTATION_POINT_H
 
 #include "Searchable.h"
 #include <iostream>
 
+#include <cstddef>
+#include <iomanip>
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include <boost/archive/tmpdir.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/utility.hpp>
+#include <boost/serialization/list.hpp>
+#include <boost/serialization/assume_abstract.hpp>
+#include <boost/serialization>
+#include "Trip.h"
+#include "Cab.h"
+#include "Location.h"
+#include "MeritalStatus.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
+
 /*
  * A class that represents a point on a graph, characterized by coordinate
  * x value and coordinate y value;
  */
 class Point {
+    friend class boost::serialization::access;
+    friend std::ostream & operator << (std::ostream& os, const Point &obj);
+    friend std::ostream & operator << (std::ostream& os, const Point *obj);
+    template<class Archive>
+    void serialize(Archive & ar, const unsigned int version){
+        ar & x;
+        ar & y;
+        ar & visited;
+        ar & adjacentPoints;
+        ar & former;
+        ar & occupied;
+    }
 private:
     int x, y;
     bool visited;
@@ -41,7 +75,6 @@ public:
     //defines Points behavior for '==' operator which is comparing if x and y coordinated equal
     bool operator == (const Point &other) const;
     bool operator != (const Point &other) const;
-    friend std::ostream & operator << (std::ostream& os, const Point &obj);
 };
 
 #endif //TRANSPORTATION_POINT_H

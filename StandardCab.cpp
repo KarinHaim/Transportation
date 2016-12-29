@@ -49,3 +49,5 @@ double StandardCab::getTariff() {
 int StandardCab::getID() {
     return this->id;
 }
+
+//BOOST_CLASS_EXPORT(StandardCab)

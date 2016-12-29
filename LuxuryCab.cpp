@@ -51,3 +51,5 @@ double LuxuryCab::getTariff() {
 int LuxuryCab::getID() {
     return this->id;
 }
+
+//BOOST_CLASS_EXPORT(LuxuryCab)
