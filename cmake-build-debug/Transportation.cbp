@@ -409,6 +409,9 @@
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Searchable.h">
 			<Option target="Transportation"/>
 		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/Serialization.h">
+			<Option target="Transportation"/>
+		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/StandardCab.cpp">
 			<Option target="Transportation"/>
 		</Unit>
