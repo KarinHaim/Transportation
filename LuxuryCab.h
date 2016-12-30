@@ -10,9 +10,6 @@ using namespace std;
 class LuxuryCab : public Cab {
     //serialization
     friend class boost::serialization::access;
- //   friend ostream & operator<<(ostream &os, const LuxuryCab &luxuryCab);
- //   friend ostream & operator<<(ostream &os, const LuxuryCab *luxuryCab);
- //   friend istream & operator>>(istream &input, const LuxuryCab &luxuryCab);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & boost::serialization::base_object<Cab>(*this);

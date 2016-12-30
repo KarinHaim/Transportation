@@ -7,17 +7,6 @@
 #include "Point.h"
 #include <vector>
 
-#include <boost/archive/tmpdir.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/utility.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/assume_abstract.hpp>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <sstream>
 using namespace std;
 
 /**
@@ -26,9 +15,6 @@ using namespace std;
 class Road {
     //serialization
     friend class boost::serialization::access;
-//    friend ostream & operator<<(ostream &os, const Road &road);
-//    friend ostream & operator<<(ostream &os, const Road *road);
- //   friend istream & operator>>(istream &input, const Road &road);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & map;

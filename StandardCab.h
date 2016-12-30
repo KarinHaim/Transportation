@@ -12,9 +12,6 @@ using namespace std;
 class StandardCab : public Cab {
     //serialization
     friend class boost::serialization::access;
-//    friend ostream & operator<<(ostream &os, const StandardCab &standardCab);
-//    friend ostream & operator<<(ostream &os, const StandardCab *standardCab);
-//    friend istream & operator>>(istream &input, const StandardCab &standardCab);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & boost::serialization::base_object<Cab>(*this);

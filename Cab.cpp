@@ -12,6 +12,9 @@ Cab::Cab(int id, int speed, CarManufacturer manufacturer, Color color, double ta
     this->isOccupied = false;
 }
 
+/**
+ * this function is a default constructor for a Cab.
+ */
 Cab::Cab() {
     this->id = 0;
     this->speed = 0;
@@ -57,6 +60,10 @@ int Cab::getID() {
     return this->id;
 }
 
+/**
+ * this function returns the speed of the cab.
+ * @return the speed.
+ */
 int Cab::getSpeed() {
     return this->speed;
 }

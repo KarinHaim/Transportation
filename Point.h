@@ -15,16 +15,8 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/utility.hpp>
-#include <boost/serialization/list.hpp>
+#include <boost/serialization/vector.hpp>
 #include <boost/serialization/assume_abstract.hpp>
-//#include <boost/serialization>
-
-//#include "Location.h"
-/*
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <sstream>*/
 
 /*
  * A class that represents a point on a graph, characterized by coordinate
@@ -32,14 +24,12 @@
  */
 class Point {
     friend class boost::serialization::access;
-
- //   friend std::ostream & operator << (std::ostream& os, const Point *obj);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & x;
         ar & y;
         ar & visited;
-      //  ar & adjacentPoints;
+        ar & adjacentPoints;
         ar & former;
         ar & occupied;
     }

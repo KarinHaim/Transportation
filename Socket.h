@@ -9,6 +9,9 @@
 #include <iostream>
 #include "ProcessRole.h"
 
+/**
+ * this function defines the socket class.
+ */
 class Socket {
 protected:
     int socketDescriptor;
@@ -21,6 +24,5 @@ public:
     virtual void sendData(std::string data) = 0;
     virtual int receiveData(char * buffer, int size) = 0;
 };
-
 
 #endif //TRANSPORTATION_SOCKET_H

@@ -18,6 +18,3 @@ LuxuryCab::LuxuryCab(): Cab() {
 LuxuryCab::~LuxuryCab() {
 
 }
-
-
-//BOOST_CLASS_EXPORT(LuxuryCab)

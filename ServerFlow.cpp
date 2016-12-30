@@ -6,7 +6,7 @@
 #include "Serialization.h"
 
 /**
- * this function is a constructor of the main flow.
+ * this function is a constructor of the serverflow.
  */
 ServerFlow::ServerFlow(Socket* s) {
     socket = s;
@@ -15,7 +15,7 @@ ServerFlow::ServerFlow(Socket* s) {
 }
 
 /**
- * this function is a destructor of the main flow.
+ * this function is a destructor of the serverflow.
  */
 ServerFlow::~ServerFlow() {
     if (this->map != NULL)
@@ -226,6 +226,9 @@ void ServerFlow::setWorldRepresentation() {
     taxiCenter.setMap(map);
 }
 
+/**
+ * this function add drivers to the serverflow and attaches them with cabs.
+ */
 void ServerFlow::addDrivers() {
     int numOfDrivers;
     std::cin >> numOfDrivers;
@@ -254,7 +257,7 @@ void ServerFlow::addDrivers() {
 
 
 /**
- * this function add a taxi to the main flow.
+ * this function add a taxi to the serverflow.
  */
 void ServerFlow::addTaxi() {
     int id, cabKind;
@@ -282,7 +285,7 @@ void ServerFlow::addTaxi() {
 }
 
 /**
- * this function add a trip to the main flow.
+ * this function add a trip to the serverflow.
  */
 void ServerFlow::addTrip() {
     int id, passengersNum, startTime;
@@ -315,7 +318,7 @@ void ServerFlow::printDriversLocation() {
 }*/
 
 /**
- * this function returns the taxi center member of main flow.
+ * this function returns the taxi center member of serverflow.
  * @return the taxi center.
  */
 TaxiCenter* ServerFlow::getTaxiCenter() {
@@ -323,13 +326,17 @@ TaxiCenter* ServerFlow::getTaxiCenter() {
 }
 
 /**
- * this fnction returns the map member of main flow.
+ * this fnction returns the map member of serverflow.
  * @param map the map.
  */
 void ServerFlow::setMap(Map* map) {
     this->map = map;
 }
 
+/**
+ * this function updates the time of the world now, attaches trip to drivers in which the time
+ * is now, and move one step all the drivers.
+ */
 void ServerFlow::updateTime() {
     //attach trips to drivers when it's trip time
     taxiCenter.updateTime();

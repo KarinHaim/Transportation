@@ -3,6 +3,9 @@
 #include <boost/archive/text_iarchive.hpp>
 using namespace std;
 
+/**
+ * this class defines the clock of the world.
+ */
 class Clock {
     //serialization
     friend class boost::serialization::access;

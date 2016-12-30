@@ -146,7 +146,7 @@ void Driver::calculateAvgSatisfaction() {
 }
 
 /**
- * this function start driving.
+ * this function move one step all drivers..
  */
 void Driver::move() {
     if (this->trip != NULL) {
@@ -242,6 +242,10 @@ double Driver::getMoney() {
     return money;
 }
 
+/**
+ * this function returns the cab id of the driver.
+ * @return
+ */
 int Driver::getCabID() {
     return cabID;
 }

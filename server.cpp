@@ -1,13 +1,12 @@
 
 #include <gtest/gtest.h>
-#include <stdlib.h>
 #include "Udp.h"
 #include "Serialization.h"
 #include "ServerFlow.h"
 
 
 /**
- * this is the main function which operates the program.
+ * this is the main function which operates the program of the server side.
  * @param argc  - number of arguments to main.
  * @param argv - the argumenrs.
  * @return

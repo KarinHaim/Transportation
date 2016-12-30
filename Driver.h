@@ -2,25 +2,6 @@
 #ifndef TRANSPORTATION_DRIVER_H
 #define TRANSPORTATION_DRIVER_H
 
-#include <cstddef>
-#include <iomanip>
-#include <iostream>
-#include <fstream>
-#include <string>
-
-#include <boost/archive/tmpdir.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/utility.hpp>
-#include <boost/serialization/assume_abstract.hpp>
-//#include <boost/archive/binary_oarchive>
-//#include <boost/serialization>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <sstream>
-
 #include "Trip.h"
 #include "Cab.h"
 #include "Location.h"
@@ -35,9 +16,6 @@ using namespace boost::serialization;
  */
 class Driver {
     //serialization
-  //  friend ostream & operator<<(ostream &os, const Driver &driver);
- //   friend ostream & operator<<(ostream &os, const Driver *driver);
- //   friend istream & operator>>(istream &input, const Driver &driver);
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){

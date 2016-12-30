@@ -13,7 +13,7 @@
 #include "Socket.h"
 
 /**
- * this class controls the main flow of the taxi center.
+ * this class controls the clientFlow of the taxi center.
  */
 class ClientFlow {
 private:

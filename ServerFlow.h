@@ -12,7 +12,7 @@
 #include "Socket.h"
 
 /**
- * this class controls the main flow of the taxi center.
+ * this class controls the ServerFlow.
  */
 class ServerFlow {
 private:
@@ -48,6 +48,5 @@ public:
     void addDrivers();
     void updateTime();
 };
-
 
 #endif //TRANSPORTATION_SERVERFLOW_H

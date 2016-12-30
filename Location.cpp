@@ -19,7 +19,6 @@ Location::Location() {
  * this function is a destructor for the Location.
  */
 Location::~Location() {
-    //delete(this->location);
 }
 
 /**

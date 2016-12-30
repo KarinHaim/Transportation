@@ -1,16 +1,27 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-//#include <cstdlib>
 #include "Socket.h"
 
+/**
+ * this function is a constructor for socket.
+ */
 Socket::Socket() {
 }
 
+/**
+ * this function is a destructor for socket.
+ */
 Socket::~Socket() {
     close(socketDescriptor);
 }
 
+/**
+ * this function initialize the socket.
+ * @param pr - which process is this
+ * @param port - which port to open.
+ * @param ip - the ip address to bind.
+ */
 void Socket::initializeSocket(ProcessRole pr, u_short port, const char * ip) {
     if (pr == ProcessRole::CLIENT) {
         memset(&other_addr, 0, sizeof(other_addr));

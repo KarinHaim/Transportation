@@ -1,6 +1,4 @@
 #include "Passenger.h"
-#include <stdlib.h>
-#include <time.h>
 
 /**
  * this function is a counstructor of the passenger class.

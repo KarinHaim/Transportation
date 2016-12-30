@@ -155,6 +155,10 @@ void Trip::setLocation(Location* location) {
     this->road.setLocation(location);
 }
 
+/**
+ * this function returns the starting time of the trip.
+ * @return - the starting time.
+ */
 int Trip::getStartTime() {
     return this->startTime;
 }

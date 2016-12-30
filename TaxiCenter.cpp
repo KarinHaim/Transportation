@@ -223,6 +223,10 @@ void TaxiCenter::updateTime() {
     this->clock->updateTime();
 }
 
+/**
+ * this function returns the clock of the taxi center.
+ * @return the clock
+ */
 Clock* TaxiCenter::getClock() {
     return this->clock;
 }

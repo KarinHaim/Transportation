@@ -2,7 +2,6 @@
 #include "boost/algorithm/string.hpp"
 #include "StandardCab.h"
 #include "LuxuryCab.h"
-#include <iostream>
 #include "Serialization.h"
 
 /**
@@ -277,6 +276,9 @@ void MainFlow::setWorldRepresentation() {
     taxiCenter.setMap(map);
 }
 
+/**
+ * this function add drivers to the world and than attaches it with taxi.
+ */
 void MainFlow::addDrivers() {
     int numOfDrivers;
     std::cin >> numOfDrivers;
@@ -318,8 +320,6 @@ void MainFlow::addDriver() {
     socket->receiveData(buffer, sizeof(buffer));
     Cab *cab = deserialize<Cab>(buffer, sizeof(buffer));
     driver->attachCab(cab);
-
-    //initialize, recieve data, driver.serialize, txicenter.add driver, add cab and send it
 }
 
 /**
