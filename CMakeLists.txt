@@ -9,7 +9,7 @@ include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
 
-set(SOURCE_FILES main.cpp Cab.cpp Cab.h CarManufacturer.h Color.h Driver.cpp Driver.h MeritalStatus.h Trip.cpp Trip.h Point.cpp Point.h Map.cpp Map.h Location.cpp Location.h Passenger.cpp Passenger.h Road.cpp Road.h Tests/MapTester.cpp TaxiCenter.cpp TaxiCenter.h StandardCab.cpp StandardCab.h Search.h MainFlow.cpp MainFlow.h Tests/PointTester.cpp Tests/RoadTester.cpp LuxuryCab.cpp LuxuryCab.h Searchable.h Tests/TripTester.cpp Tests/PassengerTester.cpp Tests/SearchTester.cpp Tests/DriverTester.cpp Tests/TaxiCenterTester.cpp Tests/MainFlowTester.cpp)
+set(SOURCE_FILES main.cpp Cab.cpp Cab.h CarManufacturer.h Color.h Driver.cpp Driver.h MeritalStatus.h Trip.cpp Trip.h Point.cpp Point.h Map.cpp Map.h Location.cpp Location.h Passenger.cpp Passenger.h Road.cpp Road.h Tests/MapTester.cpp TaxiCenter.cpp TaxiCenter.h StandardCab.cpp StandardCab.h Search.h MainFlow.cpp MainFlow.h Tests/PointTester.cpp Tests/RoadTester.cpp LuxuryCab.cpp LuxuryCab.h Searchable.h Tests/TripTester.cpp Tests/PassengerTester.cpp Tests/SearchTester.cpp Tests/DriverTester.cpp Tests/TaxiCenterTester.cpp Tests/MainFlowTester.cpp Socket.cpp Socket.h ProcessRole.h Udp.cpp Udp.h Tcp.cpp Tcp.h)
 add_executable(Transportation ${SOURCE_FILES})
 target_link_libraries(Transportation gtest gtest_main)
 

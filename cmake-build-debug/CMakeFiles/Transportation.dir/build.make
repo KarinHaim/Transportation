@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/hodaya/Downloads/clion-2016.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/karinh/Documents/clion-2016.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/hodaya/Downloads/clion-2016.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/karinh/Documents/clion-2016.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hodaya/ClionProjects/Transportation
+CMAKE_SOURCE_DIR = /home/karinh/ClionProjects/Transportation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hodaya/ClionProjects/Transportation/cmake-build-debug
+CMAKE_BINARY_DIR = /home/karinh/ClionProjects/Transportation/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Transportation.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/Transportation.dir/flags.make
 
 CMakeFiles/Transportation.dir/main.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Transportation.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/main.cpp.o -c /home/hodaya/ClionProjects/Transportation/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Transportation.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/main.cpp.o -c /home/karinh/ClionProjects/Transportation/main.cpp
 
 CMakeFiles/Transportation.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/main.cpp > CMakeFiles/Transportation.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/main.cpp > CMakeFiles/Transportation.dir/main.cpp.i
 
 CMakeFiles/Transportation.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/main.cpp -o CMakeFiles/Transportation.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/main.cpp -o CMakeFiles/Transportation.dir/main.cpp.s
 
 CMakeFiles/Transportation.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/Transportation.dir/main.cpp.o.provides.build: CMakeFiles/Transportati
 
 CMakeFiles/Transportation.dir/Cab.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Cab.cpp.o: ../Cab.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Transportation.dir/Cab.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Cab.cpp.o -c /home/hodaya/ClionProjects/Transportation/Cab.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Transportation.dir/Cab.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Cab.cpp.o -c /home/karinh/ClionProjects/Transportation/Cab.cpp
 
 CMakeFiles/Transportation.dir/Cab.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Cab.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Cab.cpp > CMakeFiles/Transportation.dir/Cab.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Cab.cpp > CMakeFiles/Transportation.dir/Cab.cpp.i
 
 CMakeFiles/Transportation.dir/Cab.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Cab.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Cab.cpp -o CMakeFiles/Transportation.dir/Cab.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Cab.cpp -o CMakeFiles/Transportation.dir/Cab.cpp.s
 
 CMakeFiles/Transportation.dir/Cab.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/Transportation.dir/Cab.cpp.o.provides.build: CMakeFiles/Transportatio
 
 CMakeFiles/Transportation.dir/Driver.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Driver.cpp.o: ../Driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Transportation.dir/Driver.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Driver.cpp.o -c /home/hodaya/ClionProjects/Transportation/Driver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Transportation.dir/Driver.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Driver.cpp.o -c /home/karinh/ClionProjects/Transportation/Driver.cpp
 
 CMakeFiles/Transportation.dir/Driver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Driver.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Driver.cpp > CMakeFiles/Transportation.dir/Driver.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Driver.cpp > CMakeFiles/Transportation.dir/Driver.cpp.i
 
 CMakeFiles/Transportation.dir/Driver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Driver.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Driver.cpp -o CMakeFiles/Transportation.dir/Driver.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Driver.cpp -o CMakeFiles/Transportation.dir/Driver.cpp.s
 
 CMakeFiles/Transportation.dir/Driver.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/Transportation.dir/Driver.cpp.o.provides.build: CMakeFiles/Transporta
 
 CMakeFiles/Transportation.dir/Trip.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Trip.cpp.o: ../Trip.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Transportation.dir/Trip.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Trip.cpp.o -c /home/hodaya/ClionProjects/Transportation/Trip.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Transportation.dir/Trip.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Trip.cpp.o -c /home/karinh/ClionProjects/Transportation/Trip.cpp
 
 CMakeFiles/Transportation.dir/Trip.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Trip.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Trip.cpp > CMakeFiles/Transportation.dir/Trip.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Trip.cpp > CMakeFiles/Transportation.dir/Trip.cpp.i
 
 CMakeFiles/Transportation.dir/Trip.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Trip.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Trip.cpp -o CMakeFiles/Transportation.dir/Trip.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Trip.cpp -o CMakeFiles/Transportation.dir/Trip.cpp.s
 
 CMakeFiles/Transportation.dir/Trip.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/Transportation.dir/Trip.cpp.o.provides.build: CMakeFiles/Transportati
 
 CMakeFiles/Transportation.dir/Point.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Point.cpp.o: ../Point.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Transportation.dir/Point.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Point.cpp.o -c /home/hodaya/ClionProjects/Transportation/Point.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Transportation.dir/Point.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Point.cpp.o -c /home/karinh/ClionProjects/Transportation/Point.cpp
 
 CMakeFiles/Transportation.dir/Point.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Point.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Point.cpp > CMakeFiles/Transportation.dir/Point.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Point.cpp > CMakeFiles/Transportation.dir/Point.cpp.i
 
 CMakeFiles/Transportation.dir/Point.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Point.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Point.cpp -o CMakeFiles/Transportation.dir/Point.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Point.cpp -o CMakeFiles/Transportation.dir/Point.cpp.s
 
 CMakeFiles/Transportation.dir/Point.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/Transportation.dir/Point.cpp.o.provides.build: CMakeFiles/Transportat
 
 CMakeFiles/Transportation.dir/Map.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Map.cpp.o: ../Map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Transportation.dir/Map.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Map.cpp.o -c /home/hodaya/ClionProjects/Transportation/Map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Transportation.dir/Map.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Map.cpp.o -c /home/karinh/ClionProjects/Transportation/Map.cpp
 
 CMakeFiles/Transportation.dir/Map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Map.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Map.cpp > CMakeFiles/Transportation.dir/Map.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Map.cpp > CMakeFiles/Transportation.dir/Map.cpp.i
 
 CMakeFiles/Transportation.dir/Map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Map.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Map.cpp -o CMakeFiles/Transportation.dir/Map.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Map.cpp -o CMakeFiles/Transportation.dir/Map.cpp.s
 
 CMakeFiles/Transportation.dir/Map.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/Transportation.dir/Map.cpp.o.provides.build: CMakeFiles/Transportatio
 
 CMakeFiles/Transportation.dir/Location.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Location.cpp.o: ../Location.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Transportation.dir/Location.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Location.cpp.o -c /home/hodaya/ClionProjects/Transportation/Location.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Transportation.dir/Location.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Location.cpp.o -c /home/karinh/ClionProjects/Transportation/Location.cpp
 
 CMakeFiles/Transportation.dir/Location.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Location.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Location.cpp > CMakeFiles/Transportation.dir/Location.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Location.cpp > CMakeFiles/Transportation.dir/Location.cpp.i
 
 CMakeFiles/Transportation.dir/Location.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Location.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Location.cpp -o CMakeFiles/Transportation.dir/Location.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Location.cpp -o CMakeFiles/Transportation.dir/Location.cpp.s
 
 CMakeFiles/Transportation.dir/Location.cpp.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/Transportation.dir/Location.cpp.o.provides.build: CMakeFiles/Transpor
 
 CMakeFiles/Transportation.dir/Passenger.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Passenger.cpp.o: ../Passenger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Transportation.dir/Passenger.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Passenger.cpp.o -c /home/hodaya/ClionProjects/Transportation/Passenger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Transportation.dir/Passenger.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Passenger.cpp.o -c /home/karinh/ClionProjects/Transportation/Passenger.cpp
 
 CMakeFiles/Transportation.dir/Passenger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Passenger.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Passenger.cpp > CMakeFiles/Transportation.dir/Passenger.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Passenger.cpp > CMakeFiles/Transportation.dir/Passenger.cpp.i
 
 CMakeFiles/Transportation.dir/Passenger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Passenger.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Passenger.cpp -o CMakeFiles/Transportation.dir/Passenger.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Passenger.cpp -o CMakeFiles/Transportation.dir/Passenger.cpp.s
 
 CMakeFiles/Transportation.dir/Passenger.cpp.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/Transportation.dir/Passenger.cpp.o.provides.build: CMakeFiles/Transpo
 
 CMakeFiles/Transportation.dir/Road.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Road.cpp.o: ../Road.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Transportation.dir/Road.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Road.cpp.o -c /home/hodaya/ClionProjects/Transportation/Road.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Transportation.dir/Road.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Road.cpp.o -c /home/karinh/ClionProjects/Transportation/Road.cpp
 
 CMakeFiles/Transportation.dir/Road.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Road.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Road.cpp > CMakeFiles/Transportation.dir/Road.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Road.cpp > CMakeFiles/Transportation.dir/Road.cpp.i
 
 CMakeFiles/Transportation.dir/Road.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Road.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Road.cpp -o CMakeFiles/Transportation.dir/Road.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Road.cpp -o CMakeFiles/Transportation.dir/Road.cpp.s
 
 CMakeFiles/Transportation.dir/Road.cpp.o.requires:
 
@@ -275,16 +275,16 @@ CMakeFiles/Transportation.dir/Road.cpp.o.provides.build: CMakeFiles/Transportati
 
 CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o: ../Tests/MapTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/MapTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/MapTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/MapTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/MapTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/MapTester.cpp > CMakeFiles/Transportation.dir/Tests/MapTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/MapTester.cpp > CMakeFiles/Transportation.dir/Tests/MapTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/MapTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/MapTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/MapTester.cpp -o CMakeFiles/Transportation.dir/Tests/MapTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/MapTester.cpp -o CMakeFiles/Transportation.dir/Tests/MapTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o.requires:
 
@@ -299,16 +299,16 @@ CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o.provides.build: CMakeFiles/T
 
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: ../TaxiCenter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Transportation.dir/TaxiCenter.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/TaxiCenter.cpp.o -c /home/hodaya/ClionProjects/Transportation/TaxiCenter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Transportation.dir/TaxiCenter.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/TaxiCenter.cpp.o -c /home/karinh/ClionProjects/Transportation/TaxiCenter.cpp
 
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/TaxiCenter.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/TaxiCenter.cpp > CMakeFiles/Transportation.dir/TaxiCenter.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/TaxiCenter.cpp > CMakeFiles/Transportation.dir/TaxiCenter.cpp.i
 
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/TaxiCenter.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/TaxiCenter.cpp -o CMakeFiles/Transportation.dir/TaxiCenter.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/TaxiCenter.cpp -o CMakeFiles/Transportation.dir/TaxiCenter.cpp.s
 
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o.requires:
 
@@ -323,16 +323,16 @@ CMakeFiles/Transportation.dir/TaxiCenter.cpp.o.provides.build: CMakeFiles/Transp
 
 CMakeFiles/Transportation.dir/StandardCab.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/StandardCab.cpp.o: ../StandardCab.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Transportation.dir/StandardCab.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/StandardCab.cpp.o -c /home/hodaya/ClionProjects/Transportation/StandardCab.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Transportation.dir/StandardCab.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/StandardCab.cpp.o -c /home/karinh/ClionProjects/Transportation/StandardCab.cpp
 
 CMakeFiles/Transportation.dir/StandardCab.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/StandardCab.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/StandardCab.cpp > CMakeFiles/Transportation.dir/StandardCab.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/StandardCab.cpp > CMakeFiles/Transportation.dir/StandardCab.cpp.i
 
 CMakeFiles/Transportation.dir/StandardCab.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/StandardCab.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/StandardCab.cpp -o CMakeFiles/Transportation.dir/StandardCab.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/StandardCab.cpp -o CMakeFiles/Transportation.dir/StandardCab.cpp.s
 
 CMakeFiles/Transportation.dir/StandardCab.cpp.o.requires:
 
@@ -347,16 +347,16 @@ CMakeFiles/Transportation.dir/StandardCab.cpp.o.provides.build: CMakeFiles/Trans
 
 CMakeFiles/Transportation.dir/MainFlow.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/MainFlow.cpp.o: ../MainFlow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Transportation.dir/MainFlow.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/MainFlow.cpp.o -c /home/hodaya/ClionProjects/Transportation/MainFlow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Transportation.dir/MainFlow.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/MainFlow.cpp.o -c /home/karinh/ClionProjects/Transportation/MainFlow.cpp
 
 CMakeFiles/Transportation.dir/MainFlow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/MainFlow.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/MainFlow.cpp > CMakeFiles/Transportation.dir/MainFlow.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/MainFlow.cpp > CMakeFiles/Transportation.dir/MainFlow.cpp.i
 
 CMakeFiles/Transportation.dir/MainFlow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/MainFlow.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/MainFlow.cpp -o CMakeFiles/Transportation.dir/MainFlow.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/MainFlow.cpp -o CMakeFiles/Transportation.dir/MainFlow.cpp.s
 
 CMakeFiles/Transportation.dir/MainFlow.cpp.o.requires:
 
@@ -371,16 +371,16 @@ CMakeFiles/Transportation.dir/MainFlow.cpp.o.provides.build: CMakeFiles/Transpor
 
 CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o: ../Tests/PointTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/PointTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/PointTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/PointTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/PointTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/PointTester.cpp > CMakeFiles/Transportation.dir/Tests/PointTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/PointTester.cpp > CMakeFiles/Transportation.dir/Tests/PointTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/PointTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/PointTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/PointTester.cpp -o CMakeFiles/Transportation.dir/Tests/PointTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/PointTester.cpp -o CMakeFiles/Transportation.dir/Tests/PointTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o.requires:
 
@@ -395,16 +395,16 @@ CMakeFiles/Transportation.dir/Tests/PointTester.cpp.o.provides.build: CMakeFiles
 
 CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o: ../Tests/RoadTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/RoadTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/RoadTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/RoadTester.cpp > CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/RoadTester.cpp > CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/RoadTester.cpp -o CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/RoadTester.cpp -o CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o.requires:
 
@@ -419,16 +419,16 @@ CMakeFiles/Transportation.dir/Tests/RoadTester.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/Transportation.dir/LuxuryCab.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/LuxuryCab.cpp.o: ../LuxuryCab.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Transportation.dir/LuxuryCab.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/LuxuryCab.cpp.o -c /home/hodaya/ClionProjects/Transportation/LuxuryCab.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Transportation.dir/LuxuryCab.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/LuxuryCab.cpp.o -c /home/karinh/ClionProjects/Transportation/LuxuryCab.cpp
 
 CMakeFiles/Transportation.dir/LuxuryCab.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/LuxuryCab.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/LuxuryCab.cpp > CMakeFiles/Transportation.dir/LuxuryCab.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/LuxuryCab.cpp > CMakeFiles/Transportation.dir/LuxuryCab.cpp.i
 
 CMakeFiles/Transportation.dir/LuxuryCab.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/LuxuryCab.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/LuxuryCab.cpp -o CMakeFiles/Transportation.dir/LuxuryCab.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/LuxuryCab.cpp -o CMakeFiles/Transportation.dir/LuxuryCab.cpp.s
 
 CMakeFiles/Transportation.dir/LuxuryCab.cpp.o.requires:
 
@@ -443,16 +443,16 @@ CMakeFiles/Transportation.dir/LuxuryCab.cpp.o.provides.build: CMakeFiles/Transpo
 
 CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o: ../Tests/TripTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/TripTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/TripTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/TripTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp > CMakeFiles/Transportation.dir/Tests/TripTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/TripTester.cpp > CMakeFiles/Transportation.dir/Tests/TripTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/TripTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/TripTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp -o CMakeFiles/Transportation.dir/Tests/TripTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/TripTester.cpp -o CMakeFiles/Transportation.dir/Tests/TripTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o.requires:
 
@@ -467,16 +467,16 @@ CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o: ../Tests/PassengerTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/PassengerTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/PassengerTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/PassengerTester.cpp > CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/PassengerTester.cpp > CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/PassengerTester.cpp -o CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/PassengerTester.cpp -o CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o.requires:
 
@@ -491,16 +491,16 @@ CMakeFiles/Transportation.dir/Tests/PassengerTester.cpp.o.provides.build: CMakeF
 
 CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o: ../Tests/SearchTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/SearchTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/SearchTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/SearchTester.cpp > CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/SearchTester.cpp > CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/SearchTester.cpp -o CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/SearchTester.cpp -o CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o.requires:
 
@@ -515,16 +515,16 @@ CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o: ../Tests/DriverTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/DriverTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/DriverTester.cpp > CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp > CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/DriverTester.cpp -o CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp -o CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o.requires:
 
@@ -539,16 +539,16 @@ CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o.provides.build: CMakeFile
 
 CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o: ../Tests/TaxiCenterTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp > CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp > CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp -o CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp -o CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o.requires:
 
@@ -563,16 +563,16 @@ CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o.provides.build: CMake
 
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o: CMakeFiles/Transportation.dir/flags.make
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o: ../Tests/MainFlowTester.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o -c /home/hodaya/ClionProjects/Transportation/Tests/MainFlowTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o -c /home/karinh/ClionProjects/Transportation/Tests/MainFlowTester.cpp
 
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hodaya/ClionProjects/Transportation/Tests/MainFlowTester.cpp > CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tests/MainFlowTester.cpp > CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.i
 
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hodaya/ClionProjects/Transportation/Tests/MainFlowTester.cpp -o CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tests/MainFlowTester.cpp -o CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.s
 
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.requires:
 
@@ -583,6 +583,78 @@ CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.provides: CMakeFiles/Tr
 .PHONY : CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.provides
 
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.provides.build: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o
+
+
+CMakeFiles/Transportation.dir/Socket.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Socket.cpp.o: ../Socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Transportation.dir/Socket.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Socket.cpp.o -c /home/karinh/ClionProjects/Transportation/Socket.cpp
+
+CMakeFiles/Transportation.dir/Socket.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Socket.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Socket.cpp > CMakeFiles/Transportation.dir/Socket.cpp.i
+
+CMakeFiles/Transportation.dir/Socket.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Socket.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Socket.cpp -o CMakeFiles/Transportation.dir/Socket.cpp.s
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.provides: CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Socket.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Socket.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.provides.build: CMakeFiles/Transportation.dir/Socket.cpp.o
+
+
+CMakeFiles/Transportation.dir/Udp.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../Udp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Transportation.dir/Udp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Udp.cpp.o -c /home/karinh/ClionProjects/Transportation/Udp.cpp
+
+CMakeFiles/Transportation.dir/Udp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Udp.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Udp.cpp > CMakeFiles/Transportation.dir/Udp.cpp.i
+
+CMakeFiles/Transportation.dir/Udp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Udp.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Udp.cpp -o CMakeFiles/Transportation.dir/Udp.cpp.s
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.provides: CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Udp.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Udp.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.provides.build: CMakeFiles/Transportation.dir/Udp.cpp.o
+
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../Tcp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Transportation.dir/Tcp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tcp.cpp.o -c /home/karinh/ClionProjects/Transportation/Tcp.cpp
+
+CMakeFiles/Transportation.dir/Tcp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tcp.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tcp.cpp > CMakeFiles/Transportation.dir/Tcp.cpp.i
+
+CMakeFiles/Transportation.dir/Tcp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tcp.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tcp.cpp -o CMakeFiles/Transportation.dir/Tcp.cpp.s
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.provides: CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Tcp.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Tcp.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.provides.build: CMakeFiles/Transportation.dir/Tcp.cpp.o
 
 
 # Object files for target Transportation
@@ -608,7 +680,10 @@ Transportation_OBJECTS = \
 "CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o" \
 "CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o" \
 "CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o" \
-"CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
+"CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o" \
+"CMakeFiles/Transportation.dir/Socket.cpp.o" \
+"CMakeFiles/Transportation.dir/Udp.cpp.o" \
+"CMakeFiles/Transportation.dir/Tcp.cpp.o"
 
 # External object files for target Transportation
 Transportation_EXTERNAL_OBJECTS =
@@ -635,12 +710,15 @@ Transportation: CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Socket.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Udp.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Tcp.cpp.o
 Transportation: CMakeFiles/Transportation.dir/build.make
 Transportation: lib/googletest-master/googlemock/gtest/libgtest.a
 Transportation: lib/googletest-master/googlemock/gtest/libgtest_main.a
 Transportation: lib/googletest-master/googlemock/gtest/libgtest.a
 Transportation: CMakeFiles/Transportation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable Transportation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable Transportation"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Transportation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -670,6 +748,9 @@ CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/Sear
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o.requires
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o.requires
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
 
 .PHONY : CMakeFiles/Transportation.dir/requires
 
@@ -678,6 +759,6 @@ CMakeFiles/Transportation.dir/clean:
 .PHONY : CMakeFiles/Transportation.dir/clean
 
 CMakeFiles/Transportation.dir/depend:
-	cd /home/hodaya/ClionProjects/Transportation/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hodaya/ClionProjects/Transportation /home/hodaya/ClionProjects/Transportation /home/hodaya/ClionProjects/Transportation/cmake-build-debug /home/hodaya/ClionProjects/Transportation/cmake-build-debug /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/karinh/ClionProjects/Transportation/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/karinh/ClionProjects/Transportation /home/karinh/ClionProjects/Transportation /home/karinh/ClionProjects/Transportation/cmake-build-debug /home/karinh/ClionProjects/Transportation/cmake-build-debug /home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Transportation.dir/depend
 

@@ -578,6 +578,10 @@ CMakeFiles/Transportation.dir/Road.cpp.o: ../Road.h
 CMakeFiles/Transportation.dir/Road.cpp.o: ../Search.h
 CMakeFiles/Transportation.dir/Road.cpp.o: ../Searchable.h
 
+CMakeFiles/Transportation.dir/Socket.cpp.o: ../ProcessRole.h
+CMakeFiles/Transportation.dir/Socket.cpp.o: ../Socket.cpp
+CMakeFiles/Transportation.dir/Socket.cpp.o: ../Socket.h
+
 CMakeFiles/Transportation.dir/StandardCab.cpp.o: ../Cab.h
 CMakeFiles/Transportation.dir/StandardCab.cpp.o: ../CarManufacturer.h
 CMakeFiles/Transportation.dir/StandardCab.cpp.o: ../Color.h
@@ -598,6 +602,11 @@ CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: ../Searchable.h
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: ../TaxiCenter.cpp
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: ../TaxiCenter.h
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o: ../Trip.h
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../ProcessRole.h
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../Socket.h
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../Tcp.cpp
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../Tcp.h
 
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o: ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o: ../lib/googletest-master/googletest/include/gtest/gtest-message.h
@@ -891,6 +900,11 @@ CMakeFiles/Transportation.dir/Trip.cpp.o: ../Road.h
 CMakeFiles/Transportation.dir/Trip.cpp.o: ../Searchable.h
 CMakeFiles/Transportation.dir/Trip.cpp.o: ../Trip.cpp
 CMakeFiles/Transportation.dir/Trip.cpp.o: ../Trip.h
+
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../ProcessRole.h
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../Socket.h
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../Udp.cpp
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../Udp.h
 
 CMakeFiles/Transportation.dir/main.cpp.o: ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
 CMakeFiles/Transportation.dir/main.cpp.o: ../lib/googletest-master/googletest/include/gtest/gtest-message.h
