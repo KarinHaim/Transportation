@@ -17,15 +17,14 @@
 #include <boost/serialization/utility.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/assume_abstract.hpp>
-#include <boost/serialization>
-#include "Trip.h"
-#include "Cab.h"
-#include "Location.h"
-#include "MeritalStatus.h"
+//#include <boost/serialization>
+
+//#include "Location.h"
+/*
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <sstream>*/
 
 /*
  * A class that represents a point on a graph, characterized by coordinate
@@ -33,14 +32,14 @@
  */
 class Point {
     friend class boost::serialization::access;
-    friend std::ostream & operator << (std::ostream& os, const Point &obj);
-    friend std::ostream & operator << (std::ostream& os, const Point *obj);
+
+ //   friend std::ostream & operator << (std::ostream& os, const Point *obj);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & x;
         ar & y;
         ar & visited;
-        ar & adjacentPoints;
+      //  ar & adjacentPoints;
         ar & former;
         ar & occupied;
     }
@@ -75,6 +74,7 @@ public:
     //defines Points behavior for '==' operator which is comparing if x and y coordinated equal
     bool operator == (const Point &other) const;
     bool operator != (const Point &other) const;
+    friend std::ostream & operator << (std::ostream& os, const Point &obj);
 };
 
 #endif //TRANSPORTATION_POINT_H

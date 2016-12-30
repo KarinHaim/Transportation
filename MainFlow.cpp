@@ -3,6 +3,7 @@
 #include "StandardCab.h"
 #include "LuxuryCab.h"
 #include <iostream>
+#include "Serialization.h"
 
 /**
  * this function is a constructor of the main flow.
@@ -290,6 +291,8 @@ void MainFlow::addDriver() {
         throw;
     }
     taxiCenter.attachTaxiToDriver(driver, cabID);
+
+    //initialize, recieve data, driver.serialize, txicenter.add driver, add cab and send it
 }
 
 /**

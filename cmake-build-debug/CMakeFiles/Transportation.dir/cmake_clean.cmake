@@ -22,8 +22,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o"
   "CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
   "CMakeFiles/Transportation.dir/Socket.cpp.o"
-  "CMakeFiles/Transportation.dir/Udp.cpp.o"
   "CMakeFiles/Transportation.dir/Tcp.cpp.o"
+  "CMakeFiles/Transportation.dir/Udp.cpp.o"
   "Transportation.pdb"
   "Transportation"
 )

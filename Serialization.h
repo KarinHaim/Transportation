@@ -20,6 +20,7 @@
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+//#include <boost/archive>
 
 using namespace std;
 using namespace boost::archive;
@@ -28,25 +29,21 @@ using namespace boost::iostreams;
 template<class T>
 T *deserialize(string serial_str) {
     T *p;
-    unsigned long x = serial_str.size();
-    boost::iostreams::basic_array_source<char> device(serial_str.c_str(), x);
+    boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
     boost::archive::binary_iarchive ia(s);
     ia >> p;
-
     return p;
 }
 
 template<class T>
 string serialize(T *object) {
     std::string serial_str;
-
-    boost::iostreams::back_insert_device<std::string> insertDevice(serial_str);
-    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(insertDevice);
+    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
     boost::archive::binary_oarchive oa(s);
     oa << object;
     s.flush();
-
     return serial_str;
 }
 

@@ -13,10 +13,9 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/utility.hpp>
-#include <boost/serialization/list.hpp>
 #include <boost/serialization/assume_abstract.hpp>
 //#include <boost/archive/binary_oarchive>
-#include <boost/serialization>
+//#include <boost/serialization>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -36,9 +35,9 @@ using namespace boost::serialization;
  */
 class Driver {
     //serialization
-    friend ostream & operator<<(ostream &os, const Driver &driver);
-    friend ostream & operator<<(ostream &os, const Driver *driver);
-    friend istream & operator>>(istream &input, const Driver &driver);
+  //  friend ostream & operator<<(ostream &os, const Driver &driver);
+ //   friend ostream & operator<<(ostream &os, const Driver *driver);
+ //   friend istream & operator>>(istream &input, const Driver &driver);
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
@@ -99,14 +98,17 @@ public:
 
 };
 
-//BOOST_SERIALIZATION_ASSUME_ABSTRACT(Driver)
-ostream & operator<<(ostream &os, const Driver &driver) {
+/*ostream & operator<<(ostream &os, const Driver &driver) {
+    return os<< driver.id << driver.age;
+}*/
+
+/*ostream & operator<<(ostream &os, const Driver &driver) {
     return os << driver.id << driver.age << driver.meritalStatus << driver.yearsOfExp << driver.avgSatisfaction <<
               driver.map << driver.cab << driver.finalTariff << driver.trip << driver.trip << driver.location <<
               driver.money << driver.totalNumOfPassengers;
 }
 
-/*ostream & operator<<(ostream &os, const Driver &driver) {
+ostream & operator<<(ostream &os, const Driver &driver) {
     std::string serial_str;
 
     boost::iostreams::back_insert_device<std::string> insertDevice(serial_str);
@@ -116,7 +118,7 @@ ostream & operator<<(ostream &os, const Driver &driver) {
     s.flush();
 
     return oa;
-}*/
+
 
 
   Driver deserialize(string serial_str) {
@@ -141,7 +143,7 @@ ostream & operator<<(ostream &os, const Driver &driver) {
       s.flush();
 
       return serial_str;
-  }
+  }*/
 
 
 #endif //TRANSPORTATION_DRIVER_H

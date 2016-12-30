@@ -13,9 +13,8 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/utility.hpp>
-#include <boost/serialization/list.hpp>
+#include <boost/serialization/vector.hpp>
 #include <boost/serialization/assume_abstract.hpp>
-#include <boost/serialization>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -27,9 +26,9 @@ using namespace std;
 class Trip {
     //serialization
     friend class boost::serialization::access;
-    friend ostream & operator<<(ostream &os, const Trip &trip);
-    friend ostream & operator<<(ostream &os, const Trip *trip);
-    friend istream & operator>>(istream &input, const Trip &trip);
+//    friend ostream & operator<<(ostream &os, const Trip &trip);
+//    friend ostream & operator<<(ostream &os, const Trip *trip);
+//    friend istream & operator>>(istream &input, const Trip &trip);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & id;

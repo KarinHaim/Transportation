@@ -11,7 +11,7 @@
 #include <boost/serialization/utility.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/assume_abstract.hpp>
-#include <boost/serialization>
+//#include <boost/serialization>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -22,9 +22,9 @@
 class Passenger {
     //serialization
     friend class boost::serialization::access;
-    friend ostream & operator<<(ostream &os, const Passenger &passenger);
-    friend ostream & operator<<(ostream &os, const Passenger *passenger);
-    friend istream & operator>>(istream &input, const Passenger &passenger);
+//    friend ostream & operator<<(ostream &os, const Passenger &passenger);
+//    friend ostream & operator<<(ostream &os, const Passenger *passenger);
+//    friend istream & operator>>(istream &input, const Passenger &passenger);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & sourceP;
