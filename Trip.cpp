@@ -9,7 +9,7 @@
  * @param passengers - number of passengers of the trip
  * @param tariff - the tariff of the trip
  */
-Trip::Trip(int id, Point start, Point end, Map* map, int passengers, double tariff) {
+Trip::Trip(int id, Point start, Point end, Map* map, int passengers, double tariff, int startTime) {
     this->id = id;
     this->metersPassed = 0;
     this->startP = start;
@@ -20,6 +20,7 @@ Trip::Trip(int id, Point start, Point end, Map* map, int passengers, double tari
     this->road = Road(map, start, end);
     this->initializePassengers();
     this->currentLocation = NULL;
+    this->startTime = startTime;
 }
 
 /**
@@ -41,6 +42,7 @@ Trip::Trip() {
     this->tariff = 0;
     this->road = Road();
     this->currentLocation = NULL;
+    this->startTime = 0;
 }
 
 /**

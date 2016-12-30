@@ -6,9 +6,13 @@ CMakeFiles/Transportation.dir/Cab.cpp.o
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
  /home/hodaya/ClionProjects/Transportation/Color.h
+CMakeFiles/Transportation.dir/Clock.cpp.o
+ /home/hodaya/ClionProjects/Transportation/Clock.cpp
+ /home/hodaya/ClionProjects/Transportation/Clock.h
 CMakeFiles/Transportation.dir/Driver.cpp.o
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.cpp
  /home/hodaya/ClionProjects/Transportation/Driver.h
@@ -34,6 +38,7 @@ CMakeFiles/Transportation.dir/LuxuryCab.cpp.o
 CMakeFiles/Transportation.dir/MainFlow.cpp.o
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -85,6 +90,7 @@ CMakeFiles/Transportation.dir/StandardCab.cpp.o
 CMakeFiles/Transportation.dir/TaxiCenter.cpp.o
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -127,6 +133,7 @@ CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -166,6 +173,7 @@ CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -342,6 +350,7 @@ CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -378,6 +387,7 @@ CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-string.h
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-tuple.h
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Location.h
  /home/hodaya/ClionProjects/Transportation/Map.h
  /home/hodaya/ClionProjects/Transportation/Passenger.h
@@ -387,6 +397,7 @@ CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o
  /home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp
  /home/hodaya/ClionProjects/Transportation/Trip.h
 CMakeFiles/Transportation.dir/Trip.cpp.o
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Location.h
  /home/hodaya/ClionProjects/Transportation/Map.h
  /home/hodaya/ClionProjects/Transportation/Passenger.h
@@ -400,7 +411,7 @@ CMakeFiles/Transportation.dir/Udp.cpp.o
  /home/hodaya/ClionProjects/Transportation/Socket.h
  /home/hodaya/ClionProjects/Transportation/Udp.cpp
  /home/hodaya/ClionProjects/Transportation/Udp.h
-CMakeFiles/Transportation.dir/main.cpp.o
+CMakeFiles/Transportation.dir/client.cpp.o
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
  ../lib/googletest-master/googletest/include/gtest/gtest-message.h
  ../lib/googletest-master/googletest/include/gtest/gtest-param-test.h
@@ -425,6 +436,7 @@ CMakeFiles/Transportation.dir/main.cpp.o
  ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
  /home/hodaya/ClionProjects/Transportation/Cab.h
  /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
  /home/hodaya/ClionProjects/Transportation/Color.h
  /home/hodaya/ClionProjects/Transportation/Driver.h
  /home/hodaya/ClionProjects/Transportation/Location.h
@@ -436,8 +448,52 @@ CMakeFiles/Transportation.dir/main.cpp.o
  /home/hodaya/ClionProjects/Transportation/ProcessRole.h
  /home/hodaya/ClionProjects/Transportation/Road.h
  /home/hodaya/ClionProjects/Transportation/Searchable.h
+ /home/hodaya/ClionProjects/Transportation/Serialization.h
  /home/hodaya/ClionProjects/Transportation/Socket.h
  /home/hodaya/ClionProjects/Transportation/TaxiCenter.h
  /home/hodaya/ClionProjects/Transportation/Trip.h
  /home/hodaya/ClionProjects/Transportation/Udp.h
- /home/hodaya/ClionProjects/Transportation/main.cpp
+ /home/hodaya/ClionProjects/Transportation/client.cpp
+CMakeFiles/Transportation.dir/server.cpp.o
+ ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
+ ../lib/googletest-master/googletest/include/gtest/gtest-message.h
+ ../lib/googletest-master/googletest/include/gtest/gtest-param-test.h
+ ../lib/googletest-master/googletest/include/gtest/gtest-printers.h
+ ../lib/googletest-master/googletest/include/gtest/gtest-test-part.h
+ ../lib/googletest-master/googletest/include/gtest/gtest-typed-test.h
+ ../lib/googletest-master/googletest/include/gtest/gtest.h
+ ../lib/googletest-master/googletest/include/gtest/gtest_pred_impl.h
+ ../lib/googletest-master/googletest/include/gtest/gtest_prod.h
+ ../lib/googletest-master/googletest/include/gtest/internal/custom/gtest-port.h
+ ../lib/googletest-master/googletest/include/gtest/internal/custom/gtest-printers.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-death-test-internal.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-filepath.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-internal.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-linked_ptr.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-param-util-generated.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-param-util.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-port-arch.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-port.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-string.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-tuple.h
+ ../lib/googletest-master/googletest/include/gtest/internal/gtest-type-util.h
+ /home/hodaya/ClionProjects/Transportation/Cab.h
+ /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
+ /home/hodaya/ClionProjects/Transportation/Clock.h
+ /home/hodaya/ClionProjects/Transportation/Color.h
+ /home/hodaya/ClionProjects/Transportation/Driver.h
+ /home/hodaya/ClionProjects/Transportation/Location.h
+ /home/hodaya/ClionProjects/Transportation/MainFlow.h
+ /home/hodaya/ClionProjects/Transportation/Map.h
+ /home/hodaya/ClionProjects/Transportation/MeritalStatus.h
+ /home/hodaya/ClionProjects/Transportation/Passenger.h
+ /home/hodaya/ClionProjects/Transportation/Point.h
+ /home/hodaya/ClionProjects/Transportation/ProcessRole.h
+ /home/hodaya/ClionProjects/Transportation/Road.h
+ /home/hodaya/ClionProjects/Transportation/Searchable.h
+ /home/hodaya/ClionProjects/Transportation/Serialization.h
+ /home/hodaya/ClionProjects/Transportation/Socket.h
+ /home/hodaya/ClionProjects/Transportation/TaxiCenter.h
+ /home/hodaya/ClionProjects/Transportation/Trip.h
+ /home/hodaya/ClionProjects/Transportation/Udp.h
+ /home/hodaya/ClionProjects/Transportation/server.cpp

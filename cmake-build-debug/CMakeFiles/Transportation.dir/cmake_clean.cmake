@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Transportation.dir/main.cpp.o"
   "CMakeFiles/Transportation.dir/Cab.cpp.o"
+  "CMakeFiles/Transportation.dir/client.cpp.o"
+  "CMakeFiles/Transportation.dir/server.cpp.o"
   "CMakeFiles/Transportation.dir/Driver.cpp.o"
   "CMakeFiles/Transportation.dir/Trip.cpp.o"
   "CMakeFiles/Transportation.dir/Point.cpp.o"
@@ -22,8 +23,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o"
   "CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
   "CMakeFiles/Transportation.dir/Socket.cpp.o"
-  "CMakeFiles/Transportation.dir/Tcp.cpp.o"
   "CMakeFiles/Transportation.dir/Udp.cpp.o"
+  "CMakeFiles/Transportation.dir/Tcp.cpp.o"
+  "CMakeFiles/Transportation.dir/Clock.cpp.o"
   "Transportation.pdb"
   "Transportation"
 )

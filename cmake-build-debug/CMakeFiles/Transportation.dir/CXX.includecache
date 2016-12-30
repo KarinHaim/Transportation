@@ -316,6 +316,14 @@ sstream
 
 /home/hodaya/ClionProjects/Transportation/CarManufacturer.h
 
+/home/hodaya/ClionProjects/Transportation/Clock.cpp
+Clock.h
+/home/hodaya/ClionProjects/Transportation/Clock.h
+
+/home/hodaya/ClionProjects/Transportation/Clock.h
+boost/archive/text_iarchive.hpp
+-
+
 /home/hodaya/ClionProjects/Transportation/Color.h
 
 /home/hodaya/ClionProjects/Transportation/Driver.cpp
@@ -773,6 +781,8 @@ Location.h
 /home/hodaya/ClionProjects/Transportation/Location.h
 Passenger.h
 /home/hodaya/ClionProjects/Transportation/Passenger.h
+Clock.h
+/home/hodaya/ClionProjects/Transportation/Clock.h
 boost/archive/tmpdir.hpp
 -
 boost/archive/text_iarchive.hpp
@@ -808,7 +818,7 @@ Socket.h
 string
 -
 
-/home/hodaya/ClionProjects/Transportation/main.cpp
+/home/hodaya/ClionProjects/Transportation/client.cpp
 gtest/gtest.h
 -
 stdlib.h
@@ -817,4 +827,18 @@ MainFlow.h
 /home/hodaya/ClionProjects/Transportation/MainFlow.h
 Udp.h
 /home/hodaya/ClionProjects/Transportation/Udp.h
+Serialization.h
+/home/hodaya/ClionProjects/Transportation/Serialization.h
+
+/home/hodaya/ClionProjects/Transportation/server.cpp
+gtest/gtest.h
+-
+stdlib.h
+-
+MainFlow.h
+/home/hodaya/ClionProjects/Transportation/MainFlow.h
+Udp.h
+/home/hodaya/ClionProjects/Transportation/Udp.h
+Serialization.h
+/home/hodaya/ClionProjects/Transportation/Serialization.h
 

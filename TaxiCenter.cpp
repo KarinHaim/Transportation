@@ -8,6 +8,7 @@
 TaxiCenter::TaxiCenter() {
     this->map = NULL;
     this->allMoney = 0;
+    this->clock = new Clock();
 }
 
 /**
@@ -103,9 +104,8 @@ void TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  * @param passengersNum - number of passengers in the trip.
  * @param tariff -the tariff of the trip.
  */
-void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff) {
-    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff);
-
+void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime) {
+    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
     this->trips.push_back(trip);
 }
 
@@ -120,7 +120,6 @@ void TaxiCenter::attachTripsToDrivers() {
                 //check if the driver is in the same point as the start of the trip
                 if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
                     this->drivers[j]->updateTrip(this->trips[i]);
-                    //  delete(this->trips[i]);
                     this->trips.erase(this->trips.begin() + i);
                 }
             }
@@ -186,9 +185,9 @@ Map* TaxiCenter::getMap() {
 /**
  * this function start moving all the drivers.
  */
-void TaxiCenter::startAllDrivers() {
+void TaxiCenter::moveOneStepAllDrivers() {
     for(int i = 0; i < this->drivers.size(); i++)
-        this->drivers[i]->startDriving();
+        this->drivers[i]->moveOneStep();
 }
 
 /**
@@ -197,4 +196,19 @@ void TaxiCenter::startAllDrivers() {
  */
 std::vector<Trip*> TaxiCenter::getTrips() {
     return this->trips;
+}
+
+/**
+ * this function returns the current time of the world.
+ * @return the current time.
+ */
+int TaxiCenter::getCurrentTime() {
+    return this->clock->getCurrentTime();
+}
+
+/**
+ * this function updates the current time of the world by 1.
+ */
+void TaxiCenter::updateTime() {
+    this->clock->updateTime();
 }

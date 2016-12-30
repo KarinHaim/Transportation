@@ -7,6 +7,7 @@
 #include "Road.h"
 #include "Location.h"
 #include "Passenger.h"
+#include "Clock.h"
 
 #include <boost/archive/tmpdir.hpp>
 #include <boost/archive/text_iarchive.hpp>
@@ -26,9 +27,6 @@ using namespace std;
 class Trip {
     //serialization
     friend class boost::serialization::access;
-//    friend ostream & operator<<(ostream &os, const Trip &trip);
-//    friend ostream & operator<<(ostream &os, const Trip *trip);
-//    friend istream & operator>>(istream &input, const Trip &trip);
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
         ar & id;
@@ -41,6 +39,7 @@ class Trip {
         ar & currentLocation;
         ar & road;
         ar & passengers;
+        ar & startTime;
     }
 private:
     int id;
@@ -54,8 +53,9 @@ private:
     Road road;
     std::vector<Passenger*> passengers; //constructs an empty list of passenger*.
     void initializePassengers();
+    int startTime;
 public:
-    Trip(int id, Point start, Point end, Map* map, int passengers, double tariff);
+    Trip(int id, Point start, Point end, Map* map, int passengers, double tariff, int startTime);
     Trip();
     ~Trip();
     Location* getCurrentLocation();

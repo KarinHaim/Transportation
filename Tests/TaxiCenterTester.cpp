@@ -125,7 +125,7 @@ TEST_F(TaxiCenterTester, addTaxiTester) {
 //this function tests that 'addTrip' really add the trip to taxi center.
 TEST_F(TaxiCenterTester, addTripTester) {
     //'addTrip' adds the trip to the end of the list of trips in 'taxiCenter'
-    taxiCenter->addTrip(123, Point(0,0), Point(1,2), 3, 5);
+    taxiCenter->addTrip(123, Point(0,0), Point(1,2), 3, 5, 0);
 
     //so these suppose to be equals now
     EXPECT_EQ(123, taxiCenter->getTrips()[0]->getID());
@@ -160,7 +160,7 @@ TEST_F(TaxiCenterTester, getLocationOfDriverTester) {
 TEST_F(TaxiCenterTester, attachTripsToDriversTester) {
     driver = new Driver(12345, 30, MeritalStatus::DIVORCED, 2, map);
     //setting a trip and a driver at the same start point
-    taxiCenter->addTrip(0, Point(0,0), Point(1,2), 3, 5);
+    taxiCenter->addTrip(0, Point(0,0), Point(1,2), 3, 5, 0);
     // driver->setLocation(new Location(new Point(5,5)));
     taxiCenter->addDriver(driver);
     Point* point = new Point(0,0);

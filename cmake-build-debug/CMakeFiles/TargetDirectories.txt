@@ -2,10 +2,10 @@
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/list_install_components.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/install.dir
-/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/core.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/install/local.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/install/strip.dir
-/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir
+/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/client.dir
+/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/server.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/lib/googletest-master/CMakeFiles/edit_cache.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/lib/googletest-master/CMakeFiles/rebuild_cache.dir
 /home/hodaya/ClionProjects/Transportation/cmake-build-debug/lib/googletest-master/CMakeFiles/list_install_components.dir

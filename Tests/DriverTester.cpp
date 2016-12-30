@@ -31,7 +31,7 @@ public:
 
 //This function tests that the function 'updateTrip' really updates the driver's trip member.
 TEST_F(DriverTester, updateTripTester) {
-    Trip* trip = new Trip(123, Point(0,0), Point(1,2), map, 3, 50);
+    Trip* trip = new Trip(123, Point(0,0), Point(1,2), map, 3, 50, 0);
     driver->updateTrip(trip);
     EXPECT_EQ(trip, driver->getTrip());
 }
@@ -95,7 +95,7 @@ TEST_F(DriverTester, attachCabTester) {
  */
 TEST_F(DriverTester, calculateFinalTariffTester) {
     //creating a Trip with tariff 20 (say it was the input)
-    Trip* trip = new Trip(000, Point(0,0), Point(1,2), map, 3, 20);
+    Trip* trip = new Trip(000, Point(0,0), Point(1,2), map, 3, 20, 0);
 
     //creating a Cab with tariff 2 (say it was the input)
     LuxuryCab* luxuryCab = new LuxuryCab (0, 0, CarManufacturer::FIAT, Color::BLUE, 2);

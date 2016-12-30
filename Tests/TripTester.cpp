@@ -13,7 +13,7 @@ protected:
     Location* location;
     //Initializes the needed variables each time a test is executed.
     virtual void SetUp() {
-        trip = new Trip(123, Point(5,5), Point(1,2), map, 3, 5);
+        trip = new Trip(123, Point(5,5), Point(1,2), map, 3, 5, 0);
         point = new Point(5,5);
         location = new Location(point);
         trip->setLocation(location);

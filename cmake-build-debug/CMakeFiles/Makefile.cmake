@@ -31,7 +31,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/Compiler/GNU-C.cmake"
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/Compiler/GNU-CXX.cmake"
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/Compiler/GNU.cmake"
-  "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/FindBoost.cmake"
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake"
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/FindPackageMessage.cmake"
   "/home/hodaya/Downloads/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/FindPythonInterp.cmake"
@@ -60,8 +59,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/core.dir/DependInfo.cmake"
-  "CMakeFiles/Transportation.dir/DependInfo.cmake"
+  "CMakeFiles/client.dir/DependInfo.cmake"
+  "CMakeFiles/server.dir/DependInfo.cmake"
   "lib/googletest-master/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "lib/googletest-master/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "lib/googletest-master/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"

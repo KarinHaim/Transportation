@@ -367,7 +367,7 @@ TEST_F(MainFlowTester, StartDrivingTester) {
     mainFlow->addTaxi();
     mainFlow->addDriver();
     mainFlow->addTrip();
-    EXPECT_NO_THROW(mainFlow->startDriving());
+    EXPECT_NO_THROW(mainFlow->moveAllOneStep());
     EXPECT_EQ(*mainFlow->getTaxiCenter()->getDrivers()[0]->getLocation()->getPosition(), Point(3,3));
 }
 

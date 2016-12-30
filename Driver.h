@@ -81,7 +81,7 @@ public:
     //void getPaid(double cash);
     //void resetMoney(); //sets the money to 0
     //void getMoneyFromPassengers();
-    void startDriving();
+    void moveOneStep();
 
     //getters
     int getID();

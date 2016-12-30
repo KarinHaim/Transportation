@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hodaya/ClionProjects/Transportation/Cab.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Cab.cpp.o"
+  "/home/hodaya/ClionProjects/Transportation/Clock.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Clock.cpp.o"
   "/home/hodaya/ClionProjects/Transportation/Driver.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Driver.cpp.o"
   "/home/hodaya/ClionProjects/Transportation/Location.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Location.cpp.o"
   "/home/hodaya/ClionProjects/Transportation/LuxuryCab.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/LuxuryCab.cpp.o"
@@ -28,7 +29,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o"
   "/home/hodaya/ClionProjects/Transportation/Trip.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Trip.cpp.o"
   "/home/hodaya/ClionProjects/Transportation/Udp.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Udp.cpp.o"
-  "/home/hodaya/ClionProjects/Transportation/main.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/main.cpp.o"
+  "/home/hodaya/ClionProjects/Transportation/client.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/client.cpp.o"
+  "/home/hodaya/ClionProjects/Transportation/server.cpp" "/home/hodaya/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

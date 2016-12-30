@@ -146,10 +146,10 @@ void Driver::calculateAvgSatisfaction() {
 /**
  * this function start driving.
  */
-void Driver::startDriving() {
-    this->trip->moveToEnd();
-    delete(this->trip);
-    this->trip = NULL;
+void Driver::moveOneStep() {
+    this->trip->getRoad()->moveOneStep();
+  //  delete(this->trip);
+  //  this->trip = NULL;
 }
 
 /**

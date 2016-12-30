@@ -155,7 +155,7 @@ void MainFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int 
  * @param passengersNum - number of passengers of the trip.
  * @param tariff - tariff of the trip.
  */
-void MainFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff) {
+void MainFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
     std::vector<std::string> arguments;
     absorptionOfSeveralArgumentsInALine(arguments);
     if (arguments.size() != 7)
@@ -180,6 +180,7 @@ void MainFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, 
         throw "passengers number exceeds car's capacity";
     tariff = stod(arguments[6]);
     validatePositiveNoneZeroNumber(tariff);
+    startTime = stoi(arguments[7]);
 }
 
 /**
@@ -327,12 +328,12 @@ void MainFlow::addTaxi() {
  * this function add a trip to the main flow.
  */
 void MainFlow::addTrip() {
-    int id, passengersNum;
+    int id, passengersNum, startTime;
     Point start, end;
     double tariff;
-    parseTrip(id, start, end, passengersNum, tariff);
+    parseTrip(id, start, end, passengersNum, tariff, startTime);
 
-    taxiCenter.addTrip(id, start, end, passengersNum, tariff);
+    taxiCenter.addTrip(id, start, end, passengersNum, tariff, startTime);
 }
 /*
 void MainFlow::attachTaxiToDriver() {
@@ -357,9 +358,9 @@ void MainFlow::printDriversLocation() {
 /**
  * this function starts all the drivers.
  */
-void MainFlow::startDriving() {
+void MainFlow::moveAllOneStep() {
     taxiCenter.attachTripsToDrivers();
-    taxiCenter.startAllDrivers();
+    taxiCenter.moveOneStepAllDrivers();
 }
 
 /**

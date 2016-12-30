@@ -57,58 +57,6 @@
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="core">
-				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/libcore.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest"/>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googlemock/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 core"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="core/fast">
-				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/libcore.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest"/>
-					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googlemock/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 core/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="install/local">
 				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
 				<Option type="4"/>
@@ -129,8 +77,8 @@
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Transportation">
-				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Transportation" prefix_auto="0" extension_auto="0"/>
+			<Target title="client">
+				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -149,14 +97,14 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Transportation"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 client"/>
 					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Transportation/fast">
-				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Transportation" prefix_auto="0" extension_auto="0"/>
+			<Target title="client/fast">
+				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -175,7 +123,59 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 Transportation/fast"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 client/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server">
+				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest"/>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googlemock/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server/fast">
+				<Option output="/home/hodaya/ClionProjects/Transportation/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hodaya/ClionProjects/Transportation/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest"/>
+					<Add directory="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googlemock/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
 					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/hodaya/ClionProjects/Transportation/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -391,142 +391,195 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Cab.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Cab.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/CarManufacturer.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/Clock.cpp">
+			<Option target="client"/>
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/Clock.h">
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Color.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Driver.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Driver.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Location.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Location.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/LuxuryCab.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/LuxuryCab.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/MainFlow.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/MainFlow.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Map.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Map.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/MeritalStatus.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Passenger.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Passenger.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Point.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Point.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/ProcessRole.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Road.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Road.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Search.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Searchable.h">
-			<Option target="Transportation"/>
-		</Unit>
-		<Unit filename="/home/hodaya/ClionProjects/Transportation/Serialization.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Socket.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Socket.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/StandardCab.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/StandardCab.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/TaxiCenter.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/TaxiCenter.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tcp.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tcp.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/DriverTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/MainFlowTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/MapTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/PassengerTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/PointTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/RoadTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/SearchTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Tests/TripTester.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Trip.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Trip.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Udp.cpp">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Udp.h">
-			<Option target="Transportation"/>
+			<Option target="client"/>
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/client.cpp">
+			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googlemock/src/gmock-all.cc">
 			<Option target="gmock_main"/>
@@ -543,8 +596,8 @@
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/lib/googletest-master/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/home/hodaya/ClionProjects/Transportation/main.cpp">
-			<Option target="Transportation"/>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/server.cpp">
+			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

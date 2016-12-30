@@ -24,7 +24,7 @@ private:
     //void parseStartingAndEndingPoints(Point &start, Point &end);
     //void parsePassengersNum(int &passengersNum);
     MeritalStatus parseMeritalStatus(char status);
-    void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff);
+    void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
     void parseId(int &id);
@@ -41,7 +41,7 @@ public:
     //void attachTaxiToDriver();
     //void receiveCall();
     void printDriversLocation();
-    void startDriving();
+    void moveAllOneStep();
     TaxiCenter* getTaxiCenter();
     void setMap(Map* map);
 };
