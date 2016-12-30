@@ -48,17 +48,12 @@ int main(int argc, char* argv[]) {
             case 4:
                 mainFlow.printDriversLocation();
                 break;
-            case 6:
-                mainFlow.startDriving();
-                break;
             case 7:
-                delete(s);
+                socket->sendData("exit");
+                delete(socket);
                 return 0;
             case 9:
                 mainFlow.updateTime();
         }
     }
-
-    delete(s);
-    return 0;
 }

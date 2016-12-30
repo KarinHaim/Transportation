@@ -14,7 +14,7 @@ protected:
     Driver* driver;
     //Initializes the needed variables each time a test is executed.
     virtual void SetUp() {
-        driver = new Driver(12345, 30, MeritalStatus::DIVORCED, 2, map);
+        driver = new Driver(12345, 30, MeritalStatus::DIVORCED, 2, 123);
     }
     virtual void TearDown() {
         delete(driver);

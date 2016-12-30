@@ -18,7 +18,6 @@
 class ClientFlow {
 private:
     Socket* socket;
-    Map* map;
     Driver* driver;
     void parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID);
     MeritalStatus parseMeritalStatus(char status);
@@ -30,7 +29,6 @@ public:
     ClientFlow(Socket * s);
     ~ClientFlow();
     void addDriver();
-    void setMap(Map* map);
     void flow();
 };
 

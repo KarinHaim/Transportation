@@ -1,12 +1,15 @@
+/*
 #include <gtest/gtest.h>
 #include <fstream>
 #include "../MainFlow.h"
 #include "../StandardCab.h"
 
+*/
 /*
  * MainFlowTester is a test fixture class which includes tests of MainFlow class using
  * Google's Testing Framework.
- */
+ *//*
+
 class MainFlowTester : public testing::Test {
 protected:
     MainFlow* mainFlow;
@@ -36,58 +39,70 @@ public:
     }
 };
 
+*/
 /*
  *The function tests that SetWorldRepresentation throws exception when width's input is a negative
  *number
- */
+ *//*
+
 TEST_F(MainFlowTester, SetWorldRepresentationNegativeWidthTester) {
     in << "-7 4\n0\n"; //input -7 as width and 4 as height with 0 obstacles
     closeFileAndRedirectBuffers();
     EXPECT_ANY_THROW(mainFlow->setWorldRepresentation());
 }
 
+*/
 /*
  *The function tests that SetWorldRepresentation throws exception when height's input is a negative
  *number
- */
+ *//*
+
 TEST_F(MainFlowTester, SetWorldRepresentationNegativeHeightTester) {
     in << "7 -4\n0\n"; //input 7 as width and -4 as height with 0 obstacles
     closeFileAndRedirectBuffers();
     EXPECT_ANY_THROW(mainFlow->setWorldRepresentation());
 }
 
+*/
 /*
  *The function tests that SetWorldRepresentation throws exception when width's input is zero
- */
+ *//*
+
 TEST_F(MainFlowTester, SetWorldRepresentationZeroWidthTester) {
     in << "0 4\n0\n"; //input 0 as width and 4 as height with 0 obstacles
     closeFileAndRedirectBuffers();
     EXPECT_ANY_THROW(mainFlow->setWorldRepresentation());
 }
 
+*/
 /*
  *The function tests that SetWorldRepresentation throws exception when height's input is zero
- */
+ *//*
+
 TEST_F(MainFlowTester, SetWorldRepresentationZeroHeightTester) {
     in << "4 0\n0\n"; //input 4 as width and 0 as height with 0 obstacles
     closeFileAndRedirectBuffers();
     EXPECT_ANY_THROW(mainFlow->setWorldRepresentation());
 }
 
+*/
 /*
  *The function tests that SetWorldRepresentation throws exception when obstacles points are not
  *in the range of the matrix of the world representation.
- */
+ *//*
+
 TEST_F(MainFlowTester, setWorldRepresentationValidatePointsInMatrixTester) {
     in << "2 2\n2\n1,0\n3,2\n"; //input 2 as width and 2 as height with 2 obstacles, (1, 0) and (3,2)
     closeFileAndRedirectBuffers();
     EXPECT_ANY_THROW(mainFlow->setWorldRepresentation());
 }
 
+*/
 /*
  *The function tests that SetWorldRepresentation works for valid input and initializes the
  *map in taxi center
- */
+ *//*
+
 TEST_F(MainFlowTester, SetWorldRepresentationValidInputTester) {
     in << "2 4\n0\n"; //input 2 as width and 4 as height with 0 obstacles
     closeFileAndRedirectBuffers();
@@ -99,10 +114,12 @@ TEST_F(MainFlowTester, SetWorldRepresentationValidInputTester) {
     delete(expectedMap);
 }
 
+*/
 /*
  *The function tests that addTrip throws exception when starting and/or ending point is not
  *in the range of the matrix of the world representation.
- */
+ *//*
+
 TEST_F(MainFlowTester, addTripValidateStartingAndEndingPointsInMatrixTester) {
     in << "2 1\n0\n"; //input 2 as width and 1 as height with 0 obstacles
     in << "2,0,0,3,3,1,3\n"; //input 2 as id, (0, 0) and (3,3) as starting and ending
@@ -112,9 +129,11 @@ TEST_F(MainFlowTester, addTripValidateStartingAndEndingPointsInMatrixTester) {
     EXPECT_ANY_THROW(mainFlow->addTrip());
 }
 
+*/
 /*
  *The function tests that addTrip not throws exception when the input's valid.
- */
+ *//*
+
 TEST_F(MainFlowTester, addTripValidInputTester) {
     in << "4 4\n0\n"; //input 4 as width and 4 as height with 0 obstacles
     in << "2,0,0,3,3,1,3\n"; //input 2 as id, (0, 0) and (3,3) as starting and ending
@@ -124,9 +143,11 @@ TEST_F(MainFlowTester, addTripValidInputTester) {
     EXPECT_NO_THROW(mainFlow->addTrip());
 }
 
+*/
 /*
  *The function tests that addTrip throws exception when passengersNum is a negative number.
- */
+ *//*
+
 TEST_F(MainFlowTester, addTripPassengersNumNegativeTester) {
     in << "4 4\n0\n"; //input 4 as width and 4 as height with 0 obstacles
     in << "2,0,0,3,3,-3,3\n"; //input 2 as id, (0, 0) and (3,3) as starting and ending
@@ -136,9 +157,11 @@ TEST_F(MainFlowTester, addTripPassengersNumNegativeTester) {
     EXPECT_ANY_THROW(mainFlow->addTrip());
 }
 
+*/
 /*
  *The function tests that addTrip throws exception when passengersNum is zero.
- */
+ *//*
+
 TEST_F(MainFlowTester, addTripPassengersNumZeroTester) {
     in << "4 4\n0\n"; //input 4 as width and 4 as height with 0 obstacles
     in << "2,0,0,3,3,0,3\n"; //input 2 as id, (0, 0) and (3,3) as starting and ending
@@ -148,10 +171,12 @@ TEST_F(MainFlowTester, addTripPassengersNumZeroTester) {
     EXPECT_ANY_THROW(mainFlow->addTrip());
 }
 
+*/
 /*
  *The function tests that addTrip throws exception when passengersNum is over cab's
  *capacity of passengers.
- */
+ *//*
+
 TEST_F(MainFlowTester, addTripPassengersNumMoreThanCabCapacityTester) {
     in << "4 4\n0\n"; //input 4 as width and 4 as height with 0 obstacles
     in << "2,0,0,3,3,7,3\n"; //input 2 as id, (0, 0) and (3,3) as starting and ending
@@ -161,10 +186,13 @@ TEST_F(MainFlowTester, addTripPassengersNumMoreThanCabCapacityTester) {
     EXPECT_ANY_THROW(mainFlow->addTrip());
 }
 
+*/
 /*
  *The function tests that AttachTaxiToDriver throws exception when driver id's input is a
  *negative number
- */
+ *//*
+
+*/
 /*
 TEST_F(MainFlowTester, AttachTaxiToDriverNegativeDriverIdTester) {
     TaxiCenter taxiCenter;
@@ -172,12 +200,16 @@ TEST_F(MainFlowTester, AttachTaxiToDriverNegativeDriverIdTester) {
     taxiCenter.addDriver(driver);
     EXPECT_ANY_THROW(mainFlow.attachTaxiToDriver()); //input -45454 as driver's id
     delete driver;
-}*/
+}*//*
 
+
+*/
 /*
  *The function tests that AttachTaxiToDriver not throws exception when driver id's input is valid
  *number and that it creats in taxi center new taxi and driver
- */
+ *//*
+
+*/
 /*
 TEST_F(MainFlowTester, AttachTaxiToDriverValidInputTester) {
     TaxiCenter taxiCenter;
@@ -186,12 +218,15 @@ TEST_F(MainFlowTester, AttachTaxiToDriverValidInputTester) {
     EXPECT_EQ(1, drivers.size());
     std::list<Cab*> cabs = taxiCenter.getCabs();
     EXPECT_EQ(1, cabs.size());
-}*/
+}*//*
 
+
+*/
 /*
  *The function tests that AddDriver not throws exception when taxi's id input is valid
  *number and that it creats in taxi center new taxi and driver
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverValidInputTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -210,10 +245,12 @@ TEST_F(MainFlowTester, AddDriverValidInputTester) {
     EXPECT_EQ(cabs[0]->getID(), 45);
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when cabId's input is
  *a negative number
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverNegativeTaxiIdTester) {
     in << "45,52,D,2,-8\n"; //input 45 as id, 52 as age, DIVRORCED as
     // meritalStatus and 2 as years of experience and cabId -8
@@ -221,10 +258,12 @@ TEST_F(MainFlowTester, AddDriverNegativeTaxiIdTester) {
     EXPECT_ANY_THROW(mainFlow->addDriver());
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when driver's age input is
  *a negative number
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverNegativeAgeTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -235,10 +274,12 @@ TEST_F(MainFlowTester, AddDriverNegativeAgeTester) {
     EXPECT_ANY_THROW(mainFlow->addDriver());
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when driver's age input is
  *zero
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverZeroAgeTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -249,10 +290,12 @@ TEST_F(MainFlowTester, AddDriverZeroAgeTester) {
     EXPECT_ANY_THROW(mainFlow->addDriver());
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when driver's age input is less
  *that 16
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverSmallAgeTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -263,10 +306,12 @@ TEST_F(MainFlowTester, AddDriverSmallAgeTester) {
     EXPECT_ANY_THROW(mainFlow->addDriver());
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when driver's id input is
  *a negative number
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverNegativeIdTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -277,10 +322,12 @@ TEST_F(MainFlowTester, AddDriverNegativeIdTester) {
     EXPECT_ANY_THROW(mainFlow->addDriver());
 }
 
+*/
 /*
  *The function tests that AddDriver function throws exception when driver's years of
  *experience input is a negative number
- */
+ *//*
+
 TEST_F(MainFlowTester, AddDriverNegativeYearsOfExperienceTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -292,10 +339,13 @@ TEST_F(MainFlowTester, AddDriverNegativeYearsOfExperienceTester) {
 }
 
 
+*/
 /*
  *The function tests that AddDriver function not throws exception when the input is valid
  *and that it adds a driver in the taxi center.
- */
+ *//*
+
+*/
 /*
 TEST_F(MainFlowTester, AddDriverValidInputTester) {
     TaxiCenter taxiCenter;
@@ -303,12 +353,15 @@ TEST_F(MainFlowTester, AddDriverValidInputTester) {
     // meritalStatus and 2 as years of experience
     std::list<Driver*> drivers = taxiCenter.getDrivers();
     EXPECT_EQ(1, drivers.size());
-}*/
+}*//*
 
+
+*/
 /*
  *The function tests that AddTaxi function throws exception when cab's id input is
  *a negative number
- */
+ *//*
+
 TEST_F(MainFlowTester, AddTaxiNegativeIdTester) {
     in << "-45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -316,30 +369,40 @@ TEST_F(MainFlowTester, AddTaxiNegativeIdTester) {
     EXPECT_ANY_THROW(mainFlow->addTaxi());
 }
 
+*/
 /*
  *The function tests that AddTaxi function throws exception when cab's speed input is
  *a negative number
- */
+ *//*
+
+*/
 /*
 TEST_F(MainFlowTester, AddTaxiNegativeSpeedTester) {
     EXPECT_ANY_THROW(mainFlow.addTaxi()); //input 989 as id, -4 as speed, HONDA as
     // carManufacturer, RED as color and 9 as tariff
-}*/
+}*//*
 
+
+*/
 /*
  *The function tests that AddTaxi function throws exception when cab's tariff input is
  *a negative number
- */
+ *//*
+
+*/
 /*
 TEST_F(MainFlowTester, AddTaxiNegativeTariffTester) {
     EXPECT_ANY_THROW(mainFlow.addTaxi()); //input 989 as id, 4 as speed, HONDA as
     // carManufacturer, RED as color and -9 as tariff
-} */
+} *//*
 
+
+*/
 /*
  *The function tests that AddTaxi function not throws exception when input is valid and that it
  *adds taxi in the taxi center.
- */
+ *//*
+
 TEST_F(MainFlowTester, AddTaxiValidInputTester) {
     in << "989,1,H,R\n"; //input 989 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -349,10 +412,12 @@ TEST_F(MainFlowTester, AddTaxiValidInputTester) {
     EXPECT_EQ(1, cabs.size());
 }
 
+*/
 /*
  *The function tests that StartDriving not throws exception when called and that the driver gets
  *to it's trip end point.
- */
+ *//*
+
 TEST_F(MainFlowTester, StartDrivingTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -371,9 +436,11 @@ TEST_F(MainFlowTester, StartDrivingTester) {
     EXPECT_EQ(*mainFlow->getTaxiCenter()->getDrivers()[0]->getLocation()->getPosition(), Point(3,3));
 }
 
+*/
 /*
  *The function tests that PrintDriversLocation returns driver's location and prints it
- */
+ *//*
+
 TEST_F(MainFlowTester, PrintDriversLocationTester) {
     in << "45,1,H,R\n"; //input 45 as id, standard cab, HONDA as
     // carManufacturer, RED as color
@@ -397,4 +464,4 @@ TEST_F(MainFlowTester, PrintDriversLocationTester) {
     std::getline(out, output);
     out.close();
     EXPECT_EQ(output, "(0,0)");
-}
+}*/

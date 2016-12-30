@@ -43,7 +43,7 @@ public:
     //void attachTaxiToDriver();
     //void receiveCall();
     void printDriversLocation();
-    void moveAllOneStep();
+    //void moveAllOneStep();
     TaxiCenter* getTaxiCenter();
     void setMap(Map* map);
     void addDrivers();

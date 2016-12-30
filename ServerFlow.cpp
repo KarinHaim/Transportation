@@ -18,8 +18,10 @@ ServerFlow::ServerFlow(Socket* s) {
  * this function is a destructor of the main flow.
  */
 ServerFlow::~ServerFlow() {
-    if (map != NULL)
-        delete(map);
+    if (this->map != NULL)
+        delete(this->map);
+
+    delete (this->socket);
 }
 
 /**
@@ -306,7 +308,9 @@ void ServerFlow::printDriversLocation() {
  * this function starts all the drivers.
  */
 /*void ServerFlow::moveAllOneStep() {
-    taxiCenter.attachTripsToDrivers();
+   // taxiCenter.attachTripsToDrivers();
+
+    //movew the drivers of the trips in this current time
     taxiCenter.moveOneStepAllDrivers();
 }*/
 

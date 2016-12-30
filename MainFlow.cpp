@@ -384,10 +384,10 @@ void MainFlow::printDriversLocation() {
 /**
  * this function starts all the drivers.
  */
-void MainFlow::moveAllOneStep() {
+/*void MainFlow::moveAllOneStep() {
     taxiCenter.attachTripsToDrivers();
     taxiCenter.moveOneStepAllDrivers();
-}
+}*/
 
 /**
  * this function returns the taxi center member of main flow.

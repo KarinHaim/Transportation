@@ -40,7 +40,7 @@ public:
     std::vector<Cab*> getCabs();
     std::vector<Trip*> getTrips();
     Map* getMap();
-    //void moveOneStepAllDrivers();
+    void moveOneStepAllTrips();
     //int getCurrentTime();
     void updateTime();
     Clock* getClock();

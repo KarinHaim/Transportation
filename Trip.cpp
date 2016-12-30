@@ -130,9 +130,9 @@ std::vector<Passenger*> Trip::getPassengers() {
  * this function returns the start point of the trip.
  * @return - the start point.
  */
-/*Point Trip::getStartP() {
+Point Trip::getStartP() {
     return this->startP;
-}*/
+}
 
 Point Trip::getEndP() {
     return this->endP;

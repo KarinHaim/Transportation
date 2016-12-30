@@ -10,7 +10,6 @@
  */
 ClientFlow::ClientFlow(Socket* s) {
     socket = s;
-    map = NULL;
     driver = NULL;
 }
 
@@ -18,8 +17,7 @@ ClientFlow::ClientFlow(Socket* s) {
  * this function is a destructor of the main flow.
  */
 ClientFlow::~ClientFlow() {
-    if (map != NULL)
-        delete(map);
+    delete(this->socket);
 }
 
 /**
@@ -125,24 +123,22 @@ void ClientFlow::addDriver() {
     //initialize, recieve data, driver.serialize, txicenter.add driver, add cab and send it
 }
 
-/**
- * this fnction returns the map member of main flow.
- * @param map the map.
- */
-void ClientFlow::setMap(Map* map) {
-    this->map = map;
-}
-
 void ClientFlow::flow() {
     char buffer[10240];
     socket->receiveData(buffer, sizeof(buffer));
     Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
     driver->updateTrip(trip);
 
-    while(1) {
+    while(true) {
         memset(buffer, '0', sizeof(buffer));
         socket->receiveData(buffer, sizeof(buffer));
         if (buffer == "go")
             driver->move();
+        if (buffer == "exit") {
+            delete(this->socket);
+            delete(this->driver);
+            return;
+        }
+
     }
 }

@@ -54,6 +54,6 @@ TEST_F(TripTester, moveTester) {
 
 //this function tests that "moveToEnd" function takes the trip to its final stop.
 TEST_F(TripTester, moveToEndTester) {
-    trip->moveToEnd();
+    trip->move(1);
     EXPECT_EQ(*(trip->getCurrentLocation()->getPosition()), Point(1,2));
 }

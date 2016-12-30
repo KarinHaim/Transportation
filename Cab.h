@@ -58,7 +58,5 @@ public:
     int getSpeed();
 };
 
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
-
 
 #endif //TRANSPORTATION_CAB_H

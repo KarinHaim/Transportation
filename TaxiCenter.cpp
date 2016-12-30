@@ -191,8 +191,12 @@ Map* TaxiCenter::getMap() {
 /**
  * this function start moving all the drivers.
  */
-/*void TaxiCenter::moveOneStepAllDrivers() {
-    for(int i = 0; i < this->drivers.size(); i++)
+/*void TaxiCenter::moveOneStepAllTrips() {
+    for(int i = 0; i < this->trips.size(); i++)
+        if (this->clock->getCurrentTime() < this->trips[i]->getStartTime()) {
+            if (this->trips[i].get)//cab!
+            this->trips[i].
+        }
         this->drivers[i]->moveOneStep();
 }*/
 

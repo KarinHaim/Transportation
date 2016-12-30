@@ -65,7 +65,7 @@ public:
     int getPassengersNum();
     void addMetersPassed(int meters);
     std::vector<Passenger*> getPassengers();
-    //Point getStartP();
+    Point getStartP();
     Point getEndP();
     int getID();
     void setLocation(Location* location);
