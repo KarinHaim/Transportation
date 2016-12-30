@@ -402,6 +402,12 @@
 			<Option target="client"/>
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/ClientFlow.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/ClientFlow.h">
+			<Option target="client"/>
+		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Clock.cpp">
 			<Option target="client"/>
 			<Option target="server"/>
@@ -493,6 +499,12 @@
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Searchable.h">
 			<Option target="client"/>
 			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/ServerFlow.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/hodaya/ClionProjects/Transportation/ServerFlow.h">
+			<Option target="client"/>
 		</Unit>
 		<Unit filename="/home/hodaya/ClionProjects/Transportation/Socket.cpp">
 			<Option target="client"/>

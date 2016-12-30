@@ -262,6 +262,33 @@ Cab.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Cab.cpp.s
 .PHONY : Cab.cpp.s
 
+ClientFlow.o: ClientFlow.cpp.o
+
+.PHONY : ClientFlow.o
+
+# target to build an object file
+ClientFlow.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ClientFlow.cpp.o
+.PHONY : ClientFlow.cpp.o
+
+ClientFlow.i: ClientFlow.cpp.i
+
+.PHONY : ClientFlow.i
+
+# target to preprocess a source file
+ClientFlow.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ClientFlow.cpp.i
+.PHONY : ClientFlow.cpp.i
+
+ClientFlow.s: ClientFlow.cpp.s
+
+.PHONY : ClientFlow.s
+
+# target to generate assembly for a file
+ClientFlow.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ClientFlow.cpp.s
+.PHONY : ClientFlow.cpp.s
+
 Clock.o: Clock.cpp.o
 
 .PHONY : Clock.o
@@ -531,6 +558,33 @@ Road.cpp.s:
 	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Road.cpp.s
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Road.cpp.s
 .PHONY : Road.cpp.s
+
+ServerFlow.o: ServerFlow.cpp.o
+
+.PHONY : ServerFlow.o
+
+# target to build an object file
+ServerFlow.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ServerFlow.cpp.o
+.PHONY : ServerFlow.cpp.o
+
+ServerFlow.i: ServerFlow.cpp.i
+
+.PHONY : ServerFlow.i
+
+# target to preprocess a source file
+ServerFlow.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ServerFlow.cpp.i
+.PHONY : ServerFlow.cpp.i
+
+ServerFlow.s: ServerFlow.cpp.s
+
+.PHONY : ServerFlow.s
+
+# target to generate assembly for a file
+ServerFlow.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/ServerFlow.cpp.s
+.PHONY : ServerFlow.cpp.s
 
 Socket.o: Socket.cpp.o
 
@@ -1057,6 +1111,9 @@ help:
 	@echo "... Cab.o"
 	@echo "... Cab.i"
 	@echo "... Cab.s"
+	@echo "... ClientFlow.o"
+	@echo "... ClientFlow.i"
+	@echo "... ClientFlow.s"
 	@echo "... Clock.o"
 	@echo "... Clock.i"
 	@echo "... Clock.s"
@@ -1084,6 +1141,9 @@ help:
 	@echo "... Road.o"
 	@echo "... Road.i"
 	@echo "... Road.s"
+	@echo "... ServerFlow.o"
+	@echo "... ServerFlow.i"
+	@echo "... ServerFlow.s"
 	@echo "... Socket.o"
 	@echo "... Socket.i"
 	@echo "... Socket.s"
