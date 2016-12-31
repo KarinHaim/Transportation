@@ -13,8 +13,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/karinh/ClionProjects/Transportation/Passenger.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Passenger.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Point.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Point.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Road.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Road.cpp.o"
+  "/home/karinh/ClionProjects/Transportation/Socket.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Socket.cpp.o"
   "/home/karinh/ClionProjects/Transportation/StandardCab.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/StandardCab.cpp.o"
   "/home/karinh/ClionProjects/Transportation/TaxiCenter.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/TaxiCenter.cpp.o"
+  "/home/karinh/ClionProjects/Transportation/Tcp.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tcp.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Tests/MainFlowTester.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Tests/MapTester.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/MapTester.cpp.o"
@@ -25,6 +27,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/karinh/ClionProjects/Transportation/Tests/TaxiCenterTester.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Tests/TripTester.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Tests/TripTester.cpp.o"
   "/home/karinh/ClionProjects/Transportation/Trip.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Trip.cpp.o"
+  "/home/karinh/ClionProjects/Transportation/Udp.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/Udp.cpp.o"
   "/home/karinh/ClionProjects/Transportation/main.cpp" "/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles/Transportation.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

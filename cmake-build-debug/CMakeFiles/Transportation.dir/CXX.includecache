@@ -384,6 +384,8 @@ Searchable.h
 iostream
 -
 
+/home/karinh/ClionProjects/Transportation/ProcessRole.h
+
 /home/karinh/ClionProjects/Transportation/Road.cpp
 Road.h
 /home/karinh/ClionProjects/Transportation/Road.h
@@ -413,6 +415,26 @@ vector
 /home/karinh/ClionProjects/Transportation/Searchable.h
 vector
 -
+
+/home/karinh/ClionProjects/Transportation/Socket.cpp
+stdlib.h
+-
+Socket.h
+/home/karinh/ClionProjects/Transportation/Socket.h
+
+/home/karinh/ClionProjects/Transportation/Socket.h
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+cstring
+-
+iostream
+-
+ProcessRole.h
+/home/karinh/ClionProjects/Transportation/ProcessRole.h
 
 /home/karinh/ClionProjects/Transportation/StandardCab.cpp
 StandardCab.h
@@ -449,6 +471,14 @@ Color.h
 /home/karinh/ClionProjects/Transportation/Color.h
 Cab.h
 /home/karinh/ClionProjects/Transportation/Cab.h
+
+/home/karinh/ClionProjects/Transportation/Tcp.cpp
+Tcp.h
+/home/karinh/ClionProjects/Transportation/Tcp.h
+
+/home/karinh/ClionProjects/Transportation/Tcp.h
+Socket.h
+/home/karinh/ClionProjects/Transportation/Socket.h
 
 /home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp
 gtest/gtest.h
@@ -533,6 +563,18 @@ Location.h
 /home/karinh/ClionProjects/Transportation/Location.h
 Passenger.h
 /home/karinh/ClionProjects/Transportation/Passenger.h
+
+/home/karinh/ClionProjects/Transportation/Udp.cpp
+stdlib.h
+-
+Udp.h
+/home/karinh/ClionProjects/Transportation/Udp.h
+
+/home/karinh/ClionProjects/Transportation/Udp.h
+Socket.h
+/home/karinh/ClionProjects/Transportation/Socket.h
+string
+-
 
 /home/karinh/ClionProjects/Transportation/main.cpp
 gtest/gtest.h

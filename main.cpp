@@ -1,6 +1,8 @@
 
 #include <gtest/gtest.h>
+#include <stdlib.h>
 #include "MainFlow.h"
+#include "Udp.h"
 
 /**
  * this is the main function which operates the program.
@@ -9,9 +11,14 @@
  * @return
  */
 int main(int argc, char* argv[]) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-    /*MainFlow mainFlow;
+   /* testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();*/
+
+    int port = atoi(argv[1]);
+    Socket s = Udp(ProcessRole::SERVER, (u_short)port);
+
+
+    MainFlow mainFlow;
     mainFlow.setWorldRepresentation();
 
     int operationNum;
@@ -41,5 +48,5 @@ int main(int argc, char* argv[]) {
                 return 0;
         }
     }
-    return 0;*/
+    return 0;
 }

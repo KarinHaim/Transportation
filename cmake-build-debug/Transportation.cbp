@@ -377,6 +377,9 @@
 		<Unit filename="/home/karinh/ClionProjects/Transportation/Point.h">
 			<Option target="Transportation"/>
 		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/ProcessRole.h">
+			<Option target="Transportation"/>
+		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/Road.cpp">
 			<Option target="Transportation"/>
 		</Unit>
@@ -389,6 +392,12 @@
 		<Unit filename="/home/karinh/ClionProjects/Transportation/Searchable.h">
 			<Option target="Transportation"/>
 		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Socket.cpp">
+			<Option target="Transportation"/>
+		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Socket.h">
+			<Option target="Transportation"/>
+		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/StandardCab.cpp">
 			<Option target="Transportation"/>
 		</Unit>
@@ -399,6 +408,12 @@
 			<Option target="Transportation"/>
 		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/TaxiCenter.h">
+			<Option target="Transportation"/>
+		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Tcp.cpp">
+			<Option target="Transportation"/>
+		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Tcp.h">
 			<Option target="Transportation"/>
 		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/Tests/DriverTester.cpp">
@@ -432,6 +447,12 @@
 			<Option target="Transportation"/>
 		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/Trip.h">
+			<Option target="Transportation"/>
+		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Udp.cpp">
+			<Option target="Transportation"/>
+		</Unit>
+		<Unit filename="/home/karinh/ClionProjects/Transportation/Udp.h">
 			<Option target="Transportation"/>
 		</Unit>
 		<Unit filename="/home/karinh/ClionProjects/Transportation/lib/googletest-master/googlemock/src/gmock-all.cc">

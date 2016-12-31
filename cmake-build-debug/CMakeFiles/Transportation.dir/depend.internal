@@ -578,6 +578,10 @@ CMakeFiles/Transportation.dir/Road.cpp.o
  /home/karinh/ClionProjects/Transportation/Road.h
  /home/karinh/ClionProjects/Transportation/Search.h
  /home/karinh/ClionProjects/Transportation/Searchable.h
+CMakeFiles/Transportation.dir/Socket.cpp.o
+ /home/karinh/ClionProjects/Transportation/ProcessRole.h
+ /home/karinh/ClionProjects/Transportation/Socket.cpp
+ /home/karinh/ClionProjects/Transportation/Socket.h
 CMakeFiles/Transportation.dir/StandardCab.cpp.o
  /home/karinh/ClionProjects/Transportation/Cab.h
  /home/karinh/ClionProjects/Transportation/CarManufacturer.h
@@ -599,6 +603,11 @@ CMakeFiles/Transportation.dir/TaxiCenter.cpp.o
  /home/karinh/ClionProjects/Transportation/TaxiCenter.cpp
  /home/karinh/ClionProjects/Transportation/TaxiCenter.h
  /home/karinh/ClionProjects/Transportation/Trip.h
+CMakeFiles/Transportation.dir/Tcp.cpp.o
+ /home/karinh/ClionProjects/Transportation/ProcessRole.h
+ /home/karinh/ClionProjects/Transportation/Socket.h
+ /home/karinh/ClionProjects/Transportation/Tcp.cpp
+ /home/karinh/ClionProjects/Transportation/Tcp.h
 CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
  ../lib/googletest-master/googletest/include/gtest/gtest-message.h
@@ -892,6 +901,11 @@ CMakeFiles/Transportation.dir/Trip.cpp.o
  /home/karinh/ClionProjects/Transportation/Searchable.h
  /home/karinh/ClionProjects/Transportation/Trip.cpp
  /home/karinh/ClionProjects/Transportation/Trip.h
+CMakeFiles/Transportation.dir/Udp.cpp.o
+ /home/karinh/ClionProjects/Transportation/ProcessRole.h
+ /home/karinh/ClionProjects/Transportation/Socket.h
+ /home/karinh/ClionProjects/Transportation/Udp.cpp
+ /home/karinh/ClionProjects/Transportation/Udp.h
 CMakeFiles/Transportation.dir/main.cpp.o
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
  ../lib/googletest-master/googletest/include/gtest/gtest-message.h

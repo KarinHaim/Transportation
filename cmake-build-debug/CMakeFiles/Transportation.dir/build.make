@@ -585,6 +585,78 @@ CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.provides: CMakeFiles/Tr
 CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.provides.build: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o
 
 
+CMakeFiles/Transportation.dir/Socket.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Socket.cpp.o: ../Socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Transportation.dir/Socket.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Socket.cpp.o -c /home/karinh/ClionProjects/Transportation/Socket.cpp
+
+CMakeFiles/Transportation.dir/Socket.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Socket.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Socket.cpp > CMakeFiles/Transportation.dir/Socket.cpp.i
+
+CMakeFiles/Transportation.dir/Socket.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Socket.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Socket.cpp -o CMakeFiles/Transportation.dir/Socket.cpp.s
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.provides: CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Socket.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Socket.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Socket.cpp.o.provides.build: CMakeFiles/Transportation.dir/Socket.cpp.o
+
+
+CMakeFiles/Transportation.dir/Udp.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Udp.cpp.o: ../Udp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Transportation.dir/Udp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Udp.cpp.o -c /home/karinh/ClionProjects/Transportation/Udp.cpp
+
+CMakeFiles/Transportation.dir/Udp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Udp.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Udp.cpp > CMakeFiles/Transportation.dir/Udp.cpp.i
+
+CMakeFiles/Transportation.dir/Udp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Udp.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Udp.cpp -o CMakeFiles/Transportation.dir/Udp.cpp.s
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.provides: CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Udp.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Udp.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Udp.cpp.o.provides.build: CMakeFiles/Transportation.dir/Udp.cpp.o
+
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o: CMakeFiles/Transportation.dir/flags.make
+CMakeFiles/Transportation.dir/Tcp.cpp.o: ../Tcp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Transportation.dir/Tcp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Transportation.dir/Tcp.cpp.o -c /home/karinh/ClionProjects/Transportation/Tcp.cpp
+
+CMakeFiles/Transportation.dir/Tcp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Transportation.dir/Tcp.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karinh/ClionProjects/Transportation/Tcp.cpp > CMakeFiles/Transportation.dir/Tcp.cpp.i
+
+CMakeFiles/Transportation.dir/Tcp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Transportation.dir/Tcp.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karinh/ClionProjects/Transportation/Tcp.cpp -o CMakeFiles/Transportation.dir/Tcp.cpp.s
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.requires:
+
+.PHONY : CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.provides: CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Transportation.dir/build.make CMakeFiles/Transportation.dir/Tcp.cpp.o.provides.build
+.PHONY : CMakeFiles/Transportation.dir/Tcp.cpp.o.provides
+
+CMakeFiles/Transportation.dir/Tcp.cpp.o.provides.build: CMakeFiles/Transportation.dir/Tcp.cpp.o
+
+
 # Object files for target Transportation
 Transportation_OBJECTS = \
 "CMakeFiles/Transportation.dir/main.cpp.o" \
@@ -608,7 +680,10 @@ Transportation_OBJECTS = \
 "CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o" \
 "CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o" \
 "CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o" \
-"CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o"
+"CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o" \
+"CMakeFiles/Transportation.dir/Socket.cpp.o" \
+"CMakeFiles/Transportation.dir/Udp.cpp.o" \
+"CMakeFiles/Transportation.dir/Tcp.cpp.o"
 
 # External object files for target Transportation
 Transportation_EXTERNAL_OBJECTS =
@@ -635,12 +710,15 @@ Transportation: CMakeFiles/Transportation.dir/Tests/SearchTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o
 Transportation: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Socket.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Udp.cpp.o
+Transportation: CMakeFiles/Transportation.dir/Tcp.cpp.o
 Transportation: CMakeFiles/Transportation.dir/build.make
 Transportation: lib/googletest-master/googlemock/gtest/libgtest.a
 Transportation: lib/googletest-master/googlemock/gtest/libgtest_main.a
 Transportation: lib/googletest-master/googlemock/gtest/libgtest.a
 Transportation: CMakeFiles/Transportation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable Transportation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/karinh/ClionProjects/Transportation/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable Transportation"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Transportation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -670,6 +748,9 @@ CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/Sear
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/DriverTester.cpp.o.requires
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/TaxiCenterTester.cpp.o.requires
 CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tests/MainFlowTester.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Socket.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Udp.cpp.o.requires
+CMakeFiles/Transportation.dir/requires: CMakeFiles/Transportation.dir/Tcp.cpp.o.requires
 
 .PHONY : CMakeFiles/Transportation.dir/requires
 
