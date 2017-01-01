@@ -15,9 +15,11 @@ protected:
     struct sockaddr_in this_addr;
     struct sockaddr_in other_addr;
 public:
-    void initializeSocket(ProcessRole pr, u_short port, std::string ip = "127.0.0.1");
-    virtual void sendData(std::string data) = 0;
-    virtual int recieveData(char * buffer, int size) = 0;
+    Socket();
+    ~Socket();
+    void initializeSocket(ProcessRole pr, u_short port, const char * ip = "127.0.0.1");
+    virtual void sendData(std::string data, int len) = 0;
+    virtual int receiveData(char * buffer, int size) = 0;
 };
 
 

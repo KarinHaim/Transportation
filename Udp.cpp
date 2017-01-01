@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Udp.h"
 
-Udp::Udp(ProcessRole pr, u_short port, std::string ip) {
+Udp::Udp(ProcessRole pr, u_short port, const char * ip) {
     socketDescriptor = socket(AF_INET, SOCK_DGRAM, 0);
     if (socketDescriptor < 0) {
         perror("error openning socket");
@@ -11,8 +11,12 @@ Udp::Udp(ProcessRole pr, u_short port, std::string ip) {
     initializeSocket(pr, port, ip);
 }
 
-void Udp::sendData(std::string data) {
-    int sent_bytes = sendto(socketDescriptor, data.c_str(), data.length() + 1, 0, (struct sockaddr *) &other_addr, sizeof(this->other_addr));
+Udp::~Udp() {
+    
+}
+
+void Udp::sendData(std::string data, int len) {
+    int sent_bytes = sendto(socketDescriptor, data.c_str(), len + 1, 0, (struct sockaddr *) &other_addr, sizeof(this->other_addr));
     if (sent_bytes < 0)
         perror("error sendto");
 }
