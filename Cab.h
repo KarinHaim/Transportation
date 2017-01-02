@@ -51,10 +51,11 @@ public:
     Cab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     Cab();
     virtual ~Cab();
-    virtual bool getIsOccupied() = 0;
-    virtual void setOccupation(bool occupation) = 0;
-    virtual double getTariff() = 0;
-    virtual int getID() = 0;
+    bool getIsOccupied();
+    void setOccupation(bool occupation);
+    double getTariff();
+    int getID();
+    int getSpeed();
 };
 
 BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)

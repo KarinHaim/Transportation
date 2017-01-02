@@ -18,36 +18,4 @@ StandardCab::StandardCab(): Cab() {
 StandardCab::~StandardCab() {
 }
 
-/**
- * this function returns if the Cab is occupied at the moment.
- * @return a boolean value representing the answer.
- */
-bool StandardCab::getIsOccupied() {
-    return this->isOccupied;
-}
-
-/**
- * this function sets the occupation of the cab.
- * @param occupation - the new occupation.
- */
-void StandardCab::setOccupation(bool occupation) {
-    this->isOccupied = occupation;
-}
-
-/**
- * this function returns this cab's tariff.
- * @return the tariff.
- */
-double StandardCab::getTariff() {
-    return this->tariff;
-}
-
-/**
- * this function returns this cab's ID.
- * @return the ID.
- */
-int StandardCab::getID() {
-    return this->id;
-}
-
 //BOOST_CLASS_EXPORT(StandardCab)

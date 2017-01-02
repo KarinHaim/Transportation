@@ -27,9 +27,9 @@ using namespace boost::archive;
 using namespace boost::iostreams;
 
 template<class T>
-T *deserialize(string serial_str) {
+T *deserialize(char * serial_str, int size) {
     T *p;
-    boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
+    boost::iostreams::basic_array_source<char> device(serial_str, size);
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
     boost::archive::binary_iarchive ia(s);
     ia >> p;

@@ -23,10 +23,6 @@ public:
     StandardCab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     StandardCab();
     ~StandardCab();
-    bool getIsOccupied();
-    void setOccupation(bool occupation);
-    double getTariff();
-    int getID();
 };
 
 #endif //TRANSPORTATION_STANDARDCAB_H

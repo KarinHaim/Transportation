@@ -47,7 +47,7 @@ class Driver {
         ar & meritalStatus;
         ar & yearsOfExp;
         ar & avgSatisfaction;
-        ar & map;
+        ar & cabID;
         ar & cab;
         ar & finalTariff;
         ar & trip;
@@ -61,16 +61,17 @@ private:
     MeritalStatus meritalStatus;
     int yearsOfExp;
     int avgSatisfaction;
-    Map* map;
+    int cabID;
     Cab *cab;
     double finalTariff;
     Trip *trip;
+    Point * startingPoint;
     Location *location;
     double money;
     int totalNumOfPassengers;
     void calculateAvgSatisfaction();
 public:
-    Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, Map* map);
+    Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, int cabID);
     Driver();
     ~Driver();
     void updateTrip(Trip* trip);
@@ -81,7 +82,7 @@ public:
     //void getPaid(double cash);
     //void resetMoney(); //sets the money to 0
     //void getMoneyFromPassengers();
-    void moveOneStep();
+    void move();
 
     //getters
     int getID();
@@ -95,7 +96,7 @@ public:
     Trip* getTrip();
     Location* getLocation();
     double getMoney();
-
+    int getCabID();
 };
 
 /*ostream & operator<<(ostream &os, const Driver &driver) {

@@ -82,7 +82,7 @@ void TaxiCenter::addTaxi(Cab* cab) {
  * @param driver
  * @param cabID
  */
-void TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
+Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
     if (std::find(this->drivers.begin(), this->drivers.end(),driver) == this->drivers.end()) {
         //means the driver not found
         throw "driver not found";
@@ -91,9 +91,10 @@ void TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
         if(this->cabs[i]->getID() == cabID) {
             driver->attachCab(this->cabs[i]);
             this->cabs[i]->setOccupation(true);
-            break;
+            return cabs[i];
         }
     }
+    throw "cab with id not found";
 }
 
 /**
@@ -112,19 +113,24 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
 /**
  * this function attaches the trips to the drivers.
  */
-void TaxiCenter::attachTripsToDrivers() {
+ std::vector<Driver*> TaxiCenter::attachTripsToDrivers() {
+    std::vector<Driver*> attachedTripsDrivers;
     for(int i = 0; i < this->trips.size(); i++) {
-        for(int j = 0; j < this->drivers.size(); j++) {
-            //check if the driver is available
-            if(this->drivers[j]->getTrip() == NULL) {
-                //check if the driver is in the same point as the start of the trip
-                if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
-                    this->drivers[j]->updateTrip(this->trips[i]);
-                    this->trips.erase(this->trips.begin() + i);
+        if (this->trips[i]->getStartTime() == this->clock->getCurrentTime()) {
+            for(int j = 0; j < this->drivers.size(); j++) {
+                //check if the driver is available
+                if(this->drivers[j]->getTrip() == NULL) {
+                    //check if the driver is in the same point as the start of the trip
+                    if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
+                        this->drivers[j]->updateTrip(this->trips[i]);
+                        attachedTripsDrivers.push_back(this->drivers[j]);
+                        this->trips.erase(this->trips.begin() + i);
+                    }
                 }
             }
         }
     }
+    return attachedTripsDrivers;
 }
 
 /**
@@ -185,10 +191,10 @@ Map* TaxiCenter::getMap() {
 /**
  * this function start moving all the drivers.
  */
-void TaxiCenter::moveOneStepAllDrivers() {
+/*void TaxiCenter::moveOneStepAllDrivers() {
     for(int i = 0; i < this->drivers.size(); i++)
         this->drivers[i]->moveOneStep();
-}
+}*/
 
 /**
  * this function returns a vector of the trips of the taxi center.
@@ -202,13 +208,17 @@ std::vector<Trip*> TaxiCenter::getTrips() {
  * this function returns the current time of the world.
  * @return the current time.
  */
-int TaxiCenter::getCurrentTime() {
+/*int TaxiCenter::getCurrentTime() {
     return this->clock->getCurrentTime();
-}
+}*/
 
 /**
  * this function updates the current time of the world by 1.
  */
 void TaxiCenter::updateTime() {
     this->clock->updateTime();
+}
+
+Clock* TaxiCenter::getClock() {
+    return this->clock;
 }

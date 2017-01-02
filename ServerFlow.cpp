@@ -1,4 +1,4 @@
-#include "MainFlow.h"
+#include "ServerFlow.h"
 #include "boost/algorithm/string.hpp"
 #include "StandardCab.h"
 #include "LuxuryCab.h"
@@ -8,7 +8,7 @@
 /**
  * this function is a constructor of the main flow.
  */
-MainFlow::MainFlow(Socket* s) {
+ServerFlow::ServerFlow(Socket* s) {
     socket = s;
     taxiCenter = TaxiCenter();
     map = NULL;
@@ -17,7 +17,7 @@ MainFlow::MainFlow(Socket* s) {
 /**
  * this function is a destructor of the main flow.
  */
-MainFlow::~MainFlow() {
+ServerFlow::~ServerFlow() {
     if (map != NULL)
         delete(map);
 }
@@ -26,7 +26,7 @@ MainFlow::~MainFlow() {
  * this function ensure that the number 'num' is a positive number.
  * @param num - the number to check
  */
-void MainFlow::validatePositiveNumber(int num) {
+void ServerFlow::validatePositiveNumber(int num) {
     if (num < 0)
         throw "not a positive input";
 }
@@ -35,7 +35,7 @@ void MainFlow::validatePositiveNumber(int num) {
  * this function ensure that the number 'num' is a positive and not zero number.
  * @param num - the number to check
  */
-void MainFlow::validatePositiveNoneZeroNumber(int num) {
+void ServerFlow::validatePositiveNoneZeroNumber(int num) {
     if (num <= 0)
         throw "not a positive non zero input";
 }
@@ -44,7 +44,7 @@ void MainFlow::validatePositiveNoneZeroNumber(int num) {
  * this function ensure that the point 'point' is a valid point that is in the range of the map.
  * @param point - the point to check.
  */
-void MainFlow::validatePointInRangeOfMap(Point point) {
+void ServerFlow::validatePointInRangeOfMap(Point point) {
     if (point.getX() >= map->getWidth() || point.getY() >= map->getHeight())
         throw "point coordinated are out of map range";
 }
@@ -54,7 +54,7 @@ void MainFlow::validatePointInRangeOfMap(Point point) {
  * @param width - the width of the map.
  * @param height - the height of the map.
  */
-void MainFlow::parseMap(int &width, int &height) {
+void ServerFlow::parseMap(int &width, int &height) {
     std::cin >> width >> height;
     if (std::cin.fail())
         throw "not a number";
@@ -66,7 +66,7 @@ void MainFlow::parseMap(int &width, int &height) {
  * this function parses the obstacles from an input file.
  * @param obstacles - a vector of obstacles points.
  */
-void MainFlow::parseObstacles(std::vector<Point> &obstacles) {
+void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
     int numOfObstacles;
     std::cin >> numOfObstacles;
     if (std::cin.fail())
@@ -93,59 +93,13 @@ void MainFlow::parseObstacles(std::vector<Point> &obstacles) {
 }
 
 /**
- * this function parses the merital status.
- * @param status - the char to parse.
- * @return - the merital status.
- */
-MeritalStatus MainFlow::parseMeritalStatus(char status) {
-    switch (status) {
-        case 'D':
-            return MeritalStatus::DIVORCED;
-        case 'M':
-            return MeritalStatus::MARRIED;
-        case 'S':
-            return MeritalStatus::SINGLE;
-        case 'W':
-            return MeritalStatus::WIDOWED;
-        default:
-            throw "invalid merital status inserted";
-    }
-}
-
-/**
  * this function parses a line of input string splitted by ','.
  * @param arguments - vector of input strings
  */
-void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
+void ServerFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
     std::cin >> input;
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
-}
-
-/**
- * this function parses the input of the driver.
- * @param id - id of the driver
- * @param age - age of the driver
- * @param meritalStatus - merital status of the driver
- * @param yearsOfExp - years of experiance of the driver
- * @param cabID - cab id of the driver
- */
-void MainFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID) {
-    std::vector<std::string> arguments;
-    absorptionOfSeveralArgumentsInALine(arguments);
-    if (arguments.size() != 5)
-        throw "mismatch number of arguments for this operation";
-    id = stoi(arguments[0]);
-    validatePositiveNumber(id);
-    age = stoi(arguments[1]);
-    if (age <= 15)
-        throw "invalid drier's age";
-    validatePositiveNoneZeroNumber(age);
-    meritalStatus = parseMeritalStatus(arguments[2][0]);
-    yearsOfExp = stoi(arguments[3]);
-    validatePositiveNumber(yearsOfExp);
-    cabID = stoi(arguments[4]);
-    validatePositiveNumber(cabID);
 }
 
 /**
@@ -156,7 +110,7 @@ void MainFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int 
  * @param passengersNum - number of passengers of the trip.
  * @param tariff - tariff of the trip.
  */
-void MainFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
+void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
     std::vector<std::string> arguments;
     absorptionOfSeveralArgumentsInALine(arguments);
     if (arguments.size() != 8)
@@ -190,7 +144,7 @@ void MainFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, 
  * @param manufacturer - the manufacturer
  * @return - enum CarManufacturer
  */
-CarManufacturer MainFlow::parseCarManufacturer(char manufacturer) {
+CarManufacturer ServerFlow::parseCarManufacturer(char manufacturer) {
     switch (manufacturer) {
         case 'F':
             return CarManufacturer::FIAT;
@@ -210,7 +164,7 @@ CarManufacturer MainFlow::parseCarManufacturer(char manufacturer) {
  * @param color - the color.
  * @return - enum Color.
  */
-Color MainFlow::parseColor(char color) {
+Color ServerFlow::parseColor(char color) {
     switch (color) {
         case 'B':
             return Color::BLUE;
@@ -234,7 +188,7 @@ Color MainFlow::parseColor(char color) {
  * @param manufacturer - the car manufacturer of the taxi.
  * @param color - the color of the taxi.
  */
-void MainFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
+void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
     std::vector<std::string> arguments;
     absorptionOfSeveralArgumentsInALine(arguments);
     if (arguments.size() != 4)
@@ -245,20 +199,13 @@ void MainFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, C
     manufacturer = parseCarManufacturer(arguments[2][0]);
     color = parseColor(arguments[3][0]);
 }
-/*
-void MainFlow::parseStartingAndEndingPoints(Point &start, Point &end) {
 
-}
-
-void MainFlow::parsePassengersNum(int &passengersNum) {
-
-}*/
 
 /**
  * this function parses the input of the id.
  * @param id - the id
  */
-void MainFlow::parseId(int &id) {
+void ServerFlow::parseId(int &id) {
     std::cin >> id;
     validatePositiveNumber(id);
 }
@@ -266,7 +213,7 @@ void MainFlow::parseId(int &id) {
 /**
  * this function sets the 'world' representation (height and width of the map and obstacles).
  */
-void MainFlow::setWorldRepresentation() {
+void ServerFlow::setWorldRepresentation() {
     int width, height;
     std::vector<Point> obstacles;
     parseMap(width, height);
@@ -277,7 +224,7 @@ void MainFlow::setWorldRepresentation() {
     taxiCenter.setMap(map);
 }
 
-void MainFlow::addDrivers() {
+void ServerFlow::addDrivers() {
     int numOfDrivers;
     std::cin >> numOfDrivers;
     if (std::cin.fail())
@@ -303,29 +250,11 @@ void MainFlow::addDrivers() {
     }
 }
 
-/**
- * this function add a driver to the main flow.
- */
-void MainFlow::addDriver() {
-    int id, age, yearsOfExp, cabID;
-    MeritalStatus meritalStatus;
-    parseDriver(id, age, meritalStatus, yearsOfExp, cabID);
-
-    Driver* driver = new Driver(id, age, meritalStatus, yearsOfExp, cabID);
-    std::string serialized = serialize<Driver>(driver);
-    socket->sendData(serialized);
-    char buffer[10240];
-    socket->receiveData(buffer, sizeof(buffer));
-    Cab *cab = deserialize<Cab>(buffer, sizeof(buffer));
-    driver->attachCab(cab);
-
-    //initialize, recieve data, driver.serialize, txicenter.add driver, add cab and send it
-}
 
 /**
  * this function add a taxi to the main flow.
  */
-void MainFlow::addTaxi() {
+void ServerFlow::addTaxi() {
     int id, cabKind;
     CarManufacturer manufacturer;
     Color color;
@@ -353,7 +282,7 @@ void MainFlow::addTaxi() {
 /**
  * this function add a trip to the main flow.
  */
-void MainFlow::addTrip() {
+void ServerFlow::addTrip() {
     int id, passengersNum, startTime;
     Point start, end;
     double tariff;
@@ -361,19 +290,11 @@ void MainFlow::addTrip() {
 
     taxiCenter.addTrip(id, start, end, passengersNum, tariff, startTime);
 }
-/*
-void MainFlow::attachTaxiToDriver() {
-
-}*/
-/*
-void MainFlow::receiveCall() {
-
-}*/
 
 /**
  * this function gets an id of driver and prints it's current location.
  */
-void MainFlow::printDriversLocation() {
+void ServerFlow::printDriversLocation() {
     int id;
     parseId(id);
     Point location = taxiCenter.getLocationOfDriver(id);
@@ -384,16 +305,16 @@ void MainFlow::printDriversLocation() {
 /**
  * this function starts all the drivers.
  */
-void MainFlow::moveAllOneStep() {
+/*void ServerFlow::moveAllOneStep() {
     taxiCenter.attachTripsToDrivers();
     taxiCenter.moveOneStepAllDrivers();
-}
+}*/
 
 /**
  * this function returns the taxi center member of main flow.
  * @return the taxi center.
  */
-TaxiCenter* MainFlow::getTaxiCenter() {
+TaxiCenter* ServerFlow::getTaxiCenter() {
     return &this->taxiCenter;
 }
 
@@ -401,6 +322,24 @@ TaxiCenter* MainFlow::getTaxiCenter() {
  * this fnction returns the map member of main flow.
  * @param map the map.
  */
-void MainFlow::setMap(Map* map) {
+void ServerFlow::setMap(Map* map) {
     this->map = map;
+}
+
+void ServerFlow::updateTime() {
+    //attach trips to drivers when it's trip time
+    taxiCenter.updateTime();
+    std::vector<Driver*> attachedTripsDrivers = taxiCenter.attachTripsToDrivers();
+    for (int i = 0; i < attachedTripsDrivers.size(); i++) {
+        Trip* trip = attachedTripsDrivers[i]->getTrip();
+        std::string serialized = serialize<Trip>(trip);
+        socket->sendData(serialized);
+    }
+
+    //send 'go' to all drivers
+    std::vector<Driver*> drivers = taxiCenter.getDrivers();
+    for (int i = 0; i < drivers.size(); i++) {
+        socket->sendData("go");
+        drivers[i]->move;
+    }
 }

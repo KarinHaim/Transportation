@@ -8,11 +8,12 @@
  * @param meritalStatus - the merital status of the driver.
  * @param yearsOfExp - the years of experiance of the driver.
  */
-Driver::Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, Map* map) {
+Driver::Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, int cabID) {
     this->id = id;
     this->age = age;
     this->meritalStatus = meritalStatus;
     this->yearsOfExp = yearsOfExp;
+    this->cabID = cabID;
 
     //everything else is initialized to 0 or NULL
     this->avgSatisfaction = 0;
@@ -20,8 +21,8 @@ Driver::Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, Map
     this->money = 0;
     this->totalNumOfPassengers = 0;
     this->cab = NULL;
-    this->map = map;
-    this->location = new Location(map->getPointByCoordinates(Point(0,0)));
+    this->startingPoint = new Point(0,0);
+    this->location = new Location(startingPoint);
     this->trip = NULL;
 }
 
@@ -38,7 +39,7 @@ Driver::Driver() {
     this->money = 0;
     this->totalNumOfPassengers = 0;
     this->cab = NULL;
-    this->map = map;
+    this->startingPoint = NULL;
     this->location = NULL;
     this->trip = NULL;
 }
@@ -51,6 +52,7 @@ Driver::~Driver() {
         delete(this->trip);
     if (this-> location!= NULL)
         delete(this->location);
+    delete(startingPoint);
 }
 
 /**
@@ -146,10 +148,14 @@ void Driver::calculateAvgSatisfaction() {
 /**
  * this function start driving.
  */
-void Driver::moveOneStep() {
-    this->trip->getRoad()->moveOneStep();
-  //  delete(this->trip);
-  //  this->trip = NULL;
+void Driver::move() {
+    if (this->trip != NULL) {
+        this->trip->move(this->cab->getSpeed());
+        if (*this->location->getPosition() == this->trip->getEndP()) {
+            delete(this->trip);
+            this->trip = NULL;
+        }
+    }
 }
 
 /**
@@ -234,4 +240,8 @@ Location* Driver::getLocation() {
  */
 double Driver::getMoney() {
     return money;
+}
+
+int Driver::getCabID() {
+    return cabID;
 }

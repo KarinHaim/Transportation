@@ -1,9 +1,10 @@
 
 #include <gtest/gtest.h>
 #include <stdlib.h>
-#include "MainFlow.h"
 #include "Udp.h"
 #include "Serialization.h"
+#include "ServerFlow.h"
+
 
 /**
  * this is the main function which operates the program.
@@ -16,18 +17,16 @@ int main(int argc, char* argv[]) {
     return RUN_ALL_TESTS();*/
 
     int port = atoi(argv[1]);
-    Socket* s = new Udp(ProcessRole::SERVER, (u_short)port);
-    char buffer[2048];
+    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port);
+    //char buffer[10240];
     /*s->receiveData(buffer, sizeof(buffer));
     std::cout << buffer << std::endl;
     s->sendData("sup", 3);*/
-    s->receiveData(buffer, sizeof(buffer));
-    Driver *d2 = deserialize<Driver>(buffer);
-    std::cout << d2->getLocation()->getPosition();
-    delete(s);
+    /*s->receiveData(buffer, sizeof(buffer));
+    Driver *d2 = deserialize<Driver>(buffer, sizeof(buffer));
+    std::cout << d2->getLocation()->getPosition();*/
 
-/*
-    MainFlow mainFlow;
+    ServerFlow mainFlow(socket);
     mainFlow.setWorldRepresentation();
 
     int operationNum;
@@ -39,8 +38,7 @@ int main(int argc, char* argv[]) {
             throw "invalid operation number";
         switch (operationNum) {
             case 1:
-                mainFlow.addDriver();
-                break;
+                mainFlow.addDrivers();
             case 2:
                 mainFlow.addTrip();
                 break;
@@ -54,8 +52,13 @@ int main(int argc, char* argv[]) {
                 mainFlow.startDriving();
                 break;
             case 7:
+                delete(s);
                 return 0;
+            case 9:
+                mainFlow.updateTime();
         }
     }
-    return 0;*/
+
+    delete(s);
+    return 0;
 }

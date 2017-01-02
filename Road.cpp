@@ -58,7 +58,7 @@ void Road::moveOneStep() {
     int i;
     //finding the index of the current location in the vector
     for(i = 0; i < this->road.size(); i++) {
-        if(*(this->road[i]) == *(this->currentLocation->getPosition()))
+        if (*(this->road[i]) == *(this->currentLocation->getPosition()))
             break;
     }
 

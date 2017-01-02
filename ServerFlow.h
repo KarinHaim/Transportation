@@ -1,6 +1,6 @@
 
-#ifndef TRANSPORTATION_MAINFLOW_H
-#define TRANSPORTATION_MAINFLOW_H
+#ifndef TRANSPORTATION_SERVERFLOW_H
+#define TRANSPORTATION_SERVERFLOW_H
 
 #include "TaxiCenter.h"
 #include "Cab.h"
@@ -14,18 +14,16 @@
 /**
  * this class controls the main flow of the taxi center.
  */
-class MainFlow {
+class ServerFlow {
 private:
     Socket* socket;
     TaxiCenter taxiCenter;
     Map* map;
     void parseMap(int &width, int &height);
     void parseObstacles(std::vector<Point> &obstacles);
-    void parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID);
     void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
     //void parseStartingAndEndingPoints(Point &start, Point &end);
     //void parsePassengersNum(int &passengersNum);
-    MeritalStatus parseMeritalStatus(char status);
     void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
@@ -33,11 +31,12 @@ private:
     void validatePositiveNumber(int num);
     void validatePositiveNoneZeroNumber(int num);
     void validatePointInRangeOfMap(Point point);
+    void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
+
 public:
-    MainFlow(Socket * s);
-    ~MainFlow();
+    ServerFlow(Socket * s);
+    ~ServerFlow();
     void setWorldRepresentation();
-    void addDriver();
     void addTaxi();
     void addTrip();
     //void attachTaxiToDriver();
@@ -47,7 +46,8 @@ public:
     TaxiCenter* getTaxiCenter();
     void setMap(Map* map);
     void addDrivers();
+    void updateTime();
 };
 
 
-#endif //TRANSPORTATION_MAINFLOW_H
+#endif //TRANSPORTATION_SERVERFLOW_H

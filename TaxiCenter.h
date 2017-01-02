@@ -30,9 +30,9 @@ public:
     void setMap(Map* map);
     void addDriver(Driver* driver);
     void addTaxi(Cab* cab);
-    void attachTaxiToDriver(Driver* driver, int cabID);
+    Cab* attachTaxiToDriver(Driver* driver, int cabID);
     void addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime);
-    void attachTripsToDrivers();
+    std::vector<Driver*> attachTripsToDrivers();
     Point getLocationOfDriver(int driverID);
     //double getAllMoney();
     //void recieveMoneyFromDrivers();
@@ -40,9 +40,10 @@ public:
     std::vector<Cab*> getCabs();
     std::vector<Trip*> getTrips();
     Map* getMap();
-    void moveOneStepAllDrivers();
-    int getCurrentTime();
+    //void moveOneStepAllDrivers();
+    //int getCurrentTime();
     void updateTime();
+    Clock* getClock();
 };
 
 #endif //TRANSPORTATION_TAXICENTER_H

@@ -18,7 +18,7 @@ public:
     Socket();
     ~Socket();
     void initializeSocket(ProcessRole pr, u_short port, const char * ip = "127.0.0.1");
-    virtual void sendData(std::string data, int len) = 0;
+    virtual void sendData(std::string data) = 0;
     virtual int receiveData(char * buffer, int size) = 0;
 };
 

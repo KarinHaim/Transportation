@@ -85,17 +85,12 @@ double Trip::getTariff() {
 /**
  * this function moves the trip one step ahead.
  */
-void Trip::move() {
-    this->road.moveOneStep();
-    this->addMetersPassed(1);
-}
-
-/**
- * this function moves the trip to the end.
- */
-void Trip::moveToEnd() {
-    while (*this->road.getCurrentLocation()->getPosition() != this->endP) {
-        this->move();
+void Trip::move(int speed) {
+    for (int i = 0; i < speed; i++) {
+        if (*this->road.getCurrentLocation()->getPosition() != this->endP) {
+            this->road.moveOneStep();
+            this->addMetersPassed(1);
+        }
     }
 }
 
@@ -135,8 +130,12 @@ std::vector<Passenger*> Trip::getPassengers() {
  * this function returns the start point of the trip.
  * @return - the start point.
  */
-Point Trip::getStartP() {
+/*Point Trip::getStartP() {
     return this->startP;
+}*/
+
+Point Trip::getEndP() {
+    return this->endP;
 }
 
 /**
@@ -154,4 +153,8 @@ int Trip::getID() {
 void Trip::setLocation(Location* location) {
     this->currentLocation = location;
     this->road.setLocation(location);
+}
+
+int Trip::getStartTime() {
+    return this->startTime;
 }

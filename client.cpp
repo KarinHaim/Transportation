@@ -1,7 +1,7 @@
 
 #include <gtest/gtest.h>
 #include <stdlib.h>
-#include "MainFlow.h"
+#include "ClientFlow.h"
 #include "Udp.h"
 
 #include "Serialization.h"
@@ -18,46 +18,28 @@ int main(int argc, char* argv[]) {
 
     const char * ip = argv[1];
     int port = atoi(argv[2]);
-    Socket* s = new Udp(ProcessRole::CLIENT, (u_short)port);
+    Socket* socket = new Udp(ProcessRole::CLIENT, (u_short)port);
     /*s->sendData("hi", 2);
     char buffer[1024];
     s->receiveData(buffer, sizeof(buffer));
     std::cout << buffer << std::endl;*/
-    Map* m = new Map(20,20);
+    /*Map* m = new Map(20,20);
     Driver *d = new Driver(123, 20, MeritalStatus::DIVORCED, 30, m);
-    std::string s2 = serialize<Driver>(d);
-    s->sendData(s2, sizeof(s2));
-    delete(s);
+    std::string s2 = serialize<Driver>(d);*/
 
-    /*MainFlow mainFlow;
-    mainFlow.setWorldRepresentation();
+    //Driver *d2 = deserialize<Driver>(s2);
+    //std::cout << d2->getLocation()->getPosition();
+
+    /*s->sendData(s2);
+    char buffer[10240];
+    s->receiveData(buffer, sizeof(buffer));*/
+
+    ClientFlow mainFlow(socket);
+    mainFlow.addDriver();
 
     int operationNum;
-    while(true) {
-        std::cin >> operationNum;
-        if (std::cin.fail())
-            throw "not a number";
-        if (operationNum < 1 || operationNum > 7)
-            throw "invalid operation number";
-        switch (operationNum) {
-            case 1:
-                mainFlow.addDriver();
-                break;
-            case 2:
-                mainFlow.addTrip();
-                break;
-            case 3:
-                mainFlow.addTaxi();
-                break;
-            case 4:
-                mainFlow.printDriversLocation();
-                break;
-            case 6:
-                mainFlow.startDriving();
-                break;
-            case 7:
-                return 0;
-        }
-    }
-    return 0;*/
+    /*while(true) {
+    }*/
+    delete(socket);
+    return 0;
 }

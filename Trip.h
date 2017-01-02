@@ -60,15 +60,16 @@ public:
     ~Trip();
     Location* getCurrentLocation();
     double getTariff();
-    void move();
-    void moveToEnd();
+    void move(int speed);
     Road* getRoad();
     int getPassengersNum();
     void addMetersPassed(int meters);
     std::vector<Passenger*> getPassengers();
-    Point getStartP();
+    //Point getStartP();
+    Point getEndP();
     int getID();
     void setLocation(Location* location);
+    int getStartTime();
 };
 
 

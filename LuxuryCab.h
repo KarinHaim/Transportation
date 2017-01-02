@@ -21,10 +21,6 @@ public:
     LuxuryCab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     LuxuryCab();
     ~LuxuryCab();
-    bool getIsOccupied();
-    void setOccupation(bool occupation);
-    double getTariff();
-    int getID();
 };
 
 #endif //TRANSPORTATION_LUXURYCAB_H

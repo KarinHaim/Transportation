@@ -30,6 +30,7 @@ Cab::~Cab() {
  * @return a boolean value representing the answer.
  */
 bool Cab::getIsOccupied() {
+    return this->isOccupied;
 }
 
 /**
@@ -37,6 +38,7 @@ bool Cab::getIsOccupied() {
  * @param occupation - the new occupation.
  */
 void Cab::setOccupation(bool occupation) {
+    this->isOccupied = occupation;
 }
 
 /**
@@ -44,6 +46,7 @@ void Cab::setOccupation(bool occupation) {
  * @return the tariff.
  */
 double Cab::getTariff() {
+    return this->tariff;
 }
 
 /**
@@ -51,4 +54,9 @@ double Cab::getTariff() {
  * @return the ID.
  */
 int Cab::getID() {
+    return this->id;
+}
+
+int Cab::getSpeed() {
+    return this->speed;
 }

@@ -9,7 +9,7 @@ class Udp: public Socket {
 public:
     Udp(ProcessRole pr, u_short port, const char * ip = "127.0.0.1");
     ~Udp();
-    void sendData(std::string data, int len);
+    void sendData(std::string data);
     int receiveData(char * buffer, int size);
 };
 
