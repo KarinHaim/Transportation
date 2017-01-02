@@ -17,6 +17,7 @@ ClientFlow::ClientFlow(Socket* s) {
  * this function is a destructor of the main flow.
  */
 ClientFlow::~ClientFlow() {
+    delete(this->driver);
     delete(this->socket);
 }
 
@@ -129,16 +130,15 @@ void ClientFlow::flow() {
     Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
     driver->updateTrip(trip);
 
-    while(true) {
+    socket->receiveData(buffer, sizeof(buffer));
+    while (strcmp(buffer, "exit") != 0) {
+        if (strcmp(buffer, "go"))
+            driver->move();
+        else {
+            Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
+            driver->updateTrip(trip);
+        }
         memset(buffer, '0', sizeof(buffer));
         socket->receiveData(buffer, sizeof(buffer));
-        if (buffer == "go")
-            driver->move();
-        if (buffer == "exit") {
-            delete(this->socket);
-            delete(this->driver);
-            return;
-        }
-
     }
 }

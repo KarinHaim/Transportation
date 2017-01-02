@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
         std::cin >> operationNum;
         if (std::cin.fail())
             throw "not a number";
-        if (operationNum < 1 || operationNum > 7)
+        if (operationNum < 1 || operationNum > 9)
             throw "invalid operation number";
         switch (operationNum) {
             case 1:
@@ -50,7 +50,6 @@ int main(int argc, char* argv[]) {
                 break;
             case 7:
                 socket->sendData("exit");
-                delete(socket);
                 return 0;
             case 9:
                 mainFlow.updateTime();

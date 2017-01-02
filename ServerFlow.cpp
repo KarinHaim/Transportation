@@ -21,7 +21,7 @@ ServerFlow::~ServerFlow() {
     if (this->map != NULL)
         delete(this->map);
 
-    delete (this->socket);
+    delete(this->socket);
 }
 
 /**
@@ -344,6 +344,6 @@ void ServerFlow::updateTime() {
     std::vector<Driver*> drivers = taxiCenter.getDrivers();
     for (int i = 0; i < drivers.size(); i++) {
         socket->sendData("go");
-        drivers[i]->move;
+        drivers[i]->move();
     }
 }

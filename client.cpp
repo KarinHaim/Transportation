@@ -36,10 +36,9 @@ int main(int argc, char* argv[]) {
 
     ClientFlow mainFlow(socket);
     mainFlow.addDriver();
+    mainFlow.flow();
 
-    int operationNum;
     /*while(true) {
     }*/
-    delete(socket);
     return 0;
 }
