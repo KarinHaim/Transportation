@@ -38,7 +38,7 @@ protected:
 public:
     Cab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     Cab();
-    virtual ~Cab();
+    ~Cab();
     bool getIsOccupied();
     void setOccupation(bool occupation);
     double getTariff();
@@ -46,7 +46,7 @@ public:
     int getSpeed();
 };
 
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
+//BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
 
 #endif //TRANSPORTATION_CAB_H
 
