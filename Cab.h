@@ -7,6 +7,7 @@
 #include "CarManufacturer.h"
 #include "Color.h"
 #include <boost/archive/tmpdir.hpp>
+#include <boost/serialization/export.hpp>
 
 
 using namespace std;
@@ -46,3 +47,5 @@ public:
 };
 
 #endif //TRANSPORTATION_CAB_H
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
