@@ -18,4 +18,4 @@ StandardCab::StandardCab(): Cab() {
 StandardCab::~StandardCab() {
 }
 
-BOOST_CLASS_EXPORT(StandardCab)
+//BOOST_CLASS_EXPORT(StandardCab)

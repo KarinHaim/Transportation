@@ -20,4 +20,6 @@ public:
     ~LuxuryCab();
 };
 
+BOOST_CLASS_EXPORT(LuxuryCab)
+
 #endif //TRANSPORTATION_LUXURYCAB_H

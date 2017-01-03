@@ -22,4 +22,6 @@ public:
     ~StandardCab();
 };
 
+BOOST_CLASS_EXPORT(StandardCab)
+
 #endif //TRANSPORTATION_STANDARDCAB_H
