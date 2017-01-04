@@ -1,5 +1,5 @@
 
-#include <gtest/gtest.h>
+//#include <gtest/gtest.h>
 #include "Udp.h"
 #include "Serialization.h"
 #include "ServerFlow.h"
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     return RUN_ALL_TESTS();*/
 
     int port = atoi(argv[1]);
-    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port);
+    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port, "127.0.0.1");
     //char buffer[10240];
     /*s->receiveData(buffer, sizeof(buffer));
     std::cout << buffer << std::endl;
