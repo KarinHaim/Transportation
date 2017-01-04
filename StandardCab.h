@@ -19,7 +19,7 @@ class StandardCab : public Cab {
 public:
     StandardCab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     StandardCab();
-   // ~StandardCab();
+    ~StandardCab();
 };
 
 //BOOST_CLASS_EXPORT(StandardCab)

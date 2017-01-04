@@ -15,8 +15,8 @@ StandardCab::StandardCab(): Cab() {
 /**
  * this function is the destructor of a StandardCab.
  */
-/*StandardCab::~StandardCab(): ~Cab() {
+StandardCab::~StandardCab(): ~Cab() {
 
-}*/
+}
 
-//BOOST_CLASS_EXPORT(StandardCab)
+BOOST_CLASS_EXPORT(StandardCab)

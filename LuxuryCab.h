@@ -17,7 +17,7 @@ class LuxuryCab : public Cab {
 public:
     LuxuryCab(int id, int speed, CarManufacturer manufacturer, Color color, double tariff);
     LuxuryCab();
-    //~LuxuryCab();
+    ~LuxuryCab();
 };
 
 //BOOST_CLASS_EXPORT(LuxuryCab)

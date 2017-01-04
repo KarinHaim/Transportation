@@ -15,8 +15,8 @@ LuxuryCab::LuxuryCab(): Cab() {
 /**
  * this function is the destructor of a Cab.
  */
-/*LuxuryCab::~LuxuryCab() {
+LuxuryCab::~LuxuryCab() {
 
-}*/
+}
 
-//BOOST_CLASS_EXPORT(LuxuryCab)
+BOOST_CLASS_EXPORT(LuxuryCab)

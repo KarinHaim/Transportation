@@ -67,3 +67,5 @@ int Cab::getID() {
 int Cab::getSpeed() {
     return this->speed;
 }
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
