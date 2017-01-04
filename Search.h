@@ -18,7 +18,7 @@ public:
     Search();
     //A destructor.
     ~Search();
-    //gets 2 Vertexs and prints the vertexs in the path between them in order of bfs traversal.
+    //gets 2 teplates of start and end, and prints the points in the path between them in order of bfs traversal.
     static std::vector<T *> bfsTraversal(T &starting, T &ending) {
         std::queue<T *> nextToCheck;
         starting.setVisited();
@@ -37,7 +37,7 @@ public:
 
             adjacent = (*current).getAdjacentSearchables();
             for (unsigned int i=0; i<adjacent.size(); i++) {
-                //pushing to the queue only vertexs that weren't already visited
+                //pushing to the queue only points that weren't already visited
                 if (!(*adjacent[i]).isVisited() && !(*adjacent[i]).isOccupied()) {
                     (*adjacent[i]).setFormer(current);
                     (*adjacent[i]).setVisited();
@@ -46,7 +46,7 @@ public:
             }
         }
 
-        //find all the vertexs in the path by passing over the former vertex recursively
+        //find all the points in the path by passing over the former point recursively
         std::stack<T *> pointsInRoute;
         while (current != 0) { //NULL
             pointsInRoute.push(current);
@@ -54,7 +54,7 @@ public:
         }
 
         std::vector<T*> routeVerticesList;
-        //popping the vertex that stored in the stack in reversed order and print each
+        //popping the point that stored in the stack in reversed order and print each
         while (!pointsInRoute.empty()) {
             current = pointsInRoute.top();
             pointsInRoute.pop();
