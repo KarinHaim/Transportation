@@ -1,7 +1,5 @@
 #include "ServerFlow.h"
 #include "boost/algorithm/string.hpp"
-#include "StandardCab.h"
-#include "LuxuryCab.h"
 #include <iostream>
 #include "Serialization.h"
 
@@ -267,10 +265,10 @@ void ServerFlow::addTaxi() {
 
     Cab * cab;
     if (cabKind == 1)
-        cab = new StandardCab(id, 1, manufacturer, color, 1);
+        cab = new Cab(id, 1, manufacturer, color, 1);
     else {
         if (cabKind == 2)
-            cab = new LuxuryCab(id, 2, manufacturer, color, 2);
+            cab = new Cab(id, 2, manufacturer, color, 2);
         else
             throw "invalid cab kind number";
     }
@@ -347,10 +345,12 @@ void ServerFlow::updateTime() {
         socket->sendData(serialized);
     }
 
-    //send 'go' to all drivers
-    std::vector<Driver*> drivers = taxiCenter.getDrivers();
-    for (int i = 0; i < drivers.size(); i++) {
-        socket->sendData("go");
-        drivers[i]->move();
+    //send 'go'
+    if (attachedTripsDrivers.size() == 0) {
+        std::vector<Driver*> drivers = taxiCenter.getDrivers();
+        for (int i = 0; i < drivers.size(); i++) {
+            socket->sendData("go");
+            drivers[i]->move();
+        }
     }
 }

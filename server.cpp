@@ -38,6 +38,7 @@ int main(int argc, char* argv[]) {
         switch (operationNum) {
             case 1:
                 mainFlow.addDrivers();
+                break;
             case 2:
                 mainFlow.addTrip();
                 break;
@@ -50,6 +51,7 @@ int main(int argc, char* argv[]) {
             case 7:
                 socket->sendData("exit");
                 return 0;
+                break;
             case 9:
                 mainFlow.updateTime();
         }

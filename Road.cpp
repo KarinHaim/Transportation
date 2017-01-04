@@ -57,10 +57,10 @@ std::vector<Point*> Road::getRoad() {
 void Road::moveOneStep() {
     int i;
     //finding the index of the current location in the vector
-    /*for(i = 0; i < this->road.size(); i++) {
-        if (*(this->road) == *(this->currentLocation->getPosition()))
+    for(i = 0; i < this->road.size(); i++) {
+        if (*(this->road[i]) == *(this->currentLocation->getPosition()))
             break;
-    }*/
+    }
 
     //setting the current location point to be the next
     this->currentLocation->updateLocation(this->road[i+1]);

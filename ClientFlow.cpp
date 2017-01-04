@@ -1,7 +1,5 @@
 #include "ClientFlow.h"
 #include "boost/algorithm/string.hpp"
-#include "StandardCab.h"
-#include "LuxuryCab.h"
 #include <iostream>
 #include "Serialization.h"
 
@@ -126,13 +124,10 @@ void ClientFlow::addDriver() {
 
 void ClientFlow::flow() {
     char buffer[10240];
-    socket->receiveData(buffer, sizeof(buffer));
-    Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
-    driver->updateTrip(trip);
 
     socket->receiveData(buffer, sizeof(buffer));
     while (strcmp(buffer, "exit") != 0) {
-        if (strcmp(buffer, "go"))
+        if (strcmp(buffer, "go") == 0)
             driver->move();
         else {
             Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));

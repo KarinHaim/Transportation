@@ -1,10 +1,13 @@
+/*
 #include <gtest/gtest.h>
 #include "../Trip.h"
 
+*/
 /*
  * TripTester is a test fixture class which includes tests of Trip class using
  * Google's Testing Framework.
- */
+ *//*
+
 class TripTester : public testing::Test {
 protected:
     Map* map;
@@ -34,10 +37,12 @@ public:
     }
 };
 
+*/
 /**
  * This function tests that 'move' updates the correct move of 'trip'.
  * ('move' function simply operates the "moveOneStep" function of "Road").
- */
+ *//*
+
 
 TEST_F(TripTester, moveTester) {
     //this returns the index of the current location in the vector
@@ -56,4 +61,4 @@ TEST_F(TripTester, moveTester) {
 TEST_F(TripTester, moveToEndTester) {
     trip->move(1);
     EXPECT_EQ(*(trip->getCurrentLocation()->getPosition()), Point(1,2));
-}
+}*/

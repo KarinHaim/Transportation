@@ -2,12 +2,15 @@
 #ifndef TRANSPORTATION_CAB_H
 #define TRANSPORTATION_CAB_H
 
-#include <boost/serialization/assume_abstract.hpp>
-#include <boost/serialization/base_object.hpp>
 #include "CarManufacturer.h"
 #include "Color.h"
-#include <boost/archive/tmpdir.hpp>
 #include <boost/serialization/export.hpp>
+#include <boost/archive/tmpdir.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/utility.hpp>
+#include <boost/serialization/assume_abstract.hpp>
 
 
 using namespace std;
@@ -46,7 +49,6 @@ public:
     int getSpeed();
 };
 
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Cab)
 
 #endif //TRANSPORTATION_CAB_H
 

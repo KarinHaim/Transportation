@@ -12,7 +12,7 @@ Udp::Udp(ProcessRole pr, u_short port, const char * ip) {
     socketDescriptor = socket(AF_INET, SOCK_DGRAM, 0);
     if (socketDescriptor < 0) {
         perror("error openning socket");
-        //exit(1);
+        exit(1);
     }
     initializeSocket(pr, port, ip);
 }

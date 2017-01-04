@@ -1,13 +1,16 @@
+/*
 #include <gtest/gtest.h>
 #include "../Driver.h"
 #include "../LuxuryCab.h"
 #include "../StandardCab.h"
 #include "../TaxiCenter.h"
 
+*/
 /*
  * DriverTester is a test fixture class which includes tests of Driver class using
  * Google's Testing Framework.
- */
+ *//*
+
 class DriverTester : public testing::Test {
 protected:
     Map* map;
@@ -37,21 +40,26 @@ TEST_F(DriverTester, updateTripTester) {
 }
 
 //this function tests that the driver gets paid correctly.
+*/
 /*TEST_F(DriverTester, getPaidTester) {
     driver.getPaid(50);
     //since the driver starts with 0 money so he suppose to have only 50 now
     EXPECT_EQ(driver.getMoney(), 50);
-}*/
+}*//*
+
 
 //this function tests that the function "resetMoney" reset the money of the driver to 0.
+*/
 /*TEST_F(DriverTester, resetMoneyTester) {
     driver.getPaid(50);
     //"resetMoney" sets the driver's money to 0 so he suppose to have 0 now
     driver.resetMoney();
     EXPECT_EQ(driver.getMoney(), 0);
-}*/
+}*//*
+
 
 //this function tests that the function getMoneyFromPassengers collects correctly the money from the passengers.
+*/
 /*TEST_F(DriverTester, getMoneyFromPassengersTester) {
     //creating a Trip with tariff 20 (say it was the input)
     Trip* trip = new Trip(000, Point(), Point(), Map(), 1, 20);
@@ -72,7 +80,8 @@ TEST_F(DriverTester, updateTripTester) {
     //trip also deletes the passengers
     delete(trip);
     delete(luxuryCab);
-}*/
+}*//*
+
 
 //This function tests that the function 'attachCab' really attaches a driver with a requested cab.
 TEST_F(DriverTester, attachCabTester) {
@@ -89,10 +98,12 @@ TEST_F(DriverTester, attachCabTester) {
     delete(standardCab);
 }
 
+*/
 /**
  * This function tests that the function 'calculateFinalTariff' calaulates the final tariff as
  * the multiplication of the cab's tariff and the trip's tariff.
- */
+ *//*
+
 TEST_F(DriverTester, calculateFinalTariffTester) {
     //creating a Trip with tariff 20 (say it was the input)
     Trip* trip = new Trip(000, Point(0,0), Point(1,2), map, 3, 20, 0);
@@ -111,6 +122,7 @@ TEST_F(DriverTester, calculateFinalTariffTester) {
     delete(luxuryCab);
 }
 
+*/
 /**
  * the function "startDriving" simply operates the function "moveToEnd" in "Trip" which operate the function
  * "moveOneStep" that is tested in "Road".

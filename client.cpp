@@ -4,7 +4,6 @@
 #include "ClientFlow.h"
 #include "Udp.h"
 
-#include "Serialization.h"
 
 /**
  * this is the main function which operates the program of the client side.

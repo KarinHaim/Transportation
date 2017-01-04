@@ -1,10 +1,13 @@
+/*
 #include <gtest/gtest.h>
 #include "../Passenger.h"
 
+*/
 /*
  * PassengerTester is a test fixture class which includes tests of Passenger class using
  * Google's Testing Framework.
- */
+ *//*
+
 class PassengerTester : public testing::Test {
 protected:
     Passenger passenger;
@@ -18,6 +21,7 @@ public:
 };
 
 //This function tests that the function 'pay' reduces the current money member in 'passenger'.
+*/
 /*TEST_F(PassengerTester, payTester) {
     passenger.setMoney(100);
     //'pay' suppose to reduce the parameter from the 'money' member of Passenger.

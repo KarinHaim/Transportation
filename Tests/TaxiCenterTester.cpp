@@ -1,11 +1,14 @@
+/*
 #include <gtest/gtest.h>
 #include "../TaxiCenter.h"
 #include "../StandardCab.h"
 
+*/
 /*
  * TaxiCenterTester is a test fixture class which includes tests of TaxiCenter class using
  * Google's Testing Framework.
- */
+ *//*
+
 class TaxiCenterTester : public testing::Test {
 protected:
     Map* map;
@@ -43,21 +46,25 @@ TEST_F(TaxiCenterTester, attachTaxiToDriverTester) {
     //'addDriver' is tested separately in 'addDriverTester'
     taxiCenter->addDriver(driver);
 
-    /*
+    */
+/*
      * attachTaxiToDriver updates the driver's member of a *cab that it is available at the moment.
      * there is no option of a cab without a driver, besides the one we have just created, so
      * our driver and this cab suppose to be attached.
-     */
+     *//*
+
     taxiCenter->attachTaxiToDriver(driver, standardCab->getID());
 
     //so these suppose to be equals now
     EXPECT_EQ(standardCab, driver->getCab());
 
-    /**
+    */
+/**
      * now we check a case that the requested driver is not in the TaxiCenter.
      * we do that by create a new driver and try to attach him a cab without adding him to
      * the TaxiCenter.
-     */
+     *//*
+
     Driver* nonExistingDriver = new Driver(55555, 30, MeritalStatus::DIVORCED, 2, 2);
     //now we expect that when we try to attach the taxi to the driver, an exception will be thrown.
     EXPECT_ANY_THROW(taxiCenter->attachTaxiToDriver(nonExistingDriver, 111));
@@ -75,10 +82,12 @@ TEST_F(TaxiCenterTester, addDriverTester) {
     //so these suppose to be equals now
     EXPECT_EQ(driver, taxiCenter->getDrivers().back()); //'back' returns a reference to the last element in the list.
 
-    /**
+    */
+/**
      * now we check if the driver that is added has an id that is not already exists.
      * we create a new driver with the same id and try to add it.
-     */
+     *//*
+
     Driver* falseDriver = new Driver (12345, 3, MeritalStatus::SINGLE, 2, 2);
     //now we expect that when we add the driver, an exception will be thrown.
     EXPECT_ANY_THROW(taxiCenter->addDriver(falseDriver));
@@ -95,10 +104,12 @@ TEST_F(TaxiCenterTester, addTaxiTester) {
     //so these suppose to be equals now
     EXPECT_EQ(standardCab2, taxiCenter->getCabs().back()); //'back' returns a reference to the last element in the list.
 
-    /**
+    */
+/**
      * now we check if the cab that is added has an id that is not already exists.
      * we create a new cab with the same id and try to add it.
-     */
+     *//*
+
     StandardCab* falseCab = new StandardCab(1234, 50, CarManufacturer::FIAT, Color::RED, 15);
     //now we expect that when we add the cab, an exception will be thrown.
     EXPECT_ANY_THROW(taxiCenter->addTaxi(falseCab));
@@ -106,6 +117,7 @@ TEST_F(TaxiCenterTester, addTaxiTester) {
 }
 
 //this function tests that 'recieveMoneyFromDrivers' really recieve all the Money From all the drivers.
+*/
 /*TEST_F(TaxiCenterTester, recieveMoneyFromDriversTester) {
     driver = new Driver(12345, 30, MeritalStatus::DIVORCED, 2);
     standardCab = new StandardCab();
@@ -113,14 +125,18 @@ TEST_F(TaxiCenterTester, addTaxiTester) {
 
     driver->getPaid(50);
     taxiCenter.addDriver(driver);
-    /**
+    */
+/**
      *  'recieveMoneyFromDrivers' calls to driver.reportMoney() for all drivers (currently just one).
      *  the function 'reportMoney' is tested in 'DriverTester'
-     */
+     *//*
+
+*/
 /* taxiCenter.recieveMoneyFromDrivers();
  EXPECT_EQ(taxiCenter.getAllMoney(), 50);
  EXPECT_EQ(driver->getMoney(), 0);
-}*/
+}*//*
+
 
 //this function tests that 'addTrip' really add the trip to taxi center.
 TEST_F(TaxiCenterTester, addTripTester) {
@@ -130,10 +146,12 @@ TEST_F(TaxiCenterTester, addTripTester) {
     //so these suppose to be equals now
     EXPECT_EQ(123, taxiCenter->getTrips()[0]->getID());
 }
+*/
 /**
  * this function is originally made to print the location but the instruction were to check the output and
  * not printing.
- */
+ *//*
+
 TEST_F(TaxiCenterTester, getLocationOfDriverTester) {
     driver = new Driver(12345, 30, MeritalStatus::DIVORCED, 2, 2);
     standardCab = new StandardCab(2, 2, CarManufacturer::FIAT, Color::PINK, 2);
@@ -171,6 +189,7 @@ TEST_F(TaxiCenterTester, attachTripsToDriversTester) {
 }
 
 
+*/
 /**
  * the function "startAllDrivers" simply operates the function "startDriving" in "Driver" that is
  * tested there.

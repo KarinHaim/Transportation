@@ -125,6 +125,7 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
                         this->drivers[j]->updateTrip(this->trips[i]);
                         attachedTripsDrivers.push_back(this->drivers[j]);
                         this->trips.erase(this->trips.begin() + i);
+                        break;
                     }
                 }
             }
@@ -137,11 +138,11 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
  * this function returns the location of a specific driver.
  */
 Point TaxiCenter::getLocationOfDriver(int driverID) {
-    // return *(this->locations.find(driverID)->second->getPosition());
-    for(int i = 0; i < this->drivers.size(); i++) {
+    return *(this->locations.find(driverID)->second->getPosition());
+   /* for(int i = 0; i < this->drivers.size(); i++) {
         if (this->drivers[i]->getID() == driverID)
             return *(this->drivers[i]->getLocation()->getPosition());
-    }
+    }*/
 }
 
 /**
