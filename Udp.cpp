@@ -8,13 +8,21 @@
  * @param port - the port to use
  * @param ip - the ip to use
  */
-Udp::Udp(ProcessRole pr, u_short port, const char * ip) {
+Udp::Udp(ProcessRole pr, u_short port, const char * ip): Socket(pr, port, ip) {
     socketDescriptor = socket(AF_INET, SOCK_DGRAM, 0);
     if (socketDescriptor < 0) {
         perror("error openning socket");
         exit(1);
     }
-    initializeSocket(pr, port, ip);
+    if (pr == ProcessRole::SERVER) {
+        bindServer();
+    }
+}
+
+Udp::Udp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, port, ip) {
+    if (pr == ProcessRole::SERVER) {
+        bindServer();
+    }
 }
 
 /**

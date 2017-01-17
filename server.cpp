@@ -1,5 +1,6 @@
 
 //#include <gtest/gtest.h>
+#include <stdlib.h>
 #include "Udp.h"
 #include "Serialization.h"
 #include "ServerFlow.h"
@@ -12,18 +13,9 @@
  * @return
  */
 int main(int argc, char* argv[]) {
-   /* testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();*/
 
     int port = atoi(argv[1]);
-    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port, "127.0.0.1");
-    //char buffer[10240];
-    /*s->receiveData(buffer, sizeof(buffer));
-    std::cout << buffer << std::endl;
-    s->sendData("sup", 3);*/
-    /*s->receiveData(buffer, sizeof(buffer));
-    Driver *d2 = deserialize<Driver>(buffer, sizeof(buffer));
-    std::cout << d2->getLocation()->getPosition();*/
+    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port);
 
     ServerFlow mainFlow(socket);
     mainFlow.setWorldRepresentation();
@@ -33,7 +25,7 @@ int main(int argc, char* argv[]) {
         std::cin >> operationNum;
         if (std::cin.fail())
             throw "not a number";
-        if (operationNum < 1 || operationNum > 9)
+        if (operationNum < 1 || operationNum > 9 || operationNum == 5 || operationNum == 6)
             throw "invalid operation number";
         switch (operationNum) {
             case 1:

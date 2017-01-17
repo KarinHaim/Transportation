@@ -17,10 +17,14 @@ protected:
     int socketDescriptor;
     struct sockaddr_in this_addr;
     struct sockaddr_in other_addr;
+    ProcessRole pr;
+    int backlog;
 public:
-    Socket();
+    Socket(ProcessRole pr, u_short port, const char * ip);
+    Socket(int sd, ProcessRole pr, u_short port, const char * ip);
     ~Socket();
-    void initializeSocket(ProcessRole pr, u_short port, const char * ip = "127.0.0.1");
+    void initializeSocketEndPoints(u_short port, const char * ip = "127.0.0.1");
+    void bindServer();
     virtual void sendData(std::string data) = 0;
     virtual int receiveData(char * buffer, int size) = 0;
 };

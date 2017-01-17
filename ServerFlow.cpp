@@ -2,6 +2,7 @@
 #include "boost/algorithm/string.hpp"
 #include <iostream>
 #include "Serialization.h"
+#include "Tcp.h"
 
 /**
  * this function is a constructor of the serverflow.
@@ -224,6 +225,10 @@ void ServerFlow::setWorldRepresentation() {
     taxiCenter.setMap(map);
 }
 
+void ServerFlow::addDriver() {
+
+}
+
 /**
  * this function add drivers to the serverflow and attaches them with cabs.
  */
@@ -236,7 +241,15 @@ void ServerFlow::addDrivers() {
     if (numOfDrivers == 0)
         return;
     char buffer[10240];
+
+    Tcp* tcpSocket = dynamic_cast<Tcp*>(socket);
+    if (tcpSocket != NULL)
+        // do something
     for (int i = 0; i < numOfDrivers; i++) {
+        tcpSocket->setListenToConnections();
+        int newSocketDescriptor = tcpSocket->acceptClient();
+        Tcp* newTcpSocket = new Tcp(newSocketDescriptor, tcpSocket->pr, tcpSocket->this_addr.sin_port);
+
         memset(buffer, '0', sizeof(buffer));
         socket->receiveData(buffer, sizeof(buffer));
         Driver *driver = deserialize<Driver>(buffer, sizeof(buffer));

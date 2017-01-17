@@ -6,7 +6,7 @@
 /**
  * this class is an enum class of the colors.
  */
-enum Color {
+enum class Color {
     RED,
     BLUE,
     GREEN,

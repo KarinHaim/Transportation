@@ -5,7 +5,7 @@
 /**
  * this class is an enum class of the Car Manufacturers.
  */
-enum CarManufacturer {
+enum class CarManufacturer {
     HONDA,
     SUBARO,
     TESLA,
