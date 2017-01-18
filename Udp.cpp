@@ -19,11 +19,11 @@ Udp::Udp(ProcessRole pr, u_short port, const char * ip): Socket(pr, port, ip) {
     }
 }
 
-Udp::Udp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, port, ip) {
+/*Udp::Udp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, port, ip) {
     if (pr == ProcessRole::SERVER) {
         bindServer();
     }
-}
+}*/
 
 /**
  * this function is a destructor for the udp class.

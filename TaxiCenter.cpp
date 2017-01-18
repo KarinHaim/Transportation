@@ -1,5 +1,4 @@
 #include "TaxiCenter.h"
-#include "threadBFS.h"
 
 /**
  * this function is a constructor of TaxiCenter.
@@ -8,14 +7,15 @@ TaxiCenter::TaxiCenter() {
     this->map = NULL;
     this->allMoney = 0;
     this->clock = new Clock();
-    pthread_mutex_init(&this->calculateRoadLocker,0);
-    pthread_mutex_init(&this->addTripLocker,0);
+    pthread_mutex_init(&this->calculateRoadLocker, NULL);
 }
 
 /**
  * this function is a destructor of taxi center.
  */
 TaxiCenter::~TaxiCenter() {
+    pthread_mutex_destroy(&this->calculateRoadLocker);
+
     /*
     for (std::vector<Driver*>::iterator it=this->drivers.begin(); it != this->drivers.end(); ++it)
         delete(*it);
@@ -38,8 +38,6 @@ TaxiCenter::~TaxiCenter() {
     for (int i = 0; i < this->trips.size(); i++) {
         delete(this->trips[i]);
     }
-    pthread_mutex_destroy(&this->calculateRoadLocker);
-    pthread_mutex_destroy(&this->addTripLocker);
 }
 
 /**
@@ -109,18 +107,22 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  * @param tariff -the tariff of the trip.
  */
 void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime) {
-
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
 
-    threadBFS threadBfs = threadBFS(trip->getRoad(), this->calculateRoadLocker);
-    threadBfs.start();
+    this->trips.push_back(trip);
+
+    CalculateRoadThread calculateRoadThread(&this->calculateRoadLocker, trip->getRoad());
+    calculateRoadThread.start();
+
+    this->tripIdToCalculateRoadThreadMap[trip->getID()] = &calculateRoadThread;
+
 
     //threadBfs.join();
   //  threadBfs.stop();
 
     //mutex and add the trip
    // pthread_mutex_lock(&this->addTripLocker);
-    this->trips.push_back(trip);
+    //this->trips.push_back(trip);
    // pthread_mutex_unlock(&this->addTripLocker);
 }
 
@@ -136,6 +138,9 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
                 if(this->drivers[j]->getTrip() == NULL) {
                     //check if the driver is in the same point as the start of the trip
                     if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
+                        CalculateRoadThread* calculateRoadThread =
+                              tripIdToCalculateRoadThreadMap.find(this->trips[i]->getID())->second;
+                        (*calculateRoadThread).join();
                         this->drivers[j]->updateTrip(this->trips[i]);
                         attachedTripsDrivers.push_back(this->drivers[j]);
                         this->trips.erase(this->trips.begin() + i);

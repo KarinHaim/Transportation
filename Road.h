@@ -44,6 +44,6 @@ public:
 
     void setRoad(std::vector<Point*> paramRoad);
 };
-static void calculateRoad(Road road);
+//static void calculateRoad(Road road);
 
 #endif //TRANSPORTATION_ROAD_H

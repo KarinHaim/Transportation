@@ -2,7 +2,6 @@
 #ifndef TRANSPORTATION_SEARCH_H
 #define TRANSPORTATION_SEARCH_H
 
-#include "Searchable.h"
 #include <queue>
 #include <stack>
 #include <vector>
@@ -18,7 +17,7 @@ public:
     Search();
     //A destructor.
     ~Search();
-    //gets 2 teplates of start and end, and prints the points in the path between them in order of bfs traversal.
+    //gets 2 templates of start and end, and prints the points in the path between them in order of bfs traversal.
     static std::vector<T *> bfsTraversal(T &starting, T &ending) {
         std::queue<T *> nextToCheck;
         starting.setVisited();

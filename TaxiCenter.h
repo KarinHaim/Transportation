@@ -11,6 +11,7 @@
 #include "CarManufacturer.h"
 #include "Color.h"
 #include "Cab.h"
+#include "CalculateRoadThread.h"
 
 /**
  * this class defines the taxi center, which operates the database.
@@ -23,9 +24,9 @@ private:
     std::map<int, Location*> locations;
     std::vector<Cab*> cabs;
     std::vector<Trip*> trips;
+    std::map<int, CalculateRoadThread*> tripIdToCalculateRoadThreadMap;
     Clock* clock;
     pthread_mutex_t calculateRoadLocker;
-    pthread_mutex_t addTripLocker;
 public:
     TaxiCenter();
     ~TaxiCenter();

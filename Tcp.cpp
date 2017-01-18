@@ -22,7 +22,7 @@ Tcp::Tcp(ProcessRole pr, u_short port, const char * ip): Socket(pr, port, ip) {
     }
 }
 
-Tcp::Tcp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, port, ip) {
+/*Tcp::Tcp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, port, ip) {
     if (pr == ProcessRole::CLIENT) {
         setConnect();
     }
@@ -30,7 +30,7 @@ Tcp::Tcp(int sd, ProcessRole pr, u_short port, const char * ip): Socket(sd, pr, 
         bindServer();
         //setListenToConnections();
     }
-}
+}*/
 
 /**
  * this function is a destructor for the tcp class.
@@ -58,9 +58,9 @@ void Tcp::setConnect() {
  * @param data - the data to send.
  */
 void Tcp::sendData(std::string data) {
-    int sent_bytes = sendto(socketDescriptor, data.c_str(), data.size() + 1, 0, (struct sockaddr *) &other_addr, sizeof(this->other_addr));
+    int sent_bytes = send(socketDescriptor, data.c_str(), data.size() + 1, 0);
     if (sent_bytes < 0)
-        perror("error sendto");
+        perror("error send");
 }
 
 /**
@@ -70,10 +70,10 @@ void Tcp::sendData(std::string data) {
  * @return - bytes of the data.
  */
 int Tcp::receiveData(char * buffer, int size) {
-    socklen_t slen = sizeof(struct sockaddr_in);
-    int bytes = recvfrom(socketDescriptor, buffer, size, 0, (struct sockaddr *) &other_addr, &slen);
+    //socklen_t slen = sizeof(struct sockaddr_in);
+    int bytes = recv(socketDescriptor, buffer, size, 0);
     if (bytes < 0) {
-        perror("error receivefrom");
+        perror("error receive");
     }
     return bytes;
 }

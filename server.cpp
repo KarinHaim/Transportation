@@ -4,6 +4,7 @@
 #include "Udp.h"
 #include "Serialization.h"
 #include "ServerFlow.h"
+#include "Tcp.h"
 
 
 /**
@@ -15,7 +16,7 @@
 int main(int argc, char* argv[]) {
 
     int port = atoi(argv[1]);
-    Socket* socket = new Udp(ProcessRole::SERVER, (u_short)port);
+    Socket* socket = new Tcp(ProcessRole::SERVER, (u_short)port);
 
     ServerFlow mainFlow(socket);
     mainFlow.setWorldRepresentation();
@@ -41,7 +42,8 @@ int main(int argc, char* argv[]) {
                 mainFlow.printDriversLocation();
                 break;
             case 7:
-                socket->sendData("exit");
+                //socket->sendData("exit");
+                mainFlow.exitSignal();
                 return 0;
                 break;
             case 9:

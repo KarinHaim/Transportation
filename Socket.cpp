@@ -53,3 +53,7 @@ void Socket::bindServer() {
         exit(1);
     }
 }
+
+void Socket::setSocketDescriptor(int sd) {
+    this->socketDescriptor = sd;
+}

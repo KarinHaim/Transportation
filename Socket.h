@@ -22,11 +22,12 @@ protected:
 public:
     Socket(ProcessRole pr, u_short port, const char * ip);
     Socket(int sd, ProcessRole pr, u_short port, const char * ip);
-    ~Socket();
+    virtual ~Socket();
     void initializeSocketEndPoints(u_short port, const char * ip = "127.0.0.1");
     void bindServer();
     virtual void sendData(std::string data) = 0;
     virtual int receiveData(char * buffer, int size) = 0;
+    void setSocketDescriptor(int sd);
 };
 
 #endif //TRANSPORTATION_SOCKET_H

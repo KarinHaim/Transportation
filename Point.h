@@ -1,7 +1,7 @@
 #ifndef TRANSPORTATION_POINT_H
 #define TRANSPORTATION_POINT_H
 
-#include "Searchable.h"
+
 #include <iostream>
 
 #include <cstddef>

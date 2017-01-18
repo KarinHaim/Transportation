@@ -73,7 +73,7 @@ void Road::moveOneStep() {
  * @param start - the starting point of the road.
  * @param end - the ending point of the road.
  */
-void calculateRoad(Road paramRoad) {
+//void calculateRoad(Road paramRoad) {
    /* pthread_mutex_t calculateRoadLocker;
     pthread_mutex_init(&calculateRoadLocker,0);
     pthread_mutex_lock(&calculateRoadLocker);
@@ -82,7 +82,7 @@ void calculateRoad(Road paramRoad) {
     //return road;
     paramRoad.setRoad(road);
     pthread_mutex_destroy(&calculateRoadLocker);*/
-}
+//}
 
 void Road::setRoad(std::vector<Point*> paramRoad) {
 

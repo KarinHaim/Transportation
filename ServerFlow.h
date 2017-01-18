@@ -10,6 +10,7 @@
 #include "Color.h"
 #include "MeritalStatus.h"
 #include "Socket.h"
+#include "ClientHandleThread.h"
 
 /**
  * this class controls the ServerFlow.
@@ -19,6 +20,10 @@ private:
     Socket* socket;
     TaxiCenter taxiCenter;
     Map* map;
+    pthread_mutex_t lock;
+    vector<ClientHandleThread> clientsHandles;
+    std::map<int, int> driversIdToClientHandlesIdMap;
+    std::vector<std::string> clientHandlesMessages;
     void parseMap(int &width, int &height);
     void parseObstacles(std::vector<Point> &obstacles);
     void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
@@ -32,7 +37,6 @@ private:
     void validatePositiveNoneZeroNumber(int num);
     void validatePointInRangeOfMap(Point point);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
-
 public:
     ServerFlow(Socket * s);
     ~ServerFlow();
@@ -47,6 +51,7 @@ public:
     void setMap(Map* map);
     void addDrivers();
     void updateTime();
+    void exitSignal();
 };
 
 #endif //TRANSPORTATION_SERVERFLOW_H
