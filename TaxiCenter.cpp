@@ -112,15 +112,16 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
 
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
 
-    threadBFS threadBfs = threadBFS(trip->getRoad());
+    threadBFS threadBfs = threadBFS(trip->getRoad(), this->calculateRoadLocker);
     threadBfs.start();
-    threadBfs.join();
-    threadBfs.stop();
+
+    //threadBfs.join();
+  //  threadBfs.stop();
 
     //mutex and add the trip
-    pthread_mutex_lock(&this->addTripLocker);
+   // pthread_mutex_lock(&this->addTripLocker);
     this->trips.push_back(trip);
-    pthread_mutex_unlock(&this->addTripLocker);
+   // pthread_mutex_unlock(&this->addTripLocker);
 }
 
 /**

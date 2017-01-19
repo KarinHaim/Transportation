@@ -1,8 +1,8 @@
 #include "threadBFS.h"
 
-threadBFS::threadBFS(Road* paramRoad) {
+threadBFS::threadBFS(Road* paramRoad, &pthread_mutex_t locker) {
     this->road = paramRoad;
-    pthread_mutex_init(&this->bfsLocker,0);
+    this.bfsLocker = locker;
 }
 
 threadBFS::~threadBFS(){
@@ -41,10 +41,3 @@ static void* calculateRoad(void* thisThread) {
     threadBfs->setRoad(road);
     return NULL;
 }
-
-
-
-
-
-
-

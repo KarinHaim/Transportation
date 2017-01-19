@@ -19,7 +19,7 @@ private:
 
 
 public:
-    threadBFS(Road* paramroad);
+    threadBFS(Road* paramroad, pthread_mutex_t &locker);
     ~threadBFS();
     void start();
     void stop();
