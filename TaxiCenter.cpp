@@ -9,6 +9,8 @@ TaxiCenter::TaxiCenter() {
     this->map = NULL;
     this->allMoney = 0;
     this->clock = new Clock();
+    pthread_mutex_init(&this->calculateRoadLocker,0);
+    pthread_mutex_init(&this->addTripLocker,0);
 }
 
 /**
@@ -37,6 +39,8 @@ TaxiCenter::~TaxiCenter() {
     for (int i = 0; i < this->trips.size(); i++) {
         delete(this->trips[i]);
     }
+    pthread_mutex_destroy(&this->calculateRoadLocker);
+    pthread_mutex_destroy(&this->addTripLocker);
 }
 
 /**
@@ -107,7 +111,19 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  */
 void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime) {
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
+    pthread_t ptID;
+    pthread_create(&ptID, NULL, calculateRoad, trip->getRoad());
+    pthread_join(ptID, NULL);
+    //mutex and calculate the road
+
+/*    pthread_mutex_lock(&this->calculateRoadLocker);
+    trip->getRoad()->calculateRoad(NULL);
+    pthread_mutex_unlock(&this->calculateRoadLocker);*/
+
+    //mutex and add the trip
+    pthread_mutex_lock(&this->addTripLocker);
     this->trips.push_back(trip);
+    pthread_mutex_unlock(&this->addTripLocker);
 }
 
 /**

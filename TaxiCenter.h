@@ -24,6 +24,8 @@ private:
     std::vector<Cab*> cabs;
     std::vector<Trip*> trips;
     Clock* clock;
+    pthread_mutex_t calculateRoadLocker;
+    pthread_mutex_t addTripLocker;
 public:
     TaxiCenter();
     ~TaxiCenter();

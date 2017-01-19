@@ -29,7 +29,7 @@ private:
     Point* end;
     Location* currentLocation;
     std::vector<Point*> road;
-    void calculateRoad(Point* start, Point* end);
+    pthread_mutex_t calculateRoadLocker;
 public:
     Road(Map* map, Point start, Point end);
     Road();
@@ -38,6 +38,12 @@ public:
     std::vector<Point*> getRoad();
     void moveOneStep();
     void setLocation(Location* location);
+    Point* getStartPCoordinates();
+    Point* getEndPCoordinates();
+
+
+    void setRoad(std::vector<Point*> paramRoad);
 };
+static void calculateRoad(Road road);
 
 #endif //TRANSPORTATION_ROAD_H
