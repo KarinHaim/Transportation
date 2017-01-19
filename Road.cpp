@@ -74,14 +74,14 @@ void Road::moveOneStep() {
  * @param end - the ending point of the road.
  */
 void calculateRoad(Road paramRoad) {
-    pthread_mutex_t calculateRoadLocker;
+   /* pthread_mutex_t calculateRoadLocker;
     pthread_mutex_init(&calculateRoadLocker,0);
     pthread_mutex_lock(&calculateRoadLocker);
     std::vector<Point*> road = Search<Point>::bfsTraversal(*paramRoad.getEndPCoordinates(), *paramRoad.getEndPCoordinates());
     pthread_mutex_unlock(&calculateRoadLocker);
     //return road;
     paramRoad.setRoad(road);
-    pthread_mutex_destroy(&calculateRoadLocker);
+    pthread_mutex_destroy(&calculateRoadLocker);*/
 }
 
 void Road::setRoad(std::vector<Point*> paramRoad) {

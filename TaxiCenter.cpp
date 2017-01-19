@@ -1,6 +1,5 @@
 #include "TaxiCenter.h"
-#include <algorithm>
-#include <iterator>
+#include "threadBFS.h"
 
 /**
  * this function is a constructor of TaxiCenter.
@@ -110,15 +109,13 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  * @param tariff -the tariff of the trip.
  */
 void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime) {
-    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
-    pthread_t ptID;
-    pthread_create(&ptID, NULL, calculateRoad, trip->getRoad());
-    pthread_join(ptID, NULL);
-    //mutex and calculate the road
 
-/*    pthread_mutex_lock(&this->calculateRoadLocker);
-    trip->getRoad()->calculateRoad(NULL);
-    pthread_mutex_unlock(&this->calculateRoadLocker);*/
+    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
+
+    threadBFS threadBfs = threadBFS(trip->getRoad());
+    threadBfs.start();
+    threadBfs.join();
+    threadBfs.stop();
 
     //mutex and add the trip
     pthread_mutex_lock(&this->addTripLocker);
