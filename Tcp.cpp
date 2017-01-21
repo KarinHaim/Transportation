@@ -78,6 +78,11 @@ int Tcp::receiveData(char * buffer, int size) {
     return bytes;
 }
 
+/**
+ * this function acceptss client that connects to the socket and creates new socket for
+ * communicating with it.
+ * @return - new socket descriptor
+ */
 int Tcp::acceptClient() {
     socklen_t slen = sizeof(struct sockaddr_in);
     int newSocketDescriptor = accept(socketDescriptor, (struct sockaddr *) &other_addr, &slen);

@@ -253,7 +253,7 @@ void ServerFlow::addDrivers() {
         Tcp* newTcpSocket = new Tcp(*tcpSocket);
         newTcpSocket->setSocketDescriptor(newSocketDescriptor);
 
-        clientHandlesMessages[i] = "";
+        clientHandlesMessages.push_back("");
         ClientHandleThread clientHandleThread(i, &lock, newTcpSocket,
                                               driversIdToClientHandlesIdMap, clientHandlesMessages,
                                               taxiCenter);

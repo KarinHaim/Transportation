@@ -114,7 +114,7 @@ void ClientFlow::addDriver() {
     driver = new Driver(id, age, meritalStatus, yearsOfExp, cabID);
     std::string serialized = serialize<Driver>(driver);
     socket->sendData(serialized);
-    char buffer[10240];
+    char buffer[40000];
     socket->receiveData(buffer, sizeof(buffer));
     Cab *cab = deserialize<Cab>(buffer, sizeof(buffer));
     driver->attachCab(cab);
@@ -123,7 +123,7 @@ void ClientFlow::addDriver() {
 }
 
 void ClientFlow::flow() {
-    char buffer[10240];
+    char buffer[40000];
 
     socket->receiveData(buffer, sizeof(buffer));
     while (strcmp(buffer, "exit") != 0) {

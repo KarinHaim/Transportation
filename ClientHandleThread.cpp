@@ -2,7 +2,8 @@
 #include <sys/socket.h>
 #include "ClientHandleThread.h"
 #include "Serialization.h"
-//#include <boost/log/trivial.hpp>"
+//#include "boost/algorithm/string.hpp"
+//#include <boost/log/trivial.hpp>
 
 ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *lock, Socket* socket,
  std::map<int, int>& driversIdToClientHandleIdMap, std::vector<std::string>& clientHandlesMessages,
@@ -17,10 +18,11 @@ ClientHandleThread::~ClientHandleThread() {
 }
 
 void ClientHandleThread::addDriver() {
-    char buffer[10240];
+    char buffer[40000];
     memset(buffer, '0', sizeof(buffer));
     socket->receiveData(buffer, sizeof(buffer));
-    //BOOST_LOG_TRIVIAL(debug) << "thread " << id << "driver receieved";
+    //std::cout << "thread " << id << "driver received";
+    //BOOST_LOG_TRIVIAL(debug) << "thread " << id << "driver received";
     Driver *driver = deserialize<Driver>(buffer, sizeof(buffer));
     driversIdToClientHandlesIdMap[driver->getID()] = id;
     try {
