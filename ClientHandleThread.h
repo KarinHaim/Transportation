@@ -7,6 +7,10 @@
 #include "TaxiCenter.h"
 #include "Socket.h"
 
+
+/**
+ * this class defines the thread functionality of handling the clients.
+ */
 class ClientHandleThread {
 private:
     int id;

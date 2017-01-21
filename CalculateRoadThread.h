@@ -5,14 +5,14 @@
 
 #include "Road.h"
 
+/**
+ * this class defines the thread functionality of calculating the road using the bfs algorithm.
+ */
 class CalculateRoadThread {
 private:
     pthread_mutex_t *calculateRoadLocker;
     pthread_t id;
-    //Point* startP;
-    //Point* endP;
     Road* road;
-   // std::vector<Point*> calculated;
 public:
     CalculateRoadThread(pthread_mutex_t *locker, Road* paramRoad);
     ~CalculateRoadThread();

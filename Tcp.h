@@ -21,4 +21,4 @@ public:
     int acceptClient();
 };
 
-#endif //TRANSPORTATION_TCP_H
+#endif

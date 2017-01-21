@@ -15,8 +15,10 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/utility.hpp>
-#include <boost/serialization/vector.hpp>
 #include <boost/serialization/assume_abstract.hpp>
+
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/vector.hpp>
 
 /*
  * A class that represents a point on a graph, characterized by coordinate

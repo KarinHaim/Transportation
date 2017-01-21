@@ -5,6 +5,15 @@
 //#include "boost/algorithm/string.hpp"
 //#include <boost/log/trivial.hpp>
 
+/**
+ * this function is a constructor of the ClientHandleThread object.
+ * @param id - the id of the driver.
+ * @param lock - a mutex object to lock the needed resources.
+ * @param socket - a socket object.
+ * @param driversIdToClientHandleIdMap - a map object to match drivers and their thread.
+ * @param clientHandlesMessages - a vector of messages of client handling.
+ * @param taxiCenter  - a TaxiCenter object.
+ */
 ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *lock, Socket* socket,
  std::map<int, int>& driversIdToClientHandleIdMap, std::vector<std::string>& clientHandlesMessages,
  TaxiCenter& taxiCenter): id(id), lock(lock), socket(socket),
@@ -13,10 +22,16 @@ ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *lock, Socket* so
 
 }
 
+/**
+ * this function is a destructor of the ClientHandleThread class.
+ */
 ClientHandleThread::~ClientHandleThread() {
 
 }
 
+/**
+ * this function receives a new driver and adds it to the taxi center.
+ */
 void ClientHandleThread::addDriver() {
     char buffer[40000];
     memset(buffer, '0', sizeof(buffer));
@@ -37,6 +52,9 @@ void ClientHandleThread::addDriver() {
     socket->sendData(serialized);
 }
 
+/**
+ * this function sends a message to the client, that fits it's mode.
+ */
 void ClientHandleThread::sendMessageToClient() {
     while(true) {
         pthread_mutex_lock(lock);
@@ -56,6 +74,11 @@ void ClientHandleThread::sendMessageToClient() {
     delete(socket);
 }
 
+/**
+ * this function is the static function the thread operates, which handle the client.
+ * @param arg - a pointer to ClientHandleThread object.
+ * @return - NULL.
+ */
 static void *handleClient(void *arg) {
     ClientHandleThread* clientHandleThread = (ClientHandleThread*)arg;
     clientHandleThread->addDriver();
@@ -63,14 +86,24 @@ static void *handleClient(void *arg) {
     return NULL;
 }
 
+/**
+ * this function starts the client handle thread (create a new thread).
+ */
 void ClientHandleThread::start() {
     pthread_create(&thread_id, NULL, handleClient, this);
 }
 
+/**
+ * this function wait for the client handle thread to end.
+ */
 void ClientHandleThread::join() {
     pthread_join(thread_id, NULL);
 }
 
+
+/**
+ * this function cancels the client handle thread.
+ */
 void ClientHandleThread::stop() {
     pthread_cancel(thread_id);
 }

@@ -39,6 +39,9 @@ Tcp::~Tcp() {
 
 }
 
+/**
+ * this function listen to connections to tcp protocol.
+ */
 void Tcp::setListenToConnections() {
     if (listen(socketDescriptor, backlog) < 0) {
         perror("error listen");
@@ -46,6 +49,9 @@ void Tcp::setListenToConnections() {
     }
 }
 
+/**
+ * this function establish a new connection via tcp.
+ */
 void Tcp::setConnect() {
     if (connect(socketDescriptor, (struct sockaddr *) &other_addr, sizeof(other_addr)) < 0) {
         perror("error connect");
@@ -65,7 +71,7 @@ void Tcp::sendData(std::string data) {
 
 /**
  * this function recieve data via a socket.
- * @param buffer - thw buffer of the data.
+ * @param buffer - the buffer of the data.
  * @param size - the size of it.
  * @return - bytes of the data.
  */
@@ -79,7 +85,7 @@ int Tcp::receiveData(char * buffer, int size) {
 }
 
 /**
- * this function acceptss client that connects to the socket and creates new socket for
+ * this function accepts client that connects to the socket and creates new socket for
  * communicating with it.
  * @return - new socket descriptor
  */
