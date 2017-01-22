@@ -20,7 +20,9 @@ private:
     Socket* socket;
     TaxiCenter taxiCenter;
     Map* map;
-    pthread_mutex_t lock;
+    pthread_mutex_t clientHandleMessagesLock;
+    pthread_mutex_t taxiCenterLock;
+    pthread_mutex_t driversToClientHandlesMapLock;
     vector<ClientHandleThread> clientsHandles;
     std::map<int, int> driversIdToClientHandlesIdMap;
     std::vector<std::string> clientHandlesMessages;

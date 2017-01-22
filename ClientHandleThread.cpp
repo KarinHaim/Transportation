@@ -14,12 +14,22 @@
  * @param clientHandlesMessages - a vector of messages of client handling.
  * @param taxiCenter  - a TaxiCenter object.
  */
-ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *lock, Socket* socket,
- std::map<int, int>& driversIdToClientHandleIdMap, std::vector<std::string>& clientHandlesMessages,
- TaxiCenter& taxiCenter): id(id), lock(lock), socket(socket),
+ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *clientHandleMessagesLock,
+ pthread_mutex_t *taxiCenterLock, pthread_mutex_t *driversToClientHandlesMapLock, Socket* socket,
+ std::map<int, int>* driversIdToClientHandleIdMap, std::vector<std::string>* clientHandlesMessages,
+ TaxiCenter* taxiCenter)/*: id(id), clientHandleMessagesLock(clientHandleMessagesLock),
+ taxiCenterLock(taxiCenterLock),
+ driversToClientHandlesMapLock(driversToClientHandlesMapLock), socket(socket),
  driversIdToClientHandlesIdMap(driversIdToClientHandlesIdMap),
- clientHandlesMessages(clientHandlesMessages), taxiCenter(taxiCenter) {
-
+ clientHandlesMessages(clientHandlesMessages), taxiCenter(taxiCenter) */{
+    this->id = id;
+    this->clientHandleMessagesLock = clientHandleMessagesLock;
+    this->taxiCenterLock = taxiCenterLock;
+    this->driversToClientHandlesMapLock = driversToClientHandlesMapLock;
+    this->socket = socket;
+    this->driversIdToClientHandlesIdMap = driversIdToClientHandleIdMap;
+    this->clientHandlesMessages = clientHandlesMessages;
+    this->taxiCenter = taxiCenter;
 }
 
 /**
@@ -39,15 +49,21 @@ void ClientHandleThread::addDriver() {
     //std::cout << "thread " << id << "driver received";
     //BOOST_LOG_TRIVIAL(debug) << "thread " << id << "driver received";
     Driver *driver = deserialize<Driver>(buffer, sizeof(buffer));
-    driversIdToClientHandlesIdMap[driver->getID()] = id;
+    pthread_mutex_lock(driversToClientHandlesMapLock);
+    (*driversIdToClientHandlesIdMap)[driver->getID()] = id;
+    pthread_mutex_unlock(driversToClientHandlesMapLock);
     try {
-        taxiCenter.addDriver(driver);
+        pthread_mutex_lock(taxiCenterLock);
+        taxiCenter->addDriver(driver);
+        pthread_mutex_unlock(taxiCenterLock);
     }
     catch (...) {
         delete(driver);
         throw;
     }
-    Cab* cab = taxiCenter.attachTaxiToDriver(driver, driver->getCabID());
+    pthread_mutex_lock(taxiCenterLock);
+    Cab* cab = taxiCenter->attachTaxiToDriver(driver, driver->getCabID());
+    pthread_mutex_unlock(taxiCenterLock);
     std::string serialized = serialize<Cab>(cab);
     socket->sendData(serialized);
 }
@@ -57,17 +73,17 @@ void ClientHandleThread::addDriver() {
  */
 void ClientHandleThread::sendMessageToClient() {
     while(true) {
-        pthread_mutex_lock(lock);
-        std::string message = clientHandlesMessages[id];
-        pthread_mutex_unlock(lock);
+        pthread_mutex_lock(clientHandleMessagesLock);
+        std::string message = (*clientHandlesMessages)[id];
+        pthread_mutex_unlock(clientHandleMessagesLock);
         if (message != "") {
             if (message.compare("exit") == 0)
                 break;
             else {
-                socket->sendData(clientHandlesMessages[id]);
-                pthread_mutex_lock(lock);
-                clientHandlesMessages[id] = "";
-                pthread_mutex_unlock(lock);
+                pthread_mutex_lock(clientHandleMessagesLock);
+                socket->sendData((*clientHandlesMessages)[id]);
+                (*clientHandlesMessages)[id] = "";
+                pthread_mutex_unlock(clientHandleMessagesLock);
             }
         }
     }

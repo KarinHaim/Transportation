@@ -11,14 +11,18 @@ ServerFlow::ServerFlow(Socket* s) {
     socket = s;
     taxiCenter = TaxiCenter();
     map = NULL;
-    pthread_mutex_init(&lock, NULL);
+    pthread_mutex_init(&clientHandleMessagesLock, NULL);
+    pthread_mutex_init(&taxiCenterLock, NULL);
+    pthread_mutex_init(&driversToClientHandlesMapLock, NULL);
 }
 
 /**
  * this function is a destructor of the serverflow.
  */
 ServerFlow::~ServerFlow() {
-    pthread_mutex_destroy(&lock);
+    pthread_mutex_destroy(&driversToClientHandlesMapLock);
+    pthread_mutex_destroy(&taxiCenterLock);
+    pthread_mutex_destroy(&clientHandleMessagesLock);
 
     if (this->map != NULL)
         delete(this->map);
@@ -253,10 +257,14 @@ void ServerFlow::addDrivers() {
         Tcp* newTcpSocket = new Tcp(*tcpSocket);
         newTcpSocket->setSocketDescriptor(newSocketDescriptor);
 
+        pthread_mutex_lock(&clientHandleMessagesLock);
         clientHandlesMessages.push_back("");
-        ClientHandleThread clientHandleThread(i, &lock, newTcpSocket,
-                                              driversIdToClientHandlesIdMap, clientHandlesMessages,
-                                              taxiCenter);
+        pthread_mutex_unlock(&clientHandleMessagesLock);
+
+        ClientHandleThread clientHandleThread(i, &clientHandleMessagesLock, &taxiCenterLock,
+                                              &driversToClientHandlesMapLock, newTcpSocket,
+                                              &driversIdToClientHandlesIdMap, &clientHandlesMessages,
+                                              &taxiCenter);
         clientHandleThread.start();
         //clientsHandles.push_back(clientHandleThread);
         /*memset(buffer, '0', sizeof(buffer));
@@ -322,7 +330,9 @@ void ServerFlow::addTrip() {
 void ServerFlow::printDriversLocation() {
     int id;
     parseId(id);
+    pthread_mutex_lock(&taxiCenterLock);
     Point location = taxiCenter.getLocationOfDriver(id);
+    pthread_mutex_unlock(&taxiCenterLock);
     std::cout << location;
 }
 
@@ -358,33 +368,37 @@ void ServerFlow::setMap(Map* map) {
  * is now, and move one step all the drivers.
  */
 void ServerFlow::updateTime() {
+    pthread_mutex_lock(&taxiCenterLock);
     //attach trips to drivers when it's trip time
     taxiCenter.updateTime();
 
     std::vector<Driver *> drivers = taxiCenter.getDrivers();
 
     std::vector<Driver *> attachedTripsDrivers = taxiCenter.attachTripsToDrivers();
+    pthread_mutex_unlock(&taxiCenterLock);
     //for (int i = 0; i < attachedTripsDrivers.size(); i++) {
 
     for (int i = 0; i < drivers.size(); i++) {
         vector<Driver *>::iterator driversIndex = std::find(attachedTripsDrivers.begin(), attachedTripsDrivers.end(),
                                                             drivers[i]);
+        pthread_mutex_lock(&driversToClientHandlesMapLock);
         int clientHandleId = driversIdToClientHandlesIdMap.find(attachedTripsDrivers[i]->getID())->second;
+        pthread_mutex_unlock(&driversToClientHandlesMapLock);
         if (driversIndex != attachedTripsDrivers.end()) {
             Trip *trip = attachedTripsDrivers[i]->getTrip();
             std::string serialized = serialize<Trip>(trip);
 
-            pthread_mutex_lock(&lock);
+            pthread_mutex_lock(&clientHandleMessagesLock);
             clientHandlesMessages[clientHandleId] = serialized;
-            pthread_mutex_unlock(&lock);
+            pthread_mutex_unlock(&clientHandleMessagesLock);
             //socket->sendData(serialized);
         }
             //send 'go'
         else {
             if (drivers[i]->getTrip() != NULL) {
-                pthread_mutex_lock(&lock);
+                pthread_mutex_lock(&clientHandleMessagesLock);
                 clientHandlesMessages[clientHandleId] = "go";
-                pthread_mutex_unlock(&lock);
+                pthread_mutex_unlock(&clientHandleMessagesLock);
 
                 drivers[i]->move();
             }
@@ -400,11 +414,12 @@ void ServerFlow::updateTime() {
         }
     }*/
 }
+
 void ServerFlow::exitSignal() {
     for (int i=0; i<clientHandlesMessages.size(); i++) {
-        pthread_mutex_lock(&lock);
+        pthread_mutex_lock(&clientHandleMessagesLock);
         clientHandlesMessages[i] = "exit";
-        pthread_mutex_unlock(&lock);
+        pthread_mutex_unlock(&clientHandleMessagesLock);
     }
     pthread_exit(NULL);
 }
