@@ -140,6 +140,7 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
 
 /**
  * this function attaches the trips to the drivers.
+ *
  */
  std::vector<Driver*> TaxiCenter::attachTripsToDrivers() {
     std::vector<Driver*> attachedTripsDrivers;
