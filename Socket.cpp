@@ -4,8 +4,10 @@
 #include "Socket.h"
 
 /**
- * this function is a constructor for socket.
- * @param processRole - the role of the process client/server
+ *  this function is a constructor of the socket.
+ * @param pr - the process role of the socket - client/server.
+ * @param port - the port to the socket.
+ * @param ip - the ip for the socket.
  */
 Socket::Socket(ProcessRole pr, u_short port, const char * ip) {
     this->pr = pr;
@@ -13,6 +15,13 @@ Socket::Socket(ProcessRole pr, u_short port, const char * ip) {
     initializeSocketEndPoints(port, ip);
 }
 
+/**
+ *  this function is a constructor of the socket.
+ * @param sd - the socket descriptor of this socket.
+ * @param pr - the process role of the socket - client/server.
+ * @param port - the port to the socket.
+ * @param ip - the ip for the socket.
+ */
 Socket::Socket(int sd, ProcessRole pr, u_short port, const char * ip) {
     this->socketDescriptor = sd;
     this->pr = pr;
@@ -21,7 +30,7 @@ Socket::Socket(int sd, ProcessRole pr, u_short port, const char * ip) {
 }
 
 /**
- * this function is a destructor for socket.
+ * this function is a destructor of the socket.
  */
 Socket::~Socket() {
     close(socketDescriptor);
@@ -47,6 +56,9 @@ void Socket::initializeSocketEndPoints(u_short port, const char * ip) {
     }
 }
 
+/**
+ * this function binds the ip address given.
+ */
 void Socket::bindServer() {
     if (bind(socketDescriptor, (struct sockaddr *) &this_addr, sizeof(this_addr)) < 0) {
         perror("error bind");
@@ -54,6 +66,10 @@ void Socket::bindServer() {
     }
 }
 
+/**
+ * this function sets a new socket descriptor.
+ * @param sd - the new socket descriptor.
+ */
 void Socket::setSocketDescriptor(int sd) {
     this->socketDescriptor = sd;
 }

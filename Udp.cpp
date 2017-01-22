@@ -43,7 +43,7 @@ void Udp::sendData(std::string data) {
 }
 
 /**
- * this function recieve data via a socket.
+ * this function receive data via a socket.
  * @param buffer - thw buffer of the data.
  * @param size - the size of it.
  * @return - bytes of the data.

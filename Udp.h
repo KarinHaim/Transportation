@@ -17,4 +17,4 @@ public:
     int receiveData(char * buffer, int size);
 };
 
-#endif //TRANSPORTATION_UDP_H
+#endif

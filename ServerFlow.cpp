@@ -415,6 +415,9 @@ void ServerFlow::updateTime() {
     }*/
 }
 
+/**
+ * this function sets the messages to the client to be all "exit".
+ */
 void ServerFlow::exitSignal() {
     for (int i=0; i<clientHandlesMessages.size(); i++) {
         pthread_mutex_lock(&clientHandleMessagesLock);
