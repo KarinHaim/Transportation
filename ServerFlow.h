@@ -35,6 +35,7 @@ private:
     Color parseColor(char color);
     void parseId(int &id);
     void validatePositiveNumber(int num);
+    void validateCabKind(int num);
     void validatePositiveNoneZeroNumber(int num);
     void validatePointInRangeOfMap(Point point);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);

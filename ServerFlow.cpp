@@ -43,8 +43,12 @@ ServerFlow::~ServerFlow() {
  * @param num - the number to check
  */
 void ServerFlow::validatePositiveNumber(int num) {
-    if (num < 0)
-        throw "not a positive input";
+        if (num < 0) {
+            cout << "-1" << endl;
+            throw "not a positive input";
+
+        }
+
 }
 
 /**
@@ -52,8 +56,12 @@ void ServerFlow::validatePositiveNumber(int num) {
  * @param num - the number to check
  */
 void ServerFlow::validatePositiveNoneZeroNumber(int num) {
-    if (num <= 0)
-        throw "not a positive non zero input";
+
+        if (num <= 0) {
+            cout << "-1" << endl;
+            throw "not a positive none zero input";
+
+    }
 }
 
 /**
@@ -73,19 +81,43 @@ void ServerFlow::validatePointInRangeOfMap(Point point) {
 void ServerFlow::parseMap(int &width, int &height) {
 	do {
 		std::cin >> width;
-	} while (std::cin.fail() && EINTR == errno);
-    if (std::cin.fail())
-        throw "not a number";
+        if(std::cin.fail() && EINTR == errno) {
+            cout << "-1" << endl;
+            continue;
+        }
+        else {
+            try {
+                validatePositiveNoneZeroNumber(width);
+            } catch (...) {
+                continue;
+            }
+            break;
+        }
+	} while (true);
+    /*if (std::cin.fail())
+        throw "not a number";*/
 
 	do {
 		std::cin >> height;
-	} while (std::cin.fail() && EINTR == errno);
-    if (std::cin.fail())
-        throw "not a number";
-    validatePositiveNoneZeroNumber(width);
-    validatePositiveNoneZeroNumber(height);
+        if(std::cin.fail() && EINTR == errno) {
+            cout << "-1" << endl;
+            continue;
+        }
+        else {
+            try {
+                validatePositiveNoneZeroNumber(height);
+            } catch (...) {
+                continue;
+            }
+            break;
+        }
+    } while (true);
+   /* if (std::cin.fail())
+        throw "not a number";*/
+    //validatePositiveNoneZeroNumber(width);
+    //validatePositiveNoneZeroNumber(height);
 }
-
+ /******************stopped here*******************************
 /**
  * this function parses the obstacles from an input file.
  * @param obstacles - a vector of obstacles points.
@@ -105,7 +137,6 @@ void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
 			std::cin.clear();
 			std::cin >> obstaclesCoordinates;
 		} while (std::cin.fail() && EINTR == errno);
-
         if (std::cin.fail())
             throw "invalid argument";
         std::size_t indexOfComma = obstaclesCoordinates.find(',');
@@ -168,9 +199,9 @@ void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
     if(passengersNum > 5)
         throw "passengers number exceeds car's capacity";
     tariff = stod(arguments[6]);
-    validatePositiveNoneZeroNumber(tariff);
+    validatePositiveNumber(tariff);
     startTime = stoi(arguments[7]);
-    validatePositiveNumber(startTime);
+    validatePositiveNoneZeroNumber(startTime);
 }
 
 /**
@@ -230,8 +261,10 @@ void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
     id = stoi(arguments[0]);
     validatePositiveNumber(id);
     cabKind = stoi(arguments[1]);
+    validateCabKind(cabKind);
     manufacturer = parseCarManufacturer(arguments[2][0]);
     color = parseColor(arguments[3][0]);
+}
 }
 
 /**
@@ -302,6 +335,11 @@ void ServerFlow::addDrivers() {
     }
 }
 
+void ServerFlow::validateCabKind(int num) {
+    if ((num != 1) && (num != 2))
+        throw "invalid cab kind number";
+}
+
 /**
  * this function add a taxi to the serverflow.
  */
@@ -310,16 +348,12 @@ void ServerFlow::addTaxi() {
     CarManufacturer manufacturer;
     Color color;
     parseTaxi(id, cabKind, manufacturer, color);
-
+    validateCabKind(cabKind);
     Cab * cab;
     if (cabKind == 1)
         cab = new Cab(id, 1, manufacturer, color, 1);
-    else {
-        if (cabKind == 2)
-            cab = new Cab(id, 2, manufacturer, color, 2);
-        else
-            throw "invalid cab kind number";
-    }
+    else if (cabKind == 2)
+        cab = new Cab(id, 2, manufacturer, color, 2);
 
     try {
         taxiCenter->addTaxi(cab);

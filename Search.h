@@ -17,7 +17,7 @@ public:
     Search();
     //A destructor.
     ~Search();
-    //gets 2 templates of start and end, and prints the points in the path between them in order of bfs traversal.
+    //gets 2 templates of start and end, and returns the points in the path between them in order of bfs traversal.
     static std::vector<T *> bfsTraversal(T &starting, T &ending) {
         std::queue<T *> nextToCheck;
         starting.setVisited();
@@ -34,6 +34,9 @@ public:
                 break;
             }
 
+            // save the current front element of the queue, to check later if a route was found.
+            T* checkAvailableRoute = nextToCheck.front();
+
             adjacent = (*current).getAdjacentSearchables();
             for (unsigned int i=0; i<adjacent.size(); i++) {
                 //pushing to the queue only points that weren't already visited
@@ -42,6 +45,10 @@ public:
                     (*adjacent[i]).setVisited();
                     nextToCheck.push(adjacent[i]);
                 }
+            }
+            //if the front stays the same, means it has not found a proper route
+            if (checkAvailableRoute == nextToCheck.front()) {
+                throw "unavailable route for this trip";
             }
         }
 

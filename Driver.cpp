@@ -156,6 +156,7 @@ void Driver::move() {
     if (this->trip != NULL) {
         this->trip->move(this->cab->getSpeed());
         if (*this->location->getPosition() == this->trip->getEndP()) {
+            this->trip->getRoad()->setExistRoad(false);
             delete(this->trip);
             this->trip = NULL;
         }

@@ -86,8 +86,8 @@ void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, in
     id = stoi(arguments[0]);
     validatePositiveNumber(id);
     age = stoi(arguments[1]);
-    if (age <= 15)
-        throw "invalid drier's age";
+    /*if (age <= 15)
+        throw "invalid drier's age";*/
     validatePositiveNoneZeroNumber(age);
     meritalStatus = parseMeritalStatus(arguments[2][0]);
     yearsOfExp = stoi(arguments[3]);

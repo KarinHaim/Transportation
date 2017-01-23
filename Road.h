@@ -27,6 +27,7 @@ private:
     Point* end;
     Location* currentLocation;
     std::vector<Point*> road;
+    bool existRoad;
 public:
     Road(Map* map, Point start, Point end);
     Road();
@@ -37,7 +38,8 @@ public:
     void setLocation(Location* location);
     Point* getStart();
     Point* getEnd();
-
+    void setExistRoad(bool b);
+    bool getExistRoad();
 
     void setRoad(std::vector<Point*> paramRoad);
 };

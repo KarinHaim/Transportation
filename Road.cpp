@@ -13,7 +13,7 @@ Road::Road(Map* map, Point start, Point end) {
     this->start = map->getPointByCoordinates(start);
     this->end = map->getPointByCoordinates(end);
     this->currentLocation = NULL;
-    //this->calculateRoad(this->start, this->end);
+    this->existRoad = false;
 }
 
 /**
@@ -23,6 +23,7 @@ Road::Road() {
     this->start = NULL;
     this->end = NULL;
     this->currentLocation = NULL;
+    this->existRoad = false;
 }
 
 /**
@@ -69,6 +70,14 @@ void Road::moveOneStep() {
  */
 void Road::setRoad(std::vector<Point*> paramRoad) {
     road = paramRoad;
+    this->existRoad = true;
+}
+
+void Road::setExistRoad(bool b) {
+    this->existRoad = b;
+}
+bool Road::getExistRoad() {
+    return this->existRoad;
 }
 
 /**

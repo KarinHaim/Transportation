@@ -29,7 +29,16 @@ void CalculateRoadThread::setRoad(std::vector<Point*> paramRoad) {
 
 void CalculateRoadThread::calculateRoad() {
     pthread_mutex_lock(calculateRoadLocker);
-    std::vector<Point*> road = Search<Point>::bfsTraversal(*this->road->getStart(), *this->road->getEnd());
+    std::vector<Point*> road;
+    try {
+        road = Search<Point>::bfsTraversal(*this->road->getStart(), *this->road->getEnd());
+    }
+    catch (...) {
+        this->map->clearSearch();
+        pthread_mutex_unlock(calculateRoadLocker);
+        return;
+    }
+
     this->map->clearSearch();
     pthread_mutex_unlock(calculateRoadLocker);
     this->road->setRoad(road);

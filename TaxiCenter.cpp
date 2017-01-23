@@ -125,8 +125,10 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
     CalculateRoadThread* calculateRoadThread = new CalculateRoadThread(&this->calculateRoadLocker,
                                                                        trip->getRoad(), this->map);
     calculateRoadThread->start();
+    calculateRoadThread->join();
 
-    this->tripIdToCalculateRoadThreadMap[trip->getID()] = calculateRoadThread;
+    if (trip->getRoad()->getExistRoad())
+        this->tripIdToCalculateRoadThreadMap[trip->getID()] = calculateRoadThread;
 
 
     //threadBfs.join();
@@ -151,13 +153,19 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
                 if(this->drivers[j]->getTrip() == NULL) {
                     //check if the driver is in the same point as the start of the trip
                     if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
-                        CalculateRoadThread* calculateRoadThread =
-                              tripIdToCalculateRoadThreadMap.find(this->trips[i]->getID())->second;
-                        (*calculateRoadThread).join();
-                        this->drivers[j]->updateTrip(this->trips[i]);
-                        attachedTripsDrivers.push_back(this->drivers[j]);
-                        this->trips.erase(this->trips.begin() + i);
-                        break;
+                        std::map<int,CalculateRoadThread*>::iterator it;
+                        //try to find the trip in the map of threads and trips
+                        it = tripIdToCalculateRoadThreadMap.find(this->trips[i]->getID());
+                        //means the trip was found in the map
+                        if (it != tripIdToCalculateRoadThreadMap.end()) {
+                            CalculateRoadThread* calculateRoadThread = it->second;
+                            //(*calculateRoadThread).join();
+                            this->drivers[j]->updateTrip(this->trips[i]);
+                            attachedTripsDrivers.push_back(this->drivers[j]);
+                            this->trips.erase(this->trips.begin() + i);
+                            break;
+                        }
+
                     }
                 }
             }
