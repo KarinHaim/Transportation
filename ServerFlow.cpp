@@ -43,11 +43,20 @@ ServerFlow::~ServerFlow() {
  * @param num - the number to check
  */
 void ServerFlow::validatePositiveNumber(int num) {
-        if (num < 0) {
+    do {
+        std::cin >> num;
+        if(std::cin.fail() && EINTR == errno) {
             cout << "-1" << endl;
-            throw "not a positive input";
-
+            continue;
         }
+        else  {
+            if (num < 0) {
+                cout << "-1" << endl;
+                continue;
+            }
+            break;
+        }
+    } while (true);
 
 }
 
@@ -57,19 +66,28 @@ void ServerFlow::validatePositiveNumber(int num) {
  */
 void ServerFlow::validatePositiveNoneZeroNumber(int num) {
 
-        if (num <= 0) {
+    do {
+        std::cin >> num;
+        if(std::cin.fail() && EINTR == errno) {
             cout << "-1" << endl;
-            throw "not a positive none zero input";
-
-    }
+            continue;
+        }
+        else  {
+            if (num <= 0) {
+                cout << "-1" << endl;
+                continue;
+            }
+            break;
+        }
+    } while (true);
 }
 
 /**
  * this function ensure that the point 'point' is a valid point that is in the range of the map.
  * @param point - the point to check.
  */
-void ServerFlow::validatePointInRangeOfMap(Point point) {
-    if (point.getX() >= map->getWidth() || point.getY() >= map->getHeight())
+void ServerFlow::validatePointInRangeOfMap(int x, int y) {
+    if (x >= map->getWidth() || y>= map->getHeight())
         throw "point coordinated are out of map range";
 }
 
@@ -79,79 +97,48 @@ void ServerFlow::validatePointInRangeOfMap(Point point) {
  * @param height - the height of the map.
  */
 void ServerFlow::parseMap(int &width, int &height) {
-	do {
-		std::cin >> width;
-        if(std::cin.fail() && EINTR == errno) {
-            cout << "-1" << endl;
-            continue;
-        }
-        else {
-            try {
-                validatePositiveNoneZeroNumber(width);
-            } catch (...) {
-                continue;
-            }
-            break;
-        }
-	} while (true);
-    /*if (std::cin.fail())
-        throw "not a number";*/
-
-	do {
-		std::cin >> height;
-        if(std::cin.fail() && EINTR == errno) {
-            cout << "-1" << endl;
-            continue;
-        }
-        else {
-            try {
-                validatePositiveNoneZeroNumber(height);
-            } catch (...) {
-                continue;
-            }
-            break;
-        }
-    } while (true);
-   /* if (std::cin.fail())
-        throw "not a number";*/
-    //validatePositiveNoneZeroNumber(width);
-    //validatePositiveNoneZeroNumber(height);
+    validatePositiveNoneZeroNumber(width);
+    validatePositiveNoneZeroNumber(height);
 }
- /******************stopped here*******************************
+
 /**
  * this function parses the obstacles from an input file.
  * @param obstacles - a vector of obstacles points.
  */
 void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
     int numOfObstacles;
-    std::cin >> numOfObstacles;
-    if (std::cin.fail())
-        throw "not a number";
-    validatePositiveNumber(numOfObstacles);
-    if (numOfObstacles == 0)
-        return;
+    validatePositiveNoneZeroNumber(numOfObstacles);
     std::string obstaclesCoordinates;
     for (int i=0; i<numOfObstacles; i++) {
-
+    int x,y;
 		do {
 			std::cin.clear();
 			std::cin >> obstaclesCoordinates;
-		} while (std::cin.fail() && EINTR == errno);
-        if (std::cin.fail())
-            throw "invalid argument";
-        std::size_t indexOfComma = obstaclesCoordinates.find(',');
-        if (indexOfComma == std::string::npos)
-            throw "not a valid representation of point";
-        int x = stoi(obstaclesCoordinates.substr(0, indexOfComma));
-        int y = stoi(obstaclesCoordinates.substr(indexOfComma+1));
-        validatePositiveNumber(x);
-        validatePositiveNumber(y);
+            if(std::cin.fail() && EINTR == errno)
+                continue;
+            std::size_t indexOfComma = obstaclesCoordinates.find(',');
+            if (indexOfComma == std::string::npos)
+               // throw "not a valid representation of point";
+                continue;
+            x = stoi(obstaclesCoordinates.substr(0, indexOfComma));
+            y = stoi(obstaclesCoordinates.substr(indexOfComma+1));
+            if((x < 0) || (y < 0))
+                continue;
+            try {
+                validatePointInRangeOfMap(x, y);
+            }
+            catch (...) {
+                continue;
+            }
+            break;
+		} while (true);
+
         Point p(x, y);
-        validatePointInRangeOfMap(p);
         obstacles.push_back(p);
     }
 }
 
+//****************here**********************
 /**
  * this function parses a line of input string splitted by ','.
  * @param arguments - vector of input strings

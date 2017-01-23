@@ -37,7 +37,7 @@ private:
     void validatePositiveNumber(int num);
     void validateCabKind(int num);
     void validatePositiveNoneZeroNumber(int num);
-    void validatePointInRangeOfMap(Point point);
+    void validatePointInRangeOfMap(int x, int y);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
 public:
     ServerFlow(Socket * s);

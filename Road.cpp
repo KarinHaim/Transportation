@@ -76,6 +76,7 @@ void Road::setRoad(std::vector<Point*> paramRoad) {
 void Road::setExistRoad(bool b) {
     this->existRoad = b;
 }
+
 bool Road::getExistRoad() {
     return this->existRoad;
 }

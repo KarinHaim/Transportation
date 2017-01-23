@@ -125,10 +125,7 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
     CalculateRoadThread* calculateRoadThread = new CalculateRoadThread(&this->calculateRoadLocker,
                                                                        trip->getRoad(), this->map);
     calculateRoadThread->start();
-    calculateRoadThread->join();
-
-    if (trip->getRoad()->getExistRoad())
-        this->tripIdToCalculateRoadThreadMap[trip->getID()] = calculateRoadThread;
+    this->tripIdToCalculateRoadThreadMap[trip->getID()] = calculateRoadThread;
 
 
     //threadBfs.join();
@@ -148,25 +145,26 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
     std::vector<Driver*> attachedTripsDrivers;
     for(int i = 0; i < this->trips.size(); i++) {
         if (this->trips[i]->getStartTime() == this->clock->getCurrentTime()) {
+            /**
+             * when the time of the trip arrives, wait for it's thread to end and than check
+             * if there is an available route. if not, delete the trip before matching a driver.
+             */
+            CalculateRoadThread* calculateRoadThread = tripIdToCalculateRoadThreadMap.find(this->trips[i]->getID())->second;
+            calculateRoadThread->join();
+            //means that a route was not found.
+            if (!this->trips[i]->getRoad()->getExistRoad())
+                this->trips.erase(this->trips.begin() + i);
             for(int j = 0; j < this->drivers.size(); j++) {
                 //check if the driver is available
                 if(this->drivers[j]->getTrip() == NULL) {
                     //check if the driver is in the same point as the start of the trip
                     if (*(this->drivers[j]->getLocation()->getPosition()) == this->trips[i]->getStartP()) {
-                        std::map<int,CalculateRoadThread*>::iterator it;
-                        //try to find the trip in the map of threads and trips
-                        it = tripIdToCalculateRoadThreadMap.find(this->trips[i]->getID());
-                        //means the trip was found in the map
-                        if (it != tripIdToCalculateRoadThreadMap.end()) {
-                            CalculateRoadThread* calculateRoadThread = it->second;
-                            //(*calculateRoadThread).join();
                             this->drivers[j]->updateTrip(this->trips[i]);
                             attachedTripsDrivers.push_back(this->drivers[j]);
                             this->trips.erase(this->trips.begin() + i);
                             break;
-                        }
-
                     }
+
                 }
             }
         }
