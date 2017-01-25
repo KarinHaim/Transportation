@@ -1,4 +1,5 @@
 #include "TaxiCenter.h"
+#include "easylogging++.h"
 
 /**
  * this function is a constructor of TaxiCenter.
@@ -14,6 +15,11 @@ TaxiCenter::TaxiCenter() {
  * this function is a destructor of taxi center.
  */
 TaxiCenter::~TaxiCenter() {
+	for (std::map<int, CalculateRoadThread*>::iterator it = tripIdToCalculateRoadThreadMap.begin();
+			it != tripIdToCalculateRoadThreadMap.end(); ++it) {
+		delete it->second;
+	}
+
     pthread_mutex_destroy(&this->calculateRoadLocker);
 
     /*
@@ -38,6 +44,7 @@ TaxiCenter::~TaxiCenter() {
     for (int i = 0; i < this->trips.size(); i++) {
         delete(this->trips[i]);
     }
+    delete(clock);
 }
 
 /**
@@ -46,6 +53,7 @@ TaxiCenter::~TaxiCenter() {
  */
 void TaxiCenter::setMap(Map* map) {
     this->map = map;
+    LOG(DEBUG) << "taxi center's map is " << this->map << "\n";
 }
 
 /**
@@ -59,10 +67,10 @@ void TaxiCenter::addDriver(Driver* driver) {
             throw "driver with this id was already inserted";
     }
     this->drivers.push_back(driver);
-    //finding the index of the cab
-    //  attachTaxiToDriver(driver, cabID);
 
     this->locations[driver->getID()] = driver->getLocation();
+    LOG(DEBUG) << "driver's location is " << driver->getLocation() << "\n";
+    LOG(DEBUG) <<  "driver's location point is " << *driver->getLocation()->getPosition();
 }
 
 /**
@@ -106,15 +114,19 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  * @param passengersNum - number of passengers in the trip.
  * @param tariff -the tariff of the trip.
  */
-void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff, int startTime) {
+void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, double tariff,
+                         int startTime) {
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
 
     this->trips.push_back(trip);
 
-    CalculateRoadThread calculateRoadThread(&this->calculateRoadLocker, trip->getRoad());
-    calculateRoadThread.start();
+    LOG(DEBUG) << "taxi center's map before delivery to calculateroadthread " << this->map << "\n";
 
-    this->tripIdToCalculateRoadThreadMap[trip->getID()] = &calculateRoadThread;
+    CalculateRoadThread* calculateRoadThread = new CalculateRoadThread(&this->calculateRoadLocker,
+                                                                       trip->getRoad(), this->map);
+    calculateRoadThread->start();
+
+    this->tripIdToCalculateRoadThreadMap[trip->getID()] = calculateRoadThread;
 
 
     //threadBfs.join();
@@ -157,11 +169,14 @@ void TaxiCenter::addTrip(int id, Point start, Point end, int passengersNum, doub
  * this function returns the location of a specific driver.
  */
 Point TaxiCenter::getLocationOfDriver(int driverID) {
-    return *(this->locations.find(driverID)->second->getPosition());
-   /* for(int i = 0; i < this->drivers.size(); i++) {
-        if (this->drivers[i]->getID() == driverID)
-            return *(this->drivers[i]->getLocation()->getPosition());
-    }*/
+    Location* location = this->locations.find(driverID)->second;
+    LOG(DEBUG) << "location is " << location << "\n";
+    Point* point = location->getPosition();
+    LOG(DEBUG) << "point is %p\n" << point << "\n";
+    LOG(DEBUG) <<  "p is " << *point << "\n";
+    return *point;
+    //LOG(DEBUG) << "location is " << *(this->locations.find(driverID)->second->getPosition());
+    //return *(this->locations.find(driverID)->second->getPosition());
 }
 
 /**

@@ -4,7 +4,7 @@
 #include "Socket.h"
 
 /**
- *  this function is a constructor of the socket.
+ * this function is a constructor of the socket.
  * @param pr - the process role of the socket - client/server.
  * @param port - the port to the socket.
  * @param ip - the ip for the socket.
@@ -16,7 +16,7 @@ Socket::Socket(ProcessRole pr, u_short port, const char * ip) {
 }
 
 /**
- *  this function is a constructor of the socket.
+ * this function is a constructor of the socket.
  * @param sd - the socket descriptor of this socket.
  * @param pr - the process role of the socket - client/server.
  * @param port - the port to the socket.
@@ -30,7 +30,7 @@ Socket::Socket(int sd, ProcessRole pr, u_short port, const char * ip) {
 }
 
 /**
- * this function is a destructor of the socket.
+ * this function is a destructor for socket.
  */
 Socket::~Socket() {
     close(socketDescriptor);
@@ -46,7 +46,10 @@ void Socket::initializeSocketEndPoints(u_short port, const char * ip) {
         memset(&other_addr, 0, sizeof(other_addr));
         other_addr.sin_family = AF_INET;
         other_addr.sin_port = htons(port);
-        other_addr.sin_addr.s_addr = inet_addr(ip);
+        if (strcmp(ip, "localhost"))
+            other_addr.sin_addr.s_addr = inet_addr("localhost");
+        else
+            other_addr.sin_addr.s_addr = inet_addr(ip);
     }
     if (pr == ProcessRole::SERVER) {
         memset(&this_addr, 0, sizeof(this_addr));

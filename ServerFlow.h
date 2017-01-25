@@ -18,19 +18,18 @@
 class ServerFlow {
 private:
     Socket* socket;
-    TaxiCenter taxiCenter;
+    TaxiCenter* taxiCenter;
     Map* map;
     pthread_mutex_t clientHandleMessagesLock;
     pthread_mutex_t taxiCenterLock;
     pthread_mutex_t driversToClientHandlesMapLock;
-    vector<ClientHandleThread> clientsHandles;
+    pthread_mutex_t serializationLock;
+    vector<ClientHandleThread*> clientsHandles;
     std::map<int, int> driversIdToClientHandlesIdMap;
-    std::vector<std::string> clientHandlesMessages;
+    std::vector<std::deque<std::string>> clientHandlesMessages;
     void parseMap(int &width, int &height);
     void parseObstacles(std::vector<Point> &obstacles);
     void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
-    //void parseStartingAndEndingPoints(Point &start, Point &end);
-    //void parsePassengersNum(int &passengersNum);
     void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
@@ -45,10 +44,7 @@ public:
     void setWorldRepresentation();
     void addTaxi();
     void addTrip();
-    //void attachTaxiToDriver();
-    //void receiveCall();
     void printDriversLocation();
-   // void moveAllOneStep();
     TaxiCenter* getTaxiCenter();
     void setMap(Map* map);
     void addDrivers();

@@ -3,26 +3,34 @@
 #include <iostream>
 #include "Serialization.h"
 #include "Tcp.h"
+#include "easylogging++.h"
 
 /**
  * this function is a constructor of the serverflow.
  */
 ServerFlow::ServerFlow(Socket* s) {
     socket = s;
-    taxiCenter = TaxiCenter();
+    taxiCenter = new TaxiCenter();
     map = NULL;
     pthread_mutex_init(&clientHandleMessagesLock, NULL);
     pthread_mutex_init(&taxiCenterLock, NULL);
     pthread_mutex_init(&driversToClientHandlesMapLock, NULL);
+    pthread_mutex_init(&serializationLock, NULL);
 }
 
 /**
  * this function is a destructor of the serverflow.
  */
 ServerFlow::~ServerFlow() {
+    int size = clientsHandles.size();
+    for (int i=0; i<size; i++)
+        delete  clientsHandles[i];
+    pthread_mutex_destroy(&serializationLock);
     pthread_mutex_destroy(&driversToClientHandlesMapLock);
     pthread_mutex_destroy(&taxiCenterLock);
     pthread_mutex_destroy(&clientHandleMessagesLock);
+
+    delete taxiCenter;
 
     if (this->map != NULL)
         delete(this->map);
@@ -63,7 +71,15 @@ void ServerFlow::validatePointInRangeOfMap(Point point) {
  * @param height - the height of the map.
  */
 void ServerFlow::parseMap(int &width, int &height) {
-    std::cin >> width >> height;
+	do {
+		std::cin >> width;
+	} while (std::cin.fail() && EINTR == errno);
+    if (std::cin.fail())
+        throw "not a number";
+
+	do {
+		std::cin >> height;
+	} while (std::cin.fail() && EINTR == errno);
     if (std::cin.fail())
         throw "not a number";
     validatePositiveNoneZeroNumber(width);
@@ -84,7 +100,12 @@ void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
         return;
     std::string obstaclesCoordinates;
     for (int i=0; i<numOfObstacles; i++) {
-        std::cin >> obstaclesCoordinates;
+
+		do {
+			std::cin.clear();
+			std::cin >> obstaclesCoordinates;
+		} while (std::cin.fail() && EINTR == errno);
+
         if (std::cin.fail())
             throw "invalid argument";
         std::size_t indexOfComma = obstaclesCoordinates.find(',');
@@ -106,7 +127,12 @@ void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
  */
 void ServerFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-    std::cin >> input;
+
+	do {
+		std::cin.clear();
+		std::cin >> input;
+	} while (std::cin.fail() && EINTR == errno);
+
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
 
@@ -208,13 +234,16 @@ void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
     color = parseColor(arguments[3][0]);
 }
 
-
 /**
  * this function parses the input of the id.
  * @param id - the id
  */
 void ServerFlow::parseId(int &id) {
-    std::cin >> id;
+	do {
+		std::cin.clear();
+		std::cin >> id;
+	} while (std::cin.fail() && EINTR == errno);
+
     validatePositiveNumber(id);
 }
 
@@ -229,7 +258,7 @@ void ServerFlow::setWorldRepresentation() {
     parseObstacles(obstacles);
     map->updateObstacles(obstacles);
 
-    taxiCenter.setMap(map);
+    taxiCenter->setMap(map);
 }
 
 /**
@@ -237,52 +266,41 @@ void ServerFlow::setWorldRepresentation() {
  */
 void ServerFlow::addDrivers() {
     int numOfDrivers;
-    std::cin >> numOfDrivers;
+	do {
+		std::cin.clear();
+		std::cin >> numOfDrivers;
+	} while (std::cin.fail() && EINTR == errno);
+
     if (std::cin.fail())
         throw "not a number";
     validatePositiveNumber(numOfDrivers);
-    if (numOfDrivers == 0)
-        return;
-    //char buffer[10240];
+	if (numOfDrivers == 0) {
+		return;
+	}
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
-    if (tcpSocket != NULL)
-        // do something
-    //tcpSocket->setListenToConnections();
+	if (tcpSocket == NULL) {
+		perror("error casting to tcp socket");
+	}
+
+    LOG(DEBUG) << "size before " << clientHandlesMessages.size() << "\n";
+	clientHandlesMessages.resize(clientHandlesMessages.size() + numOfDrivers);
+    LOG(DEBUG) << "size after " << clientHandlesMessages.size() << "\n";
 
     for (int i = 0; i < numOfDrivers; i++) {
 
         int newSocketDescriptor = tcpSocket->acceptClient();
-        //Tcp* newTcpSocket = new Tcp(newSocketDescriptor, tcpSocket->pr, tcpSocket->this_addr.sin_port);
         Tcp* newTcpSocket = new Tcp(*tcpSocket);
         newTcpSocket->setSocketDescriptor(newSocketDescriptor);
 
-        pthread_mutex_lock(&clientHandleMessagesLock);
-        clientHandlesMessages.push_back("");
-        pthread_mutex_unlock(&clientHandleMessagesLock);
-
-        ClientHandleThread clientHandleThread(i, &clientHandleMessagesLock, &taxiCenterLock,
-                                              &driversToClientHandlesMapLock, newTcpSocket,
+        ClientHandleThread* clientHandleThread = new ClientHandleThread(clientsHandles.size(), &clientHandleMessagesLock, &taxiCenterLock,
+                                              &driversToClientHandlesMapLock, &serializationLock, newTcpSocket,
                                               &driversIdToClientHandlesIdMap, &clientHandlesMessages,
-                                              &taxiCenter);
-        clientHandleThread.start();
-        //clientsHandles.push_back(clientHandleThread);
-        /*memset(buffer, '0', sizeof(buffer));
-        socket->receiveData(buffer, sizeof(buffer));
-        Driver *driver = deserialize<Driver>(buffer, sizeof(buffer));
-        try {
-            taxiCenter.addDriver(driver);
-        }
-        catch (...) {
-            delete(driver);
-            throw;
-        }
-        Cab* cab = taxiCenter.attachTaxiToDriver(driver, driver->getCabID());
-        std::string serialized = serialize<Cab>(cab);
-        socket->sendData(serialized);*/
+                                              taxiCenter);
+        clientHandleThread->start();
+        clientsHandles.push_back(clientHandleThread);
     }
 }
-
 
 /**
  * this function add a taxi to the serverflow.
@@ -304,7 +322,7 @@ void ServerFlow::addTaxi() {
     }
 
     try {
-        taxiCenter.addTaxi(cab);
+        taxiCenter->addTaxi(cab);
     }
     catch (...) {
         delete(cab);
@@ -321,7 +339,7 @@ void ServerFlow::addTrip() {
     double tariff;
     parseTrip(id, start, end, passengersNum, tariff, startTime);
 
-    taxiCenter.addTrip(id, start, end, passengersNum, tariff, startTime);
+    taxiCenter->addTrip(id, start, end, passengersNum, tariff, startTime);
 }
 
 /**
@@ -331,28 +349,17 @@ void ServerFlow::printDriversLocation() {
     int id;
     parseId(id);
     pthread_mutex_lock(&taxiCenterLock);
-    Point location = taxiCenter.getLocationOfDriver(id);
+    Point location = taxiCenter->getLocationOfDriver(id);
     pthread_mutex_unlock(&taxiCenterLock);
     std::cout << location;
 }
-
-
-/**
- * this function starts all the drivers.
- */
-/*void ServerFlow::moveAllOneStep() {
-   // taxiCenter.attachTripsToDrivers();
-
-    //movew the drivers of the trips in this current time
-    taxiCenter.moveOneStepAllDrivers();
-}*/
 
 /**
  * this function returns the taxi center member of serverflow.
  * @return the taxi center.
  */
 TaxiCenter* ServerFlow::getTaxiCenter() {
-    return &this->taxiCenter;
+    return this->taxiCenter;
 }
 
 /**
@@ -370,59 +377,66 @@ void ServerFlow::setMap(Map* map) {
 void ServerFlow::updateTime() {
     pthread_mutex_lock(&taxiCenterLock);
     //attach trips to drivers when it's trip time
-    taxiCenter.updateTime();
+    taxiCenter->updateTime();
 
-    std::vector<Driver *> drivers = taxiCenter.getDrivers();
+    std::vector<Driver *> drivers = taxiCenter->getDrivers();
 
-    std::vector<Driver *> attachedTripsDrivers = taxiCenter.attachTripsToDrivers();
+    std::vector<Driver *> attachedTripsDrivers = taxiCenter->attachTripsToDrivers();
     pthread_mutex_unlock(&taxiCenterLock);
-    //for (int i = 0; i < attachedTripsDrivers.size(); i++) {
+
 
     for (int i = 0; i < drivers.size(); i++) {
         vector<Driver *>::iterator driversIndex = std::find(attachedTripsDrivers.begin(), attachedTripsDrivers.end(),
                                                             drivers[i]);
         pthread_mutex_lock(&driversToClientHandlesMapLock);
-        int clientHandleId = driversIdToClientHandlesIdMap.find(attachedTripsDrivers[i]->getID())->second;
+        int clientHandleId = driversIdToClientHandlesIdMap.find(drivers[i]->getID())->second;
         pthread_mutex_unlock(&driversToClientHandlesMapLock);
         if (driversIndex != attachedTripsDrivers.end()) {
-            Trip *trip = attachedTripsDrivers[i]->getTrip();
+            Trip *trip = drivers[i]->getTrip();
+
+            LOG(DEBUG) << "id is " << trip->getID() << "\n";
+            LOG(DEBUG) <<  "startP is " << trip->getStartP();
+            LOG(DEBUG) <<  "endP is " << trip->getEndP();
+            LOG(DEBUG) << "passengers are " << trip->getPassengersNum() << "\n";
+            LOG(DEBUG) << "tariff is " << trip->getTariff() << "\n";
+            LOG(DEBUG) << "road is %p" << trip->getRoad() << "\n";
+            LOG(DEBUG) << "currentLocation is " << trip->getCurrentLocation() << "\n";
+            LOG(DEBUG) << "startTime is " <<trip->getStartTime() << "\n";
+     
+            pthread_mutex_lock(&serializationLock);
             std::string serialized = serialize<Trip>(trip);
+            pthread_mutex_unlock(&serializationLock);
 
             pthread_mutex_lock(&clientHandleMessagesLock);
-            clientHandlesMessages[clientHandleId] = serialized;
+            clientHandlesMessages[clientHandleId].push_back(serialized);
             pthread_mutex_unlock(&clientHandleMessagesLock);
-            //socket->sendData(serialized);
+			
+			clientsHandles[clientHandleId]->notify();
         }
-            //send 'go'
         else {
             if (drivers[i]->getTrip() != NULL) {
                 pthread_mutex_lock(&clientHandleMessagesLock);
-                clientHandlesMessages[clientHandleId] = "go";
+                clientHandlesMessages[clientHandleId].push_back("go");
                 pthread_mutex_unlock(&clientHandleMessagesLock);
+
+				clientsHandles[clientHandleId]->notify();
 
                 drivers[i]->move();
             }
         }
     }
-
-    //send 'go'
-    /*if (attachedTripsDrivers.size() == 0) {
-        std::vector<Driver*> drivers = taxiCenter.getDrivers();
-        for (int i = 0; i < drivers.size(); i++) {
-            socket->sendData("go");
-            drivers[i]->move();
-        }
-    }*/
 }
 
 /**
- * this function sets the messages to the client to be all "exit".
+ * this function sends "exit" messages to all the clients.
  */
 void ServerFlow::exitSignal() {
     for (int i=0; i<clientHandlesMessages.size(); i++) {
         pthread_mutex_lock(&clientHandleMessagesLock);
-        clientHandlesMessages[i] = "exit";
+        clientHandlesMessages[i].push_back("exit");
         pthread_mutex_unlock(&clientHandleMessagesLock);
+		clientsHandles[i]->notify();
+        clientsHandles[i]->join();
     }
-    pthread_exit(NULL);
+    //pthread_exit(NULL);
 }

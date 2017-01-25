@@ -2,8 +2,7 @@
 #include <sys/socket.h>
 #include "ClientHandleThread.h"
 #include "Serialization.h"
-//#include "boost/algorithm/string.hpp"
-//#include <boost/log/trivial.hpp>
+#include "easylogging++.h"
 
 /**
  * this function is a constructor of the ClientHandleThread object.
@@ -15,40 +14,40 @@
  * @param taxiCenter  - a TaxiCenter object.
  */
 ClientHandleThread::ClientHandleThread(int id, pthread_mutex_t *clientHandleMessagesLock,
- pthread_mutex_t *taxiCenterLock, pthread_mutex_t *driversToClientHandlesMapLock, Socket* socket,
- std::map<int, int>* driversIdToClientHandleIdMap, std::vector<std::string>* clientHandlesMessages,
- TaxiCenter* taxiCenter)/*: id(id), clientHandleMessagesLock(clientHandleMessagesLock),
- taxiCenterLock(taxiCenterLock),
- driversToClientHandlesMapLock(driversToClientHandlesMapLock), socket(socket),
- driversIdToClientHandlesIdMap(driversIdToClientHandlesIdMap),
- clientHandlesMessages(clientHandlesMessages), taxiCenter(taxiCenter) */{
+ pthread_mutex_t *taxiCenterLock, pthread_mutex_t *driversToClientHandlesMapLock, 
+ pthread_mutex_t *serializationLock, Socket* socket,
+ std::map<int, int>* driversIdToClientHandleIdMap, std::vector<std::deque<std::string>>* clientHandlesMessages,
+ TaxiCenter* taxiCenter) {
     this->id = id;
+    LOG(DEBUG) << "clientHandleThread id is " << this->id << "\n";
     this->clientHandleMessagesLock = clientHandleMessagesLock;
     this->taxiCenterLock = taxiCenterLock;
     this->driversToClientHandlesMapLock = driversToClientHandlesMapLock;
+    this->serializationLock = serializationLock;
     this->socket = socket;
     this->driversIdToClientHandlesIdMap = driversIdToClientHandleIdMap;
     this->clientHandlesMessages = clientHandlesMessages;
     this->taxiCenter = taxiCenter;
+    sem_init(&notifyMessageSemaphore, 0, 0);
 }
 
 /**
  * this function is a destructor of the ClientHandleThread class.
  */
 ClientHandleThread::~ClientHandleThread() {
-
+	sem_destroy(&notifyMessageSemaphore);
+    delete socket;
 }
 
 /**
  * this function receives a new driver and adds it to the taxi center.
  */
 void ClientHandleThread::addDriver() {
-    char buffer[40000];
-    memset(buffer, '0', sizeof(buffer));
+	char buffer[40000] = { 0 };
     socket->receiveData(buffer, sizeof(buffer));
-    //std::cout << "thread " << id << "driver received";
-    //BOOST_LOG_TRIVIAL(debug) << "thread " << id << "driver received";
+    pthread_mutex_lock(serializationLock);
     Driver *driver = deserialize<Driver>(buffer, sizeof(buffer));
+    pthread_mutex_unlock(serializationLock);
     pthread_mutex_lock(driversToClientHandlesMapLock);
     (*driversIdToClientHandlesIdMap)[driver->getID()] = id;
     pthread_mutex_unlock(driversToClientHandlesMapLock);
@@ -64,7 +63,9 @@ void ClientHandleThread::addDriver() {
     pthread_mutex_lock(taxiCenterLock);
     Cab* cab = taxiCenter->attachTaxiToDriver(driver, driver->getCabID());
     pthread_mutex_unlock(taxiCenterLock);
+    pthread_mutex_lock(serializationLock);
     std::string serialized = serialize<Cab>(cab);
+    pthread_mutex_unlock(serializationLock);
     socket->sendData(serialized);
 }
 
@@ -73,21 +74,28 @@ void ClientHandleThread::addDriver() {
  */
 void ClientHandleThread::sendMessageToClient() {
     while(true) {
-        pthread_mutex_lock(clientHandleMessagesLock);
-        std::string message = (*clientHandlesMessages)[id];
-        pthread_mutex_unlock(clientHandleMessagesLock);
-        if (message != "") {
-            if (message.compare("exit") == 0)
-                break;
-            else {
-                pthread_mutex_lock(clientHandleMessagesLock);
-                socket->sendData((*clientHandlesMessages)[id]);
-                (*clientHandlesMessages)[id] = "";
-                pthread_mutex_unlock(clientHandleMessagesLock);
-            }
-        }
+        LOG(DEBUG) << "Waiting\n";
+		sem_wait(&notifyMessageSemaphore);
+        LOG(DEBUG) << "Woke up!\n";
+        LOG(DEBUG) << "clientHandleThread id is " << id << "\n";
+		while (true) {
+			pthread_mutex_lock(clientHandleMessagesLock);
+			if ((*clientHandlesMessages)[id].empty()) {
+				pthread_mutex_unlock(clientHandleMessagesLock);
+				break;
+			}
+
+			std::string message = (*clientHandlesMessages)[id].front();
+			(*clientHandlesMessages)[id].pop_front();
+			pthread_mutex_unlock(clientHandleMessagesLock);
+
+			socket->sendData(message);
+
+			if (message.compare("exit") == 0) {
+				return;
+			}
+		}
     }
-    delete(socket);
 }
 
 /**
@@ -122,4 +130,10 @@ void ClientHandleThread::join() {
  */
 void ClientHandleThread::stop() {
     pthread_cancel(thread_id);
+}
+
+void ClientHandleThread::notify()
+{
+    LOG(DEBUG) << "Notify\n";
+	sem_post(&notifyMessageSemaphore);
 }

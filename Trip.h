@@ -8,6 +8,7 @@
 #include "Location.h"
 #include "Passenger.h"
 #include "Clock.h"
+#include <boost/serialization/vector.hpp>
 
 using namespace std;
 /**
@@ -22,7 +23,6 @@ class Trip {
         ar & metersPassed;
         ar & startP;
         ar & endP;
-        ar & map;
         ar & passengersNum;
         ar & tariff;
         ar & currentLocation;
@@ -35,7 +35,6 @@ private:
     int metersPassed;
     Point startP;
     Point endP;
-    Map* map;
     int passengersNum;
     double tariff;
     Location* currentLocation;
@@ -60,8 +59,6 @@ public:
     void setLocation(Location* location);
     int getStartTime();
 };
-
-
 
 
 #endif //TRANSPORTATION_TRIP_H

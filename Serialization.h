@@ -14,10 +14,12 @@
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include "easylogging++.h"
 
 using namespace std;
 using namespace boost::archive;
 using namespace boost::iostreams;
+
 /**
  * this function is a template method which deserialize an object.
  * @tparam T - the object type.
@@ -25,10 +27,10 @@ using namespace boost::iostreams;
  * @param size - the size of the string.
  * @return - the deserialized object.
  */
-
 template<class T>
 T *deserialize(char * serial_str, int size) {
     T *p;
+    LOG(DEBUG) << "serial_str is " << serial_str;
     boost::iostreams::basic_array_source<char> device(serial_str, size);
     boost::iostreams::stream<boost::iostreams::basic_array_source<char>> s(device);
     boost::archive::binary_iarchive ia(s);

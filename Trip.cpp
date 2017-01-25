@@ -1,4 +1,5 @@
 #include "Trip.h"
+#include "easylogging++.h"
 
 /**
  * this function is a constructor.
@@ -14,9 +15,9 @@ Trip::Trip(int id, Point start, Point end, Map* map, int passengers, double tari
     this->metersPassed = 0;
     this->startP = start;
     this->endP = end;
-    this->map = map;
     this->passengersNum = passengers;
     this->tariff = tariff;
+    LOG(DEBUG) << "trip's map is " << map << "\n";
     this->road = Road(map, start, end);
     this->initializePassengers();
     this->currentLocation = NULL;
@@ -37,7 +38,6 @@ Trip::Trip() {
     this->metersPassed = 0;
     this->startP = Point();
     this->endP = Point();
-    this->map = NULL;
     this->passengersNum = 0;
     this->tariff = 0;
     this->road = Road();

@@ -1,5 +1,6 @@
 
 #include "Driver.h"
+#include "easylogging++.h"
 
 /**
  * this function is a constructor of driver.
@@ -22,6 +23,8 @@ Driver::Driver(int id, int age, MeritalStatus meritalStatus, int yearsOfExp, int
     this->totalNumOfPassengers = 0;
     this->cab = NULL;
     this->startingPoint = new Point(0,0);
+    LOG(DEBUG) << "starting point is " << this->startingPoint << "\n";
+    LOG(DEBUG) << *this->startingPoint << "\n";
     this->location = new Location(startingPoint);
     this->trip = NULL;
 }
@@ -64,6 +67,7 @@ void Driver::updateTrip(Trip* trip) {
         delete(this->trip);
     this->trip = trip;
     this->trip->setLocation(this->location);
+    LOG(DEBUG) << "location of trip is " << *(this->trip->getCurrentLocation()->getPosition());
     this->totalNumOfPassengers = this->totalNumOfPassengers + trip->getPassengersNum();
 }
 

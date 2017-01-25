@@ -13,14 +13,17 @@ private:
     pthread_mutex_t *calculateRoadLocker;
     pthread_t id;
     Road* road;
+    Map* map;
 public:
-    CalculateRoadThread(pthread_mutex_t *locker, Road* paramRoad);
+    CalculateRoadThread(pthread_mutex_t *locker, Road* paramRoad, Map* map);
     ~CalculateRoadThread();
     void start();
     void stop();
     void join();
     Point* getStartP();
     Point* getEndP();
+    Map* getMap();
+    void calculateRoad();
     void setRoad(std::vector<Point*> paramRoad);
 };
 

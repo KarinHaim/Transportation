@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <errno.h>
 #include "Tcp.h"
 
 /**
@@ -64,7 +65,11 @@ void Tcp::setConnect() {
  * @param data - the data to send.
  */
 void Tcp::sendData(std::string data) {
-    int sent_bytes = send(socketDescriptor, data.c_str(), data.size() + 1, 0);
+	int sent_bytes = -1;
+	do {
+		sent_bytes = send(socketDescriptor, data.c_str(), data.size() + 1, MSG_NOSIGNAL);
+	} while (-1 == sent_bytes && EINTR == errno);
+
     if (sent_bytes < 0)
         perror("error send");
 }
@@ -77,7 +82,12 @@ void Tcp::sendData(std::string data) {
  */
 int Tcp::receiveData(char * buffer, int size) {
     //socklen_t slen = sizeof(struct sockaddr_in);
-    int bytes = recv(socketDescriptor, buffer, size, 0);
+	int bytes = -1;
+
+	do {
+		bytes = recv(socketDescriptor, buffer, size, 0);
+	} while (-1 == bytes && EINTR == errno);
+
     if (bytes < 0) {
         perror("error receive");
     }
@@ -90,8 +100,14 @@ int Tcp::receiveData(char * buffer, int size) {
  * @return - new socket descriptor
  */
 int Tcp::acceptClient() {
-    socklen_t slen = sizeof(struct sockaddr_in);
-    int newSocketDescriptor = accept(socketDescriptor, (struct sockaddr *) &other_addr, &slen);
+    socklen_t slen = sizeof(other_addr);
+    //socklen_t slen = sizeof(struct sockaddr_in);
+	
+	int newSocketDescriptor = -1;
+	do {
+		newSocketDescriptor = accept(socketDescriptor, (struct sockaddr *) &other_addr, &slen);
+	} while (-1 == newSocketDescriptor && EINTR == errno);
+
     if (newSocketDescriptor < 0) {
         perror("error accept");
     }

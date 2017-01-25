@@ -17,19 +17,16 @@ class Road {
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version){
-        ar & map;
         ar & start;
         ar & end;
         ar & currentLocation;
         ar & road;
     }
 private:
-    Map* map;
     Point* start;
     Point* end;
     Location* currentLocation;
     std::vector<Point*> road;
-    pthread_mutex_t calculateRoadLocker;
 public:
     Road(Map* map, Point start, Point end);
     Road();
@@ -38,8 +35,8 @@ public:
     std::vector<Point*> getRoad();
     void moveOneStep();
     void setLocation(Location* location);
-    Point* getStartPCoordinates();
-    Point* getEndPCoordinates();
+    Point* getStart();
+    Point* getEnd();
 
 
     void setRoad(std::vector<Point*> paramRoad);

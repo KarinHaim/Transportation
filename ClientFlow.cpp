@@ -63,7 +63,10 @@ MeritalStatus ClientFlow::parseMeritalStatus(char status) {
  */
 void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-    std::cin >> input;
+	do {
+		std::cin.clear();
+		std::cin >> input;
+	} while (std::cin.fail() && EINTR == errno);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
 
@@ -133,7 +136,7 @@ void ClientFlow::flow() {
             Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
             driver->updateTrip(trip);
         }
-        memset(buffer, '0', sizeof(buffer));
+        memset(buffer, 0, sizeof(buffer));
         socket->receiveData(buffer, sizeof(buffer));
     }
 }

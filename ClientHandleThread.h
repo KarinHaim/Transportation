@@ -4,6 +4,8 @@
 
 
 #include <pthread.h>
+#include <semaphore.h>
+#include <deque>
 #include "TaxiCenter.h"
 #include "Socket.h"
 
@@ -18,22 +20,26 @@ private:
     pthread_mutex_t *clientHandleMessagesLock;
     pthread_mutex_t *taxiCenterLock;
     pthread_mutex_t *driversToClientHandlesMapLock;
+    pthread_mutex_t *serializationLock;
     Socket* socket;
     TaxiCenter* taxiCenter;
     std::map<int, int>* driversIdToClientHandlesIdMap;
-    std::vector<std::string>* clientHandlesMessages;
+    std::vector<std::deque<std::string>>* clientHandlesMessages;
+    sem_t notifyMessageSemaphore;
 public:
     ClientHandleThread(int id, pthread_mutex_t *clientHandleMessagesLock,
                        pthread_mutex_t *taxiCenterLock,
-                       pthread_mutex_t * drivesToClientHandlesMapLock, Socket* socket,
+                       pthread_mutex_t * drivesToClientHandlesMapLock,
+                       pthread_mutex_t *serializationLock, Socket* socket,
                        std::map<int, int>* driversIdToClientHandleIdMap,
-                       std::vector<std::string>* clientHandlesMessages, TaxiCenter* taxiCenter);
+                       std::vector<std::deque<std::string>>* clientHandlesMessages, TaxiCenter* taxiCenter);
     ~ClientHandleThread();
     void addDriver();
     void sendMessageToClient();
     void start();
     void join();
     void stop();
+	void notify();
 };
 
 

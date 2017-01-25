@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "easylogging++.h"
 
 /**
  * this is a constructor of map.
@@ -37,7 +38,12 @@ void Map::initializePoints() {
     for (int i=0; i<width; i++) {
         points.push_back(std::vector<Point*>());
         for (int j=0; j<height; j++) {
-            points[i].push_back(new Point(i, j));
+            try {
+                points[i].push_back(new Point(i, j));  
+            }
+            catch (std::bad_alloc& exc){
+                LOG(DEBUG) << "bad alloc\n";
+            }
         }
     }
 

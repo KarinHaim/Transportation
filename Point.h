@@ -30,10 +30,10 @@ class Point {
     void serialize(Archive & ar, const unsigned int version){
         ar & x;
         ar & y;
-        ar & visited;
-        ar & adjacentPoints;
-        ar & former;
-        ar & occupied;
+        //ar & visited;
+        //ar & adjacentPoints;
+        //ar & former;
+        //ar & occupied;
     }
 private:
     int x, y;

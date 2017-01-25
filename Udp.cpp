@@ -37,20 +37,29 @@ Udp::~Udp() {
  * @param data - the data to send.
  */
 void Udp::sendData(std::string data) {
-    int sent_bytes = sendto(socketDescriptor, data.c_str(), data.size() + 1, 0, (struct sockaddr *) &other_addr, sizeof(this->other_addr));
+int sent_bytes = -1;
+	do {
+		sendto(socketDescriptor, data.c_str(), data.size() + 1, MSG_NOSIGNAL, (struct sockaddr *) &other_addr, sizeof(this->other_addr));
+	} while (-1 == sent_bytes && EINTR == errno);
+   
     if (sent_bytes < 0)
         perror("error sendto");
 }
 
 /**
- * this function receive data via a socket.
+ * this function recieve data via a socket.
  * @param buffer - thw buffer of the data.
  * @param size - the size of it.
  * @return - bytes of the data.
  */
 int Udp::receiveData(char * buffer, int size) {
     socklen_t slen = sizeof(struct sockaddr_in);
-    int bytes = recvfrom(socketDescriptor, buffer, size, 0, (struct sockaddr *) &other_addr, &slen);
+    int bytes = -1;
+
+	do {
+		bytes = recvfrom(socketDescriptor, buffer, size, 0, (struct sockaddr *) &other_addr, &slen);
+	} while (-1 == bytes && EINTR == errno);
+
     if (bytes < 0) {
         perror("error receivefrom");
     }
