@@ -28,14 +28,14 @@ private:
     std::map<int, int> driversIdToClientHandlesIdMap;
     std::vector<std::deque<std::string>> clientHandlesMessages;
     void parseMap(int &width, int &height);
-    void parseObstacles(std::vector<Point> &obstacles);
+    int parseObstacles(std::vector<Point> &obstacles);
     void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
     void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
     void parseId(int &id);
     void validatePositiveNumber(int num);
-    void validateCabKind(int num);
+    int validateCabKind(int num);
     void validatePositiveNoneZeroNumber(int num);
     void validatePointInRangeOfMap(int x, int y);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);

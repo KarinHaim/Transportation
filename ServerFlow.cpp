@@ -23,7 +23,7 @@ ServerFlow::ServerFlow(Socket* s) {
  */
 ServerFlow::~ServerFlow() {
     int size = clientsHandles.size();
-    for (int i=0; i<size; i++)
+    for (int i = 0; i < size; i++)
         delete  clientsHandles[i];
     pthread_mutex_destroy(&serializationLock);
     pthread_mutex_destroy(&driversToClientHandlesMapLock);
@@ -87,7 +87,7 @@ void ServerFlow::validatePositiveNoneZeroNumber(int num) {
  * @param point - the point to check.
  */
 void ServerFlow::validatePointInRangeOfMap(int x, int y) {
-    if (x >= map->getWidth() || y>= map->getHeight())
+    if (x >= map->getWidth() || y >= map->getHeight())
         throw "point coordinated are out of map range";
 }
 
@@ -105,40 +105,38 @@ void ServerFlow::parseMap(int &width, int &height) {
  * this function parses the obstacles from an input file.
  * @param obstacles - a vector of obstacles points.
  */
-void ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
+int ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
     int numOfObstacles;
-    validatePositiveNoneZeroNumber(numOfObstacles);
+    //validatePositiveNumber(numOfObstacles);
+    if (numOfObstacles < 0)
+        //'0' return value stands for a mistake
+        return 0;
     std::string obstaclesCoordinates;
-    for (int i=0; i<numOfObstacles; i++) {
     int x,y;
-		do {
-			std::cin.clear();
-			std::cin >> obstaclesCoordinates;
-            if(std::cin.fail() && EINTR == errno)
-                continue;
-            std::size_t indexOfComma = obstaclesCoordinates.find(',');
-            if (indexOfComma == std::string::npos)
-               // throw "not a valid representation of point";
-                continue;
-            x = stoi(obstaclesCoordinates.substr(0, indexOfComma));
-            y = stoi(obstaclesCoordinates.substr(indexOfComma+1));
-            if((x < 0) || (y < 0))
-                continue;
-            try {
-                validatePointInRangeOfMap(x, y);
-            }
-            catch (...) {
-                continue;
-            }
-            break;
-		} while (true);
-
+    for (int i = 0; i < numOfObstacles; i++) {
+        std::cin.clear();
+        std::cin >> obstaclesCoordinates;
+        if (std::cin.fail() && EINTR == errno)
+            return 0;
+        std::size_t indexOfComma = obstaclesCoordinates.find(',');
+        if (indexOfComma == std::string::npos)
+            return 0;
+        x = stoi(obstaclesCoordinates.substr(0, indexOfComma));
+        y = stoi(obstaclesCoordinates.substr(indexOfComma + 1));
+        if ((x < 0) || (y < 0))
+            return 0;
+        try {
+            validatePointInRangeOfMap(x, y);
+        }
+        catch (...) {
+            return 0;
+        }
         Point p(x, y);
         obstacles.push_back(p);
     }
+    return 1;
 }
 
-//****************here**********************
 /**
  * this function parses a line of input string splitted by ','.
  * @param arguments - vector of input strings
@@ -149,7 +147,12 @@ void ServerFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
 	do {
 		std::cin.clear();
 		std::cin >> input;
-	} while (std::cin.fail() && EINTR == errno);
+        if (std::cin.fail() && EINTR == errno) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
+	} while (true);
 
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
@@ -164,31 +167,31 @@ void ServerFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
  */
 void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
     std::vector<std::string> arguments;
-    absorptionOfSeveralArgumentsInALine(arguments);
-    if (arguments.size() != 8)
-        throw "mismatch number of arguments for this operation";
-    id = stoi(arguments[0]);
-    validatePositiveNumber(id);
-    int startX = stoi(arguments[1]);
-    int startY = stoi(arguments[2]);
-    validatePositiveNumber(startX);
-    validatePositiveNumber(startY);
-    start = Point(startX, startY);
-    validatePointInRangeOfMap(start);
-    int endX = stoi(arguments[3]);
-    int endY = stoi(arguments[4]);
-    validatePositiveNumber(endX);
-    validatePositiveNumber(endY);
-    end = Point(endX, endY);
-    validatePointInRangeOfMap(end);
-    passengersNum = stoi(arguments[5]);
-    validatePositiveNoneZeroNumber(passengersNum);
-    if(passengersNum > 5)
-        throw "passengers number exceeds car's capacity";
-    tariff = stod(arguments[6]);
-    validatePositiveNumber(tariff);
-    startTime = stoi(arguments[7]);
-    validatePositiveNoneZeroNumber(startTime);
+    int startX, startY, endX, endY;
+    do {
+        absorptionOfSeveralArgumentsInALine(arguments);
+        if (arguments.size() != 8) {
+            cout << "-1" << endl;
+            continue;
+        }
+        else {
+            id = stoi(arguments[0]);
+            startX = stoi(arguments[1]);
+            startY = stoi(arguments[2]);
+            endX = stoi(arguments[3]);
+            endY = stoi(arguments[4]);
+            passengersNum = stoi(arguments[5]);
+            tariff = stod(arguments[6]);
+            startTime = stoi(arguments[7]);
+            if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
+                cout << "-1" << endl;
+                continue;
+            }
+            break;
+        }
+    } while (true);
+    /*if(passengersNum > 5)
+        throw "passengers number exceeds car's capacity";*/
 }
 
 /**
@@ -242,16 +245,32 @@ Color ServerFlow::parseColor(char color) {
  */
 void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
     std::vector<std::string> arguments;
-    absorptionOfSeveralArgumentsInALine(arguments);
-    if (arguments.size() != 4)
-        throw "mismatch number of arguments for this operation";
-    id = stoi(arguments[0]);
-    validatePositiveNumber(id);
-    cabKind = stoi(arguments[1]);
-    validateCabKind(cabKind);
-    manufacturer = parseCarManufacturer(arguments[2][0]);
-    color = parseColor(arguments[3][0]);
-}
+    do {
+        absorptionOfSeveralArgumentsInALine(arguments);
+        if (arguments.size() != 4) {
+            cout << "-1" << endl;
+            continue;
+        }
+        id = stoi(arguments[0]);
+        cabKind = stoi(arguments[1]);
+        if (id < 0 || !validateCabKind(cabKind)) {
+            cout << "-1" << endl;
+            continue;
+        }
+        try {
+            manufacturer = parseCarManufacturer(arguments[2][0]);
+        } catch  (...) {
+            cout << "-1" << endl;
+            continue;
+        }
+        try {
+            color = parseColor(arguments[3][0]);
+        } catch  (...) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
+    }while(true);
 }
 
 /**
@@ -262,9 +281,17 @@ void ServerFlow::parseId(int &id) {
 	do {
 		std::cin.clear();
 		std::cin >> id;
-	} while (std::cin.fail() && EINTR == errno);
+        if(std::cin.fail() && EINTR == errno) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if(id < 0) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
 
-    validatePositiveNumber(id);
+	} while (true);
 }
 
 /**
@@ -273,11 +300,19 @@ void ServerFlow::parseId(int &id) {
 void ServerFlow::setWorldRepresentation() {
     int width, height;
     std::vector<Point> obstacles;
-    parseMap(width, height);
-    map = new Map(width, height);
-    parseObstacles(obstacles);
-    map->updateObstacles(obstacles);
 
+    //check if the map and obstacles are valid, if not than re-scan them.
+    do {
+        parseMap(width, height);
+        if(!parseObstacles(obstacles)){
+            cout << "-1" << endl;
+            continue;
+        }
+         break;
+    }while(true);
+
+    map = new Map(width, height);
+    map->updateObstacles(obstacles);
     taxiCenter->setMap(map);
 }
 
@@ -289,14 +324,16 @@ void ServerFlow::addDrivers() {
 	do {
 		std::cin.clear();
 		std::cin >> numOfDrivers;
-	} while (std::cin.fail() && EINTR == errno);
-
-    if (std::cin.fail())
-        throw "not a number";
-    validatePositiveNumber(numOfDrivers);
-	if (numOfDrivers == 0) {
-		return;
-	}
+        if(std::cin.fail() && EINTR == errno){
+            cout << "-1" << endl;
+            continue;
+        }
+        if (numOfDrivers <= 0) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
+	} while (true);
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
 	if (tcpSocket == NULL) {
@@ -322,9 +359,15 @@ void ServerFlow::addDrivers() {
     }
 }
 
-void ServerFlow::validateCabKind(int num) {
+/**
+ * this function checks if the number of the cabkind is a valid option (1/2)
+ * @param num - the number to check
+ * @return - the number representing the answer(0 = invalid)
+ */
+int ServerFlow::validateCabKind(int num) {
     if ((num != 1) && (num != 2))
-        throw "invalid cab kind number";
+        return 0;
+    return 1;
 }
 
 /**
@@ -335,7 +378,7 @@ void ServerFlow::addTaxi() {
     CarManufacturer manufacturer;
     Color color;
     parseTaxi(id, cabKind, manufacturer, color);
-    validateCabKind(cabKind);
+    //validateCabKind(cabKind);
     Cab * cab;
     if (cabKind == 1)
         cab = new Cab(id, 1, manufacturer, color, 1);

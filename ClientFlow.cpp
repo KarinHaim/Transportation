@@ -21,24 +21,27 @@ ClientFlow::~ClientFlow() {
 
 /**
  * this function ensure that the number 'num' is a positive number.
+ * if the input is invalid, exit the program on the client side.
  * @param num - the number to check
  */
 void ClientFlow::validatePositiveNumber(int num) {
     if (num < 0)
-        throw "not a positive input";
+        exit(1);
 }
 
 /**
  * this function ensure that the number 'num' is a positive and not zero number.
+ * if the input is invalid, exit the program on the client side.
  * @param num - the number to check
  */
 void ClientFlow::validatePositiveNoneZeroNumber(int num) {
     if (num <= 0)
-        throw "not a positive non zero input";
+        exit(1);
 }
 
 /**
  * this function parses the merital status.
+ * if the input is invalid, exit the program on the client side.
  * @param status - the char to parse.
  * @return - the merital status.
  */
@@ -53,25 +56,27 @@ MeritalStatus ClientFlow::parseMeritalStatus(char status) {
         case 'W':
             return MeritalStatus::WIDOWED;
         default:
-            throw "invalid merital status inserted";
+            exit(1);
     }
 }
 
 /**
  * this function parses a line of input string splitted by ','.
+ * if the input is invalid, exit the program on the client side.
  * @param arguments - vector of input strings
  */
 void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-	do {
-		std::cin.clear();
-		std::cin >> input;
-	} while (std::cin.fail() && EINTR == errno);
+    std::cin.clear();
+    std::cin >> input;
+	if(std::cin.fail() && EINTR == errno)
+        exit(1);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
 
 /**
  * this function parses the input of the driver.
+ * if the input is invalid, exit the program on the client side.
  * @param id - id of the driver
  * @param age - age of the driver
  * @param meritalStatus - merital status of the driver
@@ -82,20 +87,17 @@ void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, in
     std::vector<std::string> arguments;
     absorptionOfSeveralArgumentsInALine(arguments);
     if (arguments.size() != 5)
-        throw "mismatch number of arguments for this operation";
+        exit(1);
     id = stoi(arguments[0]);
     validatePositiveNumber(id);
     age = stoi(arguments[1]);
-    /*if (age <= 15)
-        throw "invalid drier's age";*/
-    validatePositiveNoneZeroNumber(age);
+    validatePositiveNumber(age);
     meritalStatus = parseMeritalStatus(arguments[2][0]);
     yearsOfExp = stoi(arguments[3]);
     validatePositiveNumber(yearsOfExp);
     cabID = stoi(arguments[4]);
     validatePositiveNumber(cabID);
 }
-
 
 /**
  * this function parses the input of the id.
@@ -121,10 +123,10 @@ void ClientFlow::addDriver() {
     socket->receiveData(buffer, sizeof(buffer));
     Cab *cab = deserialize<Cab>(buffer, sizeof(buffer));
     driver->attachCab(cab);
-
-    //initialize, recieve data, driver.serialize, txicenter.add driver, add cab and send it
 }
-
+/**
+ * this function take care of the flow between the client and the derver.
+ */
 void ClientFlow::flow() {
     char buffer[40000];
 
