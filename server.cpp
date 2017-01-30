@@ -18,10 +18,11 @@ _INITIALIZE_EASYLOGGINGPP
  */
 int main(int argc, char* argv[]) {
     int port = atoi(argv[1]);
-    Socket* socket = new Tcp(ProcessRole::SERVER, (u_short)port);
 
-    ServerFlow mainFlow(socket);
-    mainFlow.setWorldRepresentation();
+
+    ServerFlow mainFlow();
+    mainFlow().setWorldRepresentation();
+	mainFlow().setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
 	
     int operationNum;
 	try {

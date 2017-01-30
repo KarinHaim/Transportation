@@ -26,10 +26,11 @@ private:
     void validatePositiveNoneZeroNumber(int num);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
 public:
-    ClientFlow(Socket * s);
+    ClientFlow();
     ~ClientFlow();
     void addDriver();
     void flow();
+    void setSocket(Socket* s);
 };
 
 #endif //TRANSPORTATION_CLIENTFLOW_H

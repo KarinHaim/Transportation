@@ -6,8 +6,8 @@
 /**
  * this function is a constructor of the main flow.
  */
-ClientFlow::ClientFlow(Socket* s) {
-    socket = s;
+ClientFlow::ClientFlow() {
+    //socket = s;
     driver = NULL;
 }
 
@@ -141,4 +141,12 @@ void ClientFlow::flow() {
         memset(buffer, 0, sizeof(buffer));
         socket->receiveData(buffer, sizeof(buffer));
     }
+}
+
+/**
+ * this function sets the socket member of the ClientFlow.
+ * @param s = the new socket.
+ */
+void ClientFlow::setSocket(Socket* s) {
+    this->socket = s;
 }

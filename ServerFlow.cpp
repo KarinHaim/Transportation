@@ -8,8 +8,8 @@
 /**
  * this function is a constructor of the serverflow.
  */
-ServerFlow::ServerFlow(Socket* s) {
-    socket = s;
+ServerFlow::ServerFlow() {
+    //socket = s;
     taxiCenter = new TaxiCenter();
     map = NULL;
     pthread_mutex_init(&clientHandleMessagesLock, NULL);
@@ -503,4 +503,12 @@ void ServerFlow::exitSignal() {
         clientsHandles[i]->join();
     }
     //pthread_exit(NULL);
+}
+
+/**
+ * this function sets the socket member of the serverFlow.
+ * @param s = the new socket.
+ */
+void ServerFlow::setSocket(Socket* s) {
+    this->socket = s;
 }

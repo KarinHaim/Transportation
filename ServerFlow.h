@@ -40,7 +40,7 @@ private:
     void validatePointInRangeOfMap(int x, int y);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
 public:
-    ServerFlow(Socket * s);
+    ServerFlow();
     ~ServerFlow();
     void setWorldRepresentation();
     void addTaxi();
@@ -51,6 +51,7 @@ public:
     void addDrivers();
     void updateTime();
     void exitSignal();
+    void setSocket(Socket* s);
 };
 
 #endif //TRANSPORTATION_SERVERFLOW_H
