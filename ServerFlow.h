@@ -27,18 +27,21 @@ private:
     vector<ClientHandleThread*> clientsHandles;
     std::map<int, int> driversIdToClientHandlesIdMap;
     std::vector<std::deque<std::string>> clientHandlesMessages;
-    void parseMap(int &width, int &height);
-    int parseObstacles(std::vector<Point> &obstacles);
+    void checkMapValidity(std::vector<std::string> &arguments);
+    int checkObstaclesValidity(std::vector<Point> &obstacles, int width, int height);
     void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
     void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
-    void parseId(int &id);
-    void validatePositiveNumber(int num);
+    //void parseId(int &id);
+   // void validatePositiveNumber(int num);
     int validateCabKind(int num);
-    void validatePositiveNoneZeroNumber(int num);
-    void validatePointInRangeOfMap(int x, int y);
-    void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
+    //void validatePositiveNoneZeroNumber(int num);
+    //void validatePointInRangeOfMap(int x, int y);
+    void checkTripValidity(std::vector<std::string> &arguments);
+    void checkTaxiValidity(std::vector<std::string> &arguments);
+    int checkObstaclesNumValidity(int &numOfObstacles);
+    bool isNumber(const std::string &s);
 public:
     ServerFlow();
     ~ServerFlow();

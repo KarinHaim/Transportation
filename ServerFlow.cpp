@@ -4,6 +4,13 @@
 #include "Serialization.h"
 #include "Tcp.h"
 #include "easylogging++.h"
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/algorithm/string.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+//#pragma GCC diagnostic ignored "-Wno-deprecated-declarations"
 
 /**
  * this function is a constructor of the serverflow.
@@ -37,11 +44,14 @@ ServerFlow::~ServerFlow() {
 
     delete(this->socket);
 }
+/*
 
+*/
 /**
  * this function ensure that the number 'num' is a positive number.
  * @param num - the number to check
- */
+ *//*
+
 void ServerFlow::validatePositiveNumber(int num) {
     do {
         std::cin >> num;
@@ -60,10 +70,12 @@ void ServerFlow::validatePositiveNumber(int num) {
 
 }
 
+*/
 /**
  * this function ensure that the number 'num' is a positive and not zero number.
  * @param num - the number to check
- */
+ *//*
+
 void ServerFlow::validatePositiveNoneZeroNumber(int num) {
 
     do {
@@ -81,80 +93,137 @@ void ServerFlow::validatePositiveNoneZeroNumber(int num) {
         }
     } while (true);
 }
+*/
 
 /**
  * this function ensure that the point 'point' is a valid point that is in the range of the map.
  * @param point - the point to check.
  */
-void ServerFlow::validatePointInRangeOfMap(int x, int y) {
+/*void ServerFlow::validatePointInRangeOfMap(int x, int y) {
     if (x >= map->getWidth() || y >= map->getHeight())
         throw "point coordinated are out of map range";
-}
+}*/
 
 /**
  * this function parses the map from an input file.
  * @param width - the width of the map.
  * @param height - the height of the map.
  */
-void ServerFlow::parseMap(int &width, int &height) {
-    validatePositiveNoneZeroNumber(width);
-    validatePositiveNoneZeroNumber(height);
-}
+void ServerFlow::checkMapValidity(std::vector<std::string> &arguments) {
+    /*validatePositiveNoneZeroNumber(width);
+    validatePositiveNoneZeroNumber(height);*/
 
-/**
- * this function parses the obstacles from an input file.
- * @param obstacles - a vector of obstacles points.
- */
-int ServerFlow::parseObstacles(std::vector<Point> &obstacles) {
-    int numOfObstacles;
-    //validatePositiveNumber(numOfObstacles);
-    if (numOfObstacles < 0)
-        //'0' return value stands for a mistake
-        return 0;
-    std::string obstaclesCoordinates;
-    int x,y;
-    for (int i = 0; i < numOfObstacles; i++) {
-        std::cin.clear();
-        std::cin >> obstaclesCoordinates;
-        if (std::cin.fail() && EINTR == errno)
-            return 0;
-        std::size_t indexOfComma = obstaclesCoordinates.find(',');
-        if (indexOfComma == std::string::npos)
-            return 0;
-        x = stoi(obstaclesCoordinates.substr(0, indexOfComma));
-        y = stoi(obstaclesCoordinates.substr(indexOfComma + 1));
-        if ((x < 0) || (y < 0))
-            return 0;
-        try {
-            validatePointInRangeOfMap(x, y);
-        }
-        catch (...) {
-            return 0;
-        }
-        Point p(x, y);
-        obstacles.push_back(p);
-    }
-    return 1;
-}
-
-/**
- * this function parses a line of input string splitted by ','.
- * @param arguments - vector of input strings
- */
-void ServerFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-
-	do {
-		std::cin.clear();
-		std::cin >> input;
-        if (std::cin.fail() && EINTR == errno) {
+    //std::string splitted;
+    do {
+        getline(cin, input);
+        //boost::algorithm::trim(input);
+        boost::split(arguments, input, boost::is_any_of(" "), boost::token_compress_on);
+        if (arguments.size() != 2) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if (!isNumber(arguments[0]) || !isNumber(arguments[1])) {
             cout << "-1" << endl;
             continue;
         }
         break;
-	} while (true);
+    }while(true);
+}
 
-    boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+int ServerFlow::checkObstaclesNumValidity(int &numOfObstacles) {
+    std::string input;
+    do {
+        getline(cin, input);
+        cout << "inserted num " << endl;
+        if (!isNumber(input))
+            return 0;
+        numOfObstacles = stoi(input);
+        if(numOfObstacles < 0)
+            return 0;
+        return 1;
+    }while(true);
+}
+/**
+ * this function parses the obstacles from an input file.
+ * @param obstacles - a vector of obstacles points.
+ */
+int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width, int height) {
+    vector<string> obstaclesCoordinates;
+    std::string input;
+    int x, y;
+    getline(cin, input);
+    //boost::algorithm::trim(input);
+    boost::split(obstaclesCoordinates, input, boost::is_any_of(","), boost::token_compress_on);
+    cout << obstaclesCoordinates[0] <<endl;
+    if (obstaclesCoordinates.size() != 2)
+        return 0;
+    if (!isNumber(obstaclesCoordinates[0]) || !isNumber(obstaclesCoordinates[1]))
+        return 0;
+    x = stoi(obstaclesCoordinates[0]);
+    y = stoi(obstaclesCoordinates[1]);
+    if ((x < 0) || (y < 0))
+        return 0;
+    //validate that the points are in the range of the map
+    if(x >= width || y >= height)
+        return 0;
+    Point p(x, y);
+    obstacles.push_back(p);
+    return 1;
+}
+
+
+/**
+ * this function parses a line of the trip input string splitted by ','.
+ * @param arguments - vector of input strings
+ */
+void ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
+    std::string input;
+	do {
+        getline(cin, input);
+        //boost::algorithm::trim(input);
+        boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+        if(arguments.size() != 8) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+            || !isNumber(arguments[2]) || !isNumber(arguments[3])
+            || !isNumber(arguments[4]) || !isNumber(arguments[5])
+            || !isNumber(arguments[7])) {
+            cout << "-1" << endl;
+            continue;
+        }
+       /* if (arguments[0]<0 || arguments[1]<0 || arguments[2]<0 || arguments[3]<0 || arguments[4]<0 ||
+                arguments[5]<0 || arguments[6]<0 || arguments[7]<=0) {
+            cout << "-1" << endl;
+            continue;
+        }*/
+        break;
+	} while (true);
+}
+
+/**
+ * this function parses a line of the taxi input string splitted by ','.
+ * @param arguments - vector of input strings
+ */
+void ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
+    std::string input;
+    do {
+        getline(cin, input);
+        //boost::algorithm::trim(input);
+        boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+        if(arguments.size() != 4) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+            || !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
+    } while (true);
 }
 
 /**
@@ -169,29 +238,21 @@ void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
     std::vector<std::string> arguments;
     int startX, startY, endX, endY;
     do {
-        absorptionOfSeveralArgumentsInALine(arguments);
-        if (arguments.size() != 8) {
+        checkTripValidity(arguments);
+        id = stoi(arguments[0]);
+        startX = stoi(arguments[1]);
+        startY = stoi(arguments[2]);
+        endX = stoi(arguments[3]);
+        endY = stoi(arguments[4]);
+        passengersNum = stoi(arguments[5]);
+        tariff = stod(arguments[6]);
+        startTime = stoi(arguments[7]);
+        if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
             cout << "-1" << endl;
             continue;
         }
-        else {
-            id = stoi(arguments[0]);
-            startX = stoi(arguments[1]);
-            startY = stoi(arguments[2]);
-            endX = stoi(arguments[3]);
-            endY = stoi(arguments[4]);
-            passengersNum = stoi(arguments[5]);
-            tariff = stod(arguments[6]);
-            startTime = stoi(arguments[7]);
-            if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
-                cout << "-1" << endl;
-                continue;
-            }
-            break;
-        }
-    } while (true);
-    /*if(passengersNum > 5)
-        throw "passengers number exceeds car's capacity";*/
+        break;
+    }while(true);
 }
 
 /**
@@ -246,11 +307,7 @@ Color ServerFlow::parseColor(char color) {
 void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
     std::vector<std::string> arguments;
     do {
-        absorptionOfSeveralArgumentsInALine(arguments);
-        if (arguments.size() != 4) {
-            cout << "-1" << endl;
-            continue;
-        }
+        checkTaxiValidity(arguments);
         id = stoi(arguments[0]);
         cabKind = stoi(arguments[1]);
         if (id < 0 || !validateCabKind(cabKind)) {
@@ -277,7 +334,7 @@ void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
  * this function parses the input of the id.
  * @param id - the id
  */
-void ServerFlow::parseId(int &id) {
+/*void ServerFlow::parseId(int &id) {
 	do {
 		std::cin.clear();
 		std::cin >> id;
@@ -292,19 +349,31 @@ void ServerFlow::parseId(int &id) {
         break;
 
 	} while (true);
-}
+}*/
 
 /**
  * this function sets the 'world' representation (height and width of the map and obstacles).
  */
 void ServerFlow::setWorldRepresentation() {
-    int width, height;
+    int width, height, numOfObstacles;
     std::vector<Point> obstacles;
+    std::vector<std::string> arguments;
 
     //check if the map and obstacles are valid, if not than re-scan them.
     do {
-        parseMap(width, height);
-        if(!parseObstacles(obstacles)){
+        checkMapValidity(arguments);
+        width = stoi(arguments[0]);
+        height = stoi(arguments[1]);
+        cout << "inserted map " << endl;
+        if (width < 0 || height < 0) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if(!checkObstaclesNumValidity(numOfObstacles)) {
+            cout << "-1" << endl;
+            continue;
+        }
+        if(!checkObstaclesValidity(obstacles, width, height)){
             cout << "-1" << endl;
             continue;
         }
@@ -321,19 +390,20 @@ void ServerFlow::setWorldRepresentation() {
  */
 void ServerFlow::addDrivers() {
     int numOfDrivers;
-	do {
-		std::cin.clear();
-		std::cin >> numOfDrivers;
-        if(std::cin.fail() && EINTR == errno){
+    std::string input;
+    do {
+        getline(cin, input);
+        if (!isNumber(input)) {
             cout << "-1" << endl;
             continue;
         }
-        if (numOfDrivers <= 0) {
+        numOfDrivers = stoi(input);
+        if(numOfDrivers <= 0) {
             cout << "-1" << endl;
             continue;
         }
         break;
-	} while (true);
+    }while(true);
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
 	if (tcpSocket == NULL) {
@@ -411,7 +481,20 @@ void ServerFlow::addTrip() {
  */
 void ServerFlow::printDriversLocation() {
     int id;
-    parseId(id);
+    std::string input;
+    do {
+        getline(cin, input);
+        if (!isNumber(input)) {
+            cout << "-1" << endl;
+            continue;
+        }
+        id = stoi(input);
+        if(id < 0) {
+            cout << "-1" << endl;
+            continue;
+        }
+        break;
+    }while(true);
     pthread_mutex_lock(&taxiCenterLock);
     Point location = taxiCenter->getLocationOfDriver(id);
     pthread_mutex_unlock(&taxiCenterLock);
@@ -511,4 +594,15 @@ void ServerFlow::exitSignal() {
  */
 void ServerFlow::setSocket(Socket* s) {
     this->socket = s;
+}
+
+/**
+ * this function checks if a given string is a number.
+ * @param s - the string
+ * @return - return the answer
+ */
+bool ServerFlow::isNumber(const std::string &s) {
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
 }

@@ -24,19 +24,26 @@ int main(int argc, char* argv[]) {
     mainFlow.setWorldRepresentation();
 	mainFlow.setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
 	
-    int operationNum;
+    std::string operationNum;
 	try {
 		while(true) {
 			do {
-				std::cin.clear();
-				std::cin >> operationNum;
-			} while (std::cin.fail() && EINTR == errno);
+				//std::cin.clear();
+				//std::cin >> operationNum;
+				getline(cin, operationNum);
+				if(stoi(operationNum) < 0) {
+					cout << "-1" << endl;
+					continue;
+				}
+				break;
+			} while (true);
+			int newOperationNum = stoi(operationNum);
 			if (std::cin.fail())
 				throw "not a number";
-			if (operationNum < 1 || operationNum > 9 || operationNum == 5 || operationNum == 6
-					|| operationNum == 8)
+			if (newOperationNum < 1 || newOperationNum > 9 || newOperationNum == 5 || newOperationNum == 6
+					|| newOperationNum == 8)
 				throw "invalid operation number";
-			switch (operationNum) {
+			switch (newOperationNum) {
 				case 1:
 					LOG(DEBUG) << "addDrivers\n";
 					mainFlow.addDrivers();
@@ -66,3 +73,9 @@ int main(int argc, char* argv[]) {
         LOG(DEBUG) << "the exception is " << s;
 	}
 }
+/*
+static bool isNumber(const std::string &s) {
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it)) ++it;
+	return !s.empty() && it == s.end();
+}*/
