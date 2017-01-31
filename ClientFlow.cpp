@@ -109,14 +109,22 @@ void ClientFlow::parseId(int &id) {
 }
 
 /**
- * this function add a driver to the main flow.
+ * this function scan a new driver and validate the input.
+ * @return the driver.
  */
-void ClientFlow::addDriver() {
+Driver* ClientFlow::scanDriver() {
     int id, age, yearsOfExp, cabID;
     MeritalStatus meritalStatus;
     parseDriver(id, age, meritalStatus, yearsOfExp, cabID);
-
     driver = new Driver(id, age, meritalStatus, yearsOfExp, cabID);
+    return driver;
+}
+
+/**
+ * this function add a driver via the socket.
+ * @param driver - the driver to send.
+ */
+void ClientFlow::addDriver(Driver* driver) {
     std::string serialized = serialize<Driver>(driver);
     socket->sendData(serialized);
     char buffer[40000];

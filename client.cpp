@@ -20,8 +20,9 @@ int main(int argc, char* argv[]) {
 		int port = atoi(argv[2]);
 
 		ClientFlow mainFlow = ClientFlow();
-		mainFlow.addDriver();
+		Driver* driver = mainFlow.scanDriver();
 		mainFlow.setSocket(new Tcp(ProcessRole::CLIENT, (u_short)port, ip));
+		mainFlow.addDriver(driver);
 		mainFlow.flow();
 	} catch (boost::archive::archive_exception & boost_exception) {
         LOG(DEBUG) << boost_exception.what();

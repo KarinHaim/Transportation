@@ -28,9 +28,10 @@ private:
 public:
     ClientFlow();
     ~ClientFlow();
-    void addDriver();
+    Driver* scanDriver();
     void flow();
     void setSocket(Socket* s);
+    void addDriver(Driver* driver);
 };
 
 #endif //TRANSPORTATION_CLIENTFLOW_H
