@@ -19,10 +19,10 @@ int main(int argc, char* argv[]) {
 		const char * ip = argv[1];
 		int port = atoi(argv[2]);
 
-		ClientFlow mainFlow();
-		mainFlow().addDriver();
-		mainFlow().setSocket(new Tcp(ProcessRole::CLIENT, (u_short)port, ip));
-		mainFlow().flow();
+		ClientFlow mainFlow = ClientFlow();
+		mainFlow.addDriver();
+		mainFlow.setSocket(new Tcp(ProcessRole::CLIENT, (u_short)port, ip));
+		mainFlow.flow();
 	} catch (boost::archive::archive_exception & boost_exception) {
         LOG(DEBUG) << boost_exception.what();
 	} catch (...) {

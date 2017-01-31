@@ -20,9 +20,9 @@ int main(int argc, char* argv[]) {
     int port = atoi(argv[1]);
 
 
-    ServerFlow mainFlow();
-    mainFlow().setWorldRepresentation();
-	mainFlow().setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
+    ServerFlow mainFlow = ServerFlow();
+    mainFlow.setWorldRepresentation();
+	mainFlow.setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
 	
     int operationNum;
 	try {
