@@ -23,21 +23,25 @@ ClientFlow::~ClientFlow() {
  * this function ensure that the number 'num' is a positive number.
  * if the input is invalid, exit the program on the client side.
  * @param num - the number to check
- */
+ *//*
+
 void ClientFlow::validatePositiveNumber(int num) {
     if (num < 0)
         exit(1);
 }
 
+*/
 /**
  * this function ensure that the number 'num' is a positive and not zero number.
  * if the input is invalid, exit the program on the client side.
  * @param num - the number to check
- */
+ *//*
+
 void ClientFlow::validatePositiveNoneZeroNumber(int num) {
     if (num <= 0)
         exit(1);
 }
+*/
 
 /**
  * this function parses the merital status.
@@ -67,10 +71,17 @@ MeritalStatus ClientFlow::parseMeritalStatus(char status) {
  */
 void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-    std::cin.clear();
-    std::cin >> input;
-	if(std::cin.fail() && EINTR == errno)
+    //bool error = false;
+    getline(cin, input);
+    //boost::algorithm::trim(input);
+    boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+    if(arguments.size() != 5)
         exit(1);
+    if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+        || !isalpha(stoi(arguments[2])) || !isNumber(arguments[3])
+        || !isNumber(arguments[4]))
+        exit(1);
+
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
 
@@ -86,27 +97,23 @@ void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
 void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID) {
     std::vector<std::string> arguments;
     absorptionOfSeveralArgumentsInALine(arguments);
-    if (arguments.size() != 5)
-        exit(1);
     id = stoi(arguments[0]);
-    validatePositiveNumber(id);
     age = stoi(arguments[1]);
-    validatePositiveNumber(age);
     meritalStatus = parseMeritalStatus(arguments[2][0]);
     yearsOfExp = stoi(arguments[3]);
-    validatePositiveNumber(yearsOfExp);
     cabID = stoi(arguments[4]);
-    validatePositiveNumber(cabID);
+    if (id < 0 || age < 0 || yearsOfExp < 0 || cabID < 0)
+        exit(1);
 }
 
 /**
  * this function parses the input of the id.
  * @param id - the id
  */
-void ClientFlow::parseId(int &id) {
-    std::cin >> id;
-    validatePositiveNumber(id);
-}
+//void ClientFlow::parseId(int &id) {
+//    std::cin >> id;
+//    validatePositiveNumber(id);
+//}
 
 /**
  * this function scan a new driver and validate the input.
@@ -157,4 +164,15 @@ void ClientFlow::flow() {
  */
 void ClientFlow::setSocket(Socket* s) {
     this->socket = s;
+}
+
+/**
+ * this function checks if a given string is a number.
+ * @param s - the string
+ * @return - return the answer
+ */
+bool ClientFlow::isNumber(const std::string &s) {
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
 }

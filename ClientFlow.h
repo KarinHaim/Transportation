@@ -11,6 +11,9 @@
 #include "Color.h"
 #include "MeritalStatus.h"
 #include "Socket.h"
+#include <string>
+#include <stdlib.h>
+#include <sstream>
 
 /**
  * this class controls the clientFlow of the taxi center.
@@ -32,6 +35,7 @@ public:
     void flow();
     void setSocket(Socket* s);
     void addDriver(Driver* driver);
+    bool isNumber(const std::string &s);
 };
 
 #endif //TRANSPORTATION_CLIENTFLOW_H

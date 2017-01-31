@@ -29,8 +29,8 @@ private:
     std::vector<std::deque<std::string>> clientHandlesMessages;
     void checkMapValidity(std::vector<std::string> &arguments);
     int checkObstaclesValidity(std::vector<Point> &obstacles, int width, int height);
-    void parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
-    void parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
+    bool parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color);
+    bool parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
     //void parseId(int &id);
@@ -38,8 +38,8 @@ private:
     int validateCabKind(int num);
     //void validatePositiveNoneZeroNumber(int num);
     //void validatePointInRangeOfMap(int x, int y);
-    void checkTripValidity(std::vector<std::string> &arguments);
-    void checkTaxiValidity(std::vector<std::string> &arguments);
+    bool checkTripValidity(std::vector<std::string> &arguments);
+    bool checkTaxiValidity(std::vector<std::string> &arguments);
     int checkObstaclesNumValidity(int &numOfObstacles);
     bool isNumber(const std::string &s);
 public:

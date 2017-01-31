@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
     ServerFlow mainFlow = ServerFlow();
     mainFlow.setWorldRepresentation();
 	mainFlow.setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
-	
+
     std::string operationNum;
 	try {
 		while(true) {
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 				//std::cin.clear();
 				//std::cin >> operationNum;
 				getline(cin, operationNum);
-				if(stoi(operationNum) < 0) {
+				if(!isdigit(stoi(operationNum))){
 					cout << "-1" << endl;
 					continue;
 				}

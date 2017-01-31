@@ -177,54 +177,52 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
  * this function parses a line of the trip input string splitted by ','.
  * @param arguments - vector of input strings
  */
-void ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
+bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     std::string input;
-	do {
-        getline(cin, input);
-        //boost::algorithm::trim(input);
-        boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
-        if(arguments.size() != 8) {
-            cout << "-1" << endl;
-            continue;
-        }
-        if (!isNumber(arguments[0]) || !isNumber(arguments[1])
-            || !isNumber(arguments[2]) || !isNumber(arguments[3])
-            || !isNumber(arguments[4]) || !isNumber(arguments[5])
-            || !isNumber(arguments[7])) {
-            cout << "-1" << endl;
-            continue;
-        }
+    //bool error = false;
+    getline(cin, input);
+    //boost::algorithm::trim(input);
+    boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+    if(arguments.size() != 8) {
+        cout << "-1" << endl;
+        return false;
+    }
+    if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+        || !isNumber(arguments[2]) || !isNumber(arguments[3])
+        || !isNumber(arguments[4]) || !isNumber(arguments[5])
+        || !isNumber(arguments[7])) {
+        cout << "-1" << endl;
+        return false;
+    }
        /* if (arguments[0]<0 || arguments[1]<0 || arguments[2]<0 || arguments[3]<0 || arguments[4]<0 ||
                 arguments[5]<0 || arguments[6]<0 || arguments[7]<=0) {
             cout << "-1" << endl;
             continue;
         }*/
-        break;
-	} while (true);
+    return true;
 }
 
 /**
  * this function parses a line of the taxi input string splitted by ','.
  * @param arguments - vector of input strings
  */
-void ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
+bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
     std::string input;
-    do {
-        getline(cin, input);
-        //boost::algorithm::trim(input);
-        boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
-        if(arguments.size() != 4) {
-            cout << "-1" << endl;
-            continue;
-        }
-        if (!isNumber(arguments[0]) || !isNumber(arguments[1])
-            || !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
-            cout << "-1" << endl;
-            continue;
-        }
-        break;
-    } while (true);
+    getline(cin, input);
+    //boost::algorithm::trim(input);
+    boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
+    if (arguments.size() != 4) {
+        cout << "-1" << endl;
+        return false;
+    }
+    if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+        || !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
+        cout << "-1" << endl;
+        return false;
+    }
+    return true;
 }
+
 
 /**
  * this function parses the input of the trip.
@@ -234,11 +232,12 @@ void ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
  * @param passengersNum - number of passengers of the trip.
  * @param tariff - tariff of the trip.
  */
-void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
+bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime) {
     std::vector<std::string> arguments;
     int startX, startY, endX, endY;
-    do {
-        checkTripValidity(arguments);
+    if(!checkTripValidity(arguments))
+        return false;
+    else{
         id = stoi(arguments[0]);
         startX = stoi(arguments[1]);
         startY = stoi(arguments[2]);
@@ -249,10 +248,11 @@ void ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
         startTime = stoi(arguments[7]);
         if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
             cout << "-1" << endl;
-            continue;
+            return false;
         }
-        break;
-    }while(true);
+    }
+
+    return true;
 }
 
 /**
@@ -304,30 +304,29 @@ Color ServerFlow::parseColor(char color) {
  * @param manufacturer - the car manufacturer of the taxi.
  * @param color - the color of the taxi.
  */
-void ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
+bool ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer, Color &color) {
     std::vector<std::string> arguments;
-    do {
-        checkTaxiValidity(arguments);
-        id = stoi(arguments[0]);
-        cabKind = stoi(arguments[1]);
-        if (id < 0 || !validateCabKind(cabKind)) {
-            cout << "-1" << endl;
-            continue;
-        }
-        try {
-            manufacturer = parseCarManufacturer(arguments[2][0]);
-        } catch  (...) {
-            cout << "-1" << endl;
-            continue;
-        }
-        try {
-            color = parseColor(arguments[3][0]);
-        } catch  (...) {
-            cout << "-1" << endl;
-            continue;
-        }
-        break;
-    }while(true);
+    if (!checkTaxiValidity(arguments))
+        return false;
+    id = stoi(arguments[0]);
+    cabKind = stoi(arguments[1]);
+    if (id < 0 || !validateCabKind(cabKind)) {
+        cout << "-1" << endl;
+        return false;
+    }
+    try {
+        manufacturer = parseCarManufacturer(arguments[2][0]);
+    } catch  (...) {
+        cout << "-1" << endl;
+        return false;
+    }
+    try {
+        color = parseColor(arguments[3][0]);
+    } catch  (...) {
+        cout << "-1" << endl;
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -358,9 +357,11 @@ void ServerFlow::setWorldRepresentation() {
     int width, height, numOfObstacles;
     std::vector<Point> obstacles;
     std::vector<std::string> arguments;
+    bool isValidObstacle;
 
     //check if the map and obstacles are valid, if not than re-scan them.
     do {
+        isValidObstacle = false;
         checkMapValidity(arguments);
         width = stoi(arguments[0]);
         height = stoi(arguments[1]);
@@ -373,11 +374,18 @@ void ServerFlow::setWorldRepresentation() {
             cout << "-1" << endl;
             continue;
         }
-        if(!checkObstaclesValidity(obstacles, width, height)){
-            cout << "-1" << endl;
-            continue;
+        for(int i = 0; i < numOfObstacles; i++) {
+            if(checkObstaclesValidity(obstacles, width, height))
+                continue;
+            else {
+                cout << "-1" << endl;
+                isValidObstacle = true;
+                break;
+            }
         }
-         break;
+        if(isValidObstacle)
+            continue;
+        break;
     }while(true);
 
     map = new Map(width, height);
@@ -391,19 +399,16 @@ void ServerFlow::setWorldRepresentation() {
 void ServerFlow::addDrivers() {
     int numOfDrivers;
     std::string input;
-    do {
-        getline(cin, input);
-        if (!isNumber(input)) {
-            cout << "-1" << endl;
-            continue;
-        }
-        numOfDrivers = stoi(input);
-        if(numOfDrivers <= 0) {
-            cout << "-1" << endl;
-            continue;
-        }
-        break;
-    }while(true);
+    getline(cin, input);
+    if (!isNumber(input)) {
+        cout << "-1" << endl;
+        return;
+    }
+    numOfDrivers = stoi(input);
+    if(numOfDrivers <= 0) {
+        cout << "-1" << endl;
+        return;
+    }
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
 	if (tcpSocket == NULL) {
@@ -447,7 +452,8 @@ void ServerFlow::addTaxi() {
     int id, cabKind;
     CarManufacturer manufacturer;
     Color color;
-    parseTaxi(id, cabKind, manufacturer, color);
+    if (!parseTaxi(id, cabKind, manufacturer, color))
+        return;
     //validateCabKind(cabKind);
     Cab * cab;
     if (cabKind == 1)
@@ -471,8 +477,9 @@ void ServerFlow::addTrip() {
     int id, passengersNum, startTime;
     Point start, end;
     double tariff;
-    parseTrip(id, start, end, passengersNum, tariff, startTime);
-
+    //if there was an error, back to the menu.
+    if(!parseTrip(id, start, end, passengersNum, tariff, startTime))
+        return;
     taxiCenter->addTrip(id, start, end, passengersNum, tariff, startTime);
 }
 
@@ -482,19 +489,16 @@ void ServerFlow::addTrip() {
 void ServerFlow::printDriversLocation() {
     int id;
     std::string input;
-    do {
-        getline(cin, input);
-        if (!isNumber(input)) {
-            cout << "-1" << endl;
-            continue;
-        }
-        id = stoi(input);
-        if(id < 0) {
-            cout << "-1" << endl;
-            continue;
-        }
-        break;
-    }while(true);
+    getline(cin, input);
+    if (!isNumber(input)) {
+        cout << "-1" << endl;
+        return;
+    }
+    id = stoi(input);
+    if(id < 0) {
+        cout << "-1" << endl;
+        return;
+    }
     pthread_mutex_lock(&taxiCenterLock);
     Point location = taxiCenter->getLocationOfDriver(id);
     pthread_mutex_unlock(&taxiCenterLock);
