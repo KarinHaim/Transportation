@@ -73,6 +73,7 @@ void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
     std::string input;
     //bool error = false;
     getline(cin, input);
+    boost::algorithm::trim(input);
     //boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 5)

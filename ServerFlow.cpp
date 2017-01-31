@@ -117,7 +117,7 @@ void ServerFlow::checkMapValidity(std::vector<std::string> &arguments) {
     //std::string splitted;
     do {
         getline(cin, input);
-        //boost::algorithm::trim(input);
+        boost::algorithm::trim(input);
         boost::split(arguments, input, boost::is_any_of(" "), boost::token_compress_on);
         if (arguments.size() != 2) {
             cout << "-1" << endl;
@@ -135,6 +135,7 @@ int ServerFlow::checkObstaclesNumValidity(int &numOfObstacles) {
     std::string input;
     do {
         getline(cin, input);
+        boost::algorithm::trim(input);
         cout << "inserted num " << endl;
         if (!isNumber(input))
             return 0;
@@ -153,7 +154,7 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
     std::string input;
     int x, y;
     getline(cin, input);
-    //boost::algorithm::trim(input);
+    boost::algorithm::trim(input);
     boost::split(obstaclesCoordinates, input, boost::is_any_of(","), boost::token_compress_on);
     cout << obstaclesCoordinates[0] <<endl;
     if (obstaclesCoordinates.size() != 2)
@@ -181,7 +182,7 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     std::string input;
     //bool error = false;
     getline(cin, input);
-    //boost::algorithm::trim(input);
+    boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 8) {
         cout << "-1" << endl;
@@ -209,7 +210,7 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
 bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
     std::string input;
     getline(cin, input);
-    //boost::algorithm::trim(input);
+    boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if (arguments.size() != 4) {
         cout << "-1" << endl;
@@ -400,6 +401,7 @@ void ServerFlow::addDrivers() {
     int numOfDrivers;
     std::string input;
     getline(cin, input);
+    boost::algorithm::trim(input);
     if (!isNumber(input)) {
         cout << "-1" << endl;
         return;
@@ -490,6 +492,7 @@ void ServerFlow::printDriversLocation() {
     int id;
     std::string input;
     getline(cin, input);
+    boost::algorithm::trim(input);
     if (!isNumber(input)) {
         cout << "-1" << endl;
         return;
