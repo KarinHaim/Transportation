@@ -30,9 +30,9 @@ include_directories(${Boost_INCLUDE_DIR})
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lboost_serialization")
 
 #set(SOURCE_FILES Cab.cpp Cab.h CarManufacturer.h Color.h Driver.cpp Driver.h MeritalStatus.h Trip.cpp Trip.h Point.cpp Point.h Map.cpp Map.h Location.cpp Location.h Passenger.cpp Passenger.h Road.cpp Road.h Socket.cpp Socket.h ProcessRole.h Udp.cpp Udp.h Tcp.cpp Tcp.h Clock.h Clock.cpp Serialization.h)
-set(SOURCE_FILES Cab.cpp Cab.h CarManufacturer.h Color.h Driver.cpp Driver.h MeritalStatus.h Trip.cpp Trip.h Point.cpp Point.h Map.cpp Map.h Location.cpp Location.h Passenger.cpp Passenger.h Road.cpp Road.h Socket.cpp Socket.h ProcessRole.h Udp.cpp Udp.h Tcp.cpp Tcp.h Clock.h Clock.cpp Serialization.h Tests/MapTester.cpp Tests/PointTester.cpp Tests/RoadTester.cpp Tests/TripTester.cpp Tests/PassengerTester.cpp Tests/SearchTester.cpp Tests/DriverTester.cpp Tests/TaxiCenterTester.cpp Tests/MainFlowTester.cpp easylogging++.h)
-add_executable(server server.cpp TaxiCenter.cpp TaxiCenter.h ServerFlow.cpp ServerFlow.h ClientHandleThread.cpp ClientHandleThread.h CalculateRoadThread.cpp CalculateRoadThread.h ${SOURCE_FILES})
-add_executable(client client.cpp ClientFlow.cpp ClientFlow.h ${SOURCE_FILES})
+set(SOURCE_FILES src/Cab.cpp headers/Cab.h headers/CarManufacturer.h headers/Color.h src/Driver.cpp headers/Driver.h headers/MeritalStatus.h src/Trip.cpp headers/Trip.h src/Point.cpp headers/Point.h src/Map.cpp headers/Map.h src/Location.cpp headers/Location.h src/Passenger.cpp headers/Passenger.h src/Road.cpp headers/Road.h src/Socket.cpp headers/Socket.h headers/ProcessRole.h src/Udp.cpp headers/Udp.h src/Tcp.cpp headers/Tcp.h headers/Clock.h src/Clock.cpp headers/Serialization.h headers/easylogging++.h Tests/MapTester.cpp Tests/PointTester.cpp Tests/RoadTester.cpp Tests/TripTester.cpp Tests/PassengerTester.cpp Tests/SearchTester.cpp Tests/DriverTester.cpp Tests/TaxiCenterTester.cpp Tests/MainFlowTester.cpp)
+add_executable(server src/server.cpp src/TaxiCenter.cpp headers/TaxiCenter.h src/ServerFlow.cpp headers/ServerFlow.h src/ClientHandleThread.cpp headers/ClientHandleThread.h src/CalculateRoadThread.cpp headers/CalculateRoadThread.h src/ThreadPool.cpp headers/ThreadPool.h src/Task.cpp headers/Task.h src/Vertex.cpp headers/Vertex.h src/SearchMap.cpp headers/SearchMap.h ${SOURCE_FILES})
+add_executable(client src/client.cpp src/ClientFlow.cpp headers/ClientFlow.h ${SOURCE_FILES})
 
 target_link_libraries(server ${Boost_LIBRARIES})
 target_link_libraries(client ${Boost_LIBRARIES})
