@@ -41,7 +41,7 @@ private:
     bool checkTripValidity(std::vector<std::string> &arguments);
     bool checkTaxiValidity(std::vector<std::string> &arguments);
     int checkObstaclesNumValidity(int &numOfObstacles);
-    bool isNumber(const std::string &s);
+    //bool isNumber(const std::string &s);
 public:
     ServerFlow();
     ~ServerFlow();
@@ -56,5 +56,6 @@ public:
     void exitSignal();
     void setSocket(Socket* s);
 };
+bool isNumber(const std::string &s);
 
 #endif //TRANSPORTATION_SERVERFLOW_H

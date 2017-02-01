@@ -30,18 +30,18 @@ int main(int argc, char* argv[]) {
 				//std::cin.clear();
 				//std::cin >> operationNum;
 				getline(cin, operationNum);
-				if(!isdigit(stoi(operationNum))){
+				if(!isNumber(operationNum)){
 					cout << "-1" << endl;
 					continue;
 				}
 				break;
 			} while (true);
 			int newOperationNum = stoi(operationNum);
-			if (std::cin.fail())
+			/*if (std::cin.fail())
 				throw "not a number";
 			if (newOperationNum < 1 || newOperationNum > 9 || newOperationNum == 5 || newOperationNum == 6
 					|| newOperationNum == 8)
-				throw "invalid operation number";
+				throw "invalid operation number";*/
 			switch (newOperationNum) {
 				case 1:
 					LOG(DEBUG) << "addDrivers\n";
@@ -66,6 +66,9 @@ int main(int argc, char* argv[]) {
 					break;
 				case 9:
 					mainFlow.updateTime();
+				default:
+					cout << "-1" << endl;
+					break;
 			}
 		}
 	} catch (const char * s) {

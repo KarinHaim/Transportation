@@ -79,11 +79,9 @@ void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
     if(arguments.size() != 5)
         exit(1);
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])
-        || !isalpha(stoi(arguments[2])) || !isNumber(arguments[3])
+        || !isNumber(arguments[3])
         || !isNumber(arguments[4]))
         exit(1);
-
-    boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
 }
 
 /**
@@ -124,15 +122,17 @@ Driver* ClientFlow::scanDriver() {
     int id, age, yearsOfExp, cabID;
     MeritalStatus meritalStatus;
     parseDriver(id, age, meritalStatus, yearsOfExp, cabID);
-    driver = new Driver(id, age, meritalStatus, yearsOfExp, cabID);
-    return driver;
+    Driver* newDriver;
+    newDriver = new Driver(id, age, meritalStatus, yearsOfExp, cabID);
+    return newDriver;
 }
 
 /**
  * this function add a driver via the socket.
  * @param driver - the driver to send.
  */
-void ClientFlow::addDriver(Driver* driver) {
+void ClientFlow::addDriver(Driver* paramDriver) {
+    this->driver = paramDriver;
     std::string serialized = serialize<Driver>(driver);
     socket->sendData(serialized);
     char buffer[40000];

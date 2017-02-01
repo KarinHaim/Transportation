@@ -1,9 +1,9 @@
-#include "../headers/ServerFlow.h"
+#include "ServerFlow.h"
 #include "boost/algorithm/string.hpp"
 #include <iostream>
-#include "../headers/Serialization.h"
-#include "../headers/Tcp.h"
-#include "../headers/easylogging++.h"
+#include "Serialization.h"
+#include "Tcp.h"
+#include "easylogging++.h"
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string.hpp>
 #include <stdio.h>
@@ -18,7 +18,7 @@
 ServerFlow::ServerFlow() {
     //socket = s;
     taxiCenter = new TaxiCenter();
-    map = Map();
+    map = NULL;
     pthread_mutex_init(&clientHandleMessagesLock, NULL);
     pthread_mutex_init(&taxiCenterLock, NULL);
     pthread_mutex_init(&driversToClientHandlesMapLock, NULL);
@@ -31,7 +31,7 @@ ServerFlow::ServerFlow() {
 ServerFlow::~ServerFlow() {
     int size = clientsHandles.size();
     for (int i = 0; i < size; i++)
-        delete clientsHandles[i];
+        delete  clientsHandles[i];
     pthread_mutex_destroy(&serializationLock);
     pthread_mutex_destroy(&driversToClientHandlesMapLock);
     pthread_mutex_destroy(&taxiCenterLock);
@@ -39,9 +39,14 @@ ServerFlow::~ServerFlow() {
 
     delete taxiCenter;
 
+    if (this->map != NULL)
+        delete(this->map);
+
     delete(this->socket);
 }
+/*
 
+*/
 /**
  * this function ensure that the number 'num' is a positive number.
  * @param num - the number to check
@@ -95,7 +100,7 @@ void ServerFlow::validatePositiveNoneZeroNumber(int num) {
  * @param point - the point to check.
  */
 /*void ServerFlow::validatePointInRangeOfMap(int x, int y) {
-    if (x >= map.getWidth() || y >= map.getHeight())
+    if (x >= map->getWidth() || y >= map->getHeight())
         throw "point coordinated are out of map range";
 }*/
 
@@ -163,6 +168,7 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
     //validate that the points are in the range of the map
     if(x >= width || y >= height)
         return 0;
+    //LOG(DEBUG) <<"here"<<"\n";
     Point p(x, y);
     obstacles.push_back(p);
     return 1;
@@ -211,13 +217,15 @@ bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
         cout << "-1" << endl;
         return false;
     }
-    if (!isNumber(arguments[0]) || !isNumber(arguments[1])
-        || !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
+    //int x = atoi(arguments[2].at(0));
+    if (!isNumber(arguments[0]) || !isNumber(arguments[1])){
+        //|| !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
         cout << "-1" << endl;
-        return false;
-    }
+    return false;
+}
     return true;
 }
+
 
 /**
  * this function parses the input of the trip.
@@ -360,7 +368,6 @@ void ServerFlow::setWorldRepresentation() {
         checkMapValidity(arguments);
         width = stoi(arguments[0]);
         height = stoi(arguments[1]);
-        cout << "inserted map " << endl;
         if (width < 0 || height < 0) {
             cout << "-1" << endl;
             continue;
@@ -370,21 +377,25 @@ void ServerFlow::setWorldRepresentation() {
             continue;
         }
         for(int i = 0; i < numOfObstacles; i++) {
-            if(checkObstaclesValidity(obstacles, width, height))
+            if(checkObstaclesValidity(obstacles, width, height)) {
+                LOG(DEBUG) <<"here"<<"\n";
                 continue;
+            }
+
             else {
                 cout << "-1" << endl;
                 isValidObstacle = true;
                 break;
             }
         }
+        LOG(DEBUG) <<"here"<<"\n";
         if(isValidObstacle)
             continue;
         break;
     }while(true);
-
-    map = Map(width, height);
-    map.updateObstacles(obstacles);
+    LOG(DEBUG) <<"here"<<"\n";
+    map = new Map(width, height);
+    map->updateObstacles(obstacles);
     taxiCenter->setMap(map);
 }
 
@@ -416,6 +427,7 @@ void ServerFlow::addDrivers() {
     LOG(DEBUG) << "size after " << clientHandlesMessages.size() << "\n";
 
     for (int i = 0; i < numOfDrivers; i++) {
+
         int newSocketDescriptor = tcpSocket->acceptClient();
         Tcp* newTcpSocket = new Tcp(*tcpSocket);
         newTcpSocket->setSocketDescriptor(newSocketDescriptor);
@@ -456,13 +468,10 @@ void ServerFlow::addTaxi() {
     else if (cabKind == 2)
         cab = new Cab(id, 2, manufacturer, color, 2);
 
-    pthread_mutex_lock(&taxiCenterLock);
     try {
         taxiCenter->addTaxi(cab);
-        pthread_mutex_unlock(&taxiCenterLock);
     }
     catch (...) {
-        pthread_mutex_unlock(&taxiCenterLock);
         delete(cab);
         throw;
     }
@@ -478,11 +487,7 @@ void ServerFlow::addTrip() {
     //if there was an error, back to the menu.
     if(!parseTrip(id, start, end, passengersNum, tariff, startTime))
         return;
-
-    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
-    pthread_mutex_lock(&taxiCenterLock);
-    taxiCenter->addTrip(trip);
-    pthread_mutex_unlock(&taxiCenterLock);
+    taxiCenter->addTrip(id, start, end, passengersNum, tariff, startTime);
 }
 
 /**
@@ -492,7 +497,6 @@ void ServerFlow::printDriversLocation() {
     int id;
     std::string input;
     getline(cin, input);
-    boost::algorithm::trim(input);
     if (!isNumber(input)) {
         cout << "-1" << endl;
         return;
@@ -520,7 +524,7 @@ TaxiCenter* ServerFlow::getTaxiCenter() {
  * this fnction returns the map member of serverflow.
  * @param map the map.
  */
-void ServerFlow::setMap(Map map) {
+void ServerFlow::setMap(Map* map) {
     this->map = map;
 }
 
@@ -537,6 +541,7 @@ void ServerFlow::updateTime() {
 
     std::vector<Driver *> attachedTripsDrivers = taxiCenter->attachTripsToDrivers();
     pthread_mutex_unlock(&taxiCenterLock);
+
 
     for (int i = 0; i < drivers.size(); i++) {
         vector<Driver *>::iterator driversIndex = std::find(attachedTripsDrivers.begin(), attachedTripsDrivers.end(),
@@ -607,7 +612,7 @@ void ServerFlow::setSocket(Socket* s) {
  * @param s - the string
  * @return - return the answer
  */
-bool ServerFlow::isNumber(const std::string &s) {
+bool isNumber(const std::string &s) {
     std::string::const_iterator it = s.begin();
     while (it != s.end() && std::isdigit(*it)) ++it;
     return !s.empty() && it == s.end();
