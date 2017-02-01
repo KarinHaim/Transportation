@@ -1,9 +1,9 @@
-#include "ServerFlow.h"
+#include "../headers/ServerFlow.h"
 #include "boost/algorithm/string.hpp"
 #include <iostream>
-#include "Serialization.h"
-#include "Tcp.h"
-#include "easylogging++.h"
+#include "../headers/Serialization.h"
+#include "../headers/Tcp.h"
+#include "../headers/easylogging++.h"
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string.hpp>
 #include <stdio.h>
@@ -18,7 +18,7 @@
 ServerFlow::ServerFlow() {
     //socket = s;
     taxiCenter = new TaxiCenter();
-    map = NULL;
+    map = Map();
     pthread_mutex_init(&clientHandleMessagesLock, NULL);
     pthread_mutex_init(&taxiCenterLock, NULL);
     pthread_mutex_init(&driversToClientHandlesMapLock, NULL);
@@ -31,7 +31,7 @@ ServerFlow::ServerFlow() {
 ServerFlow::~ServerFlow() {
     int size = clientsHandles.size();
     for (int i = 0; i < size; i++)
-        delete  clientsHandles[i];
+        delete clientsHandles[i];
     pthread_mutex_destroy(&serializationLock);
     pthread_mutex_destroy(&driversToClientHandlesMapLock);
     pthread_mutex_destroy(&taxiCenterLock);
@@ -39,14 +39,9 @@ ServerFlow::~ServerFlow() {
 
     delete taxiCenter;
 
-    if (this->map != NULL)
-        delete(this->map);
-
     delete(this->socket);
 }
-/*
 
-*/
 /**
  * this function ensure that the number 'num' is a positive number.
  * @param num - the number to check
@@ -100,7 +95,7 @@ void ServerFlow::validatePositiveNoneZeroNumber(int num) {
  * @param point - the point to check.
  */
 /*void ServerFlow::validatePointInRangeOfMap(int x, int y) {
-    if (x >= map->getWidth() || y >= map->getHeight())
+    if (x >= map.getWidth() || y >= map.getHeight())
         throw "point coordinated are out of map range";
 }*/
 
@@ -394,8 +389,8 @@ void ServerFlow::setWorldRepresentation() {
         break;
     }while(true);
     LOG(DEBUG) <<"here"<<"\n";
-    map = new Map(width, height);
-    map->updateObstacles(obstacles);
+    map = Map(width, height);
+    map.updateObstacles(obstacles);
     taxiCenter->setMap(map);
 }
 
@@ -468,10 +463,13 @@ void ServerFlow::addTaxi() {
     else if (cabKind == 2)
         cab = new Cab(id, 2, manufacturer, color, 2);
 
+    pthread_mutex_lock(&taxiCenterLock);
     try {
         taxiCenter->addTaxi(cab);
+        pthread_mutex_unlock(&taxiCenterLock);
     }
     catch (...) {
+        pthread_mutex_unlock(&taxiCenterLock);
         delete(cab);
         throw;
     }
@@ -487,7 +485,10 @@ void ServerFlow::addTrip() {
     //if there was an error, back to the menu.
     if(!parseTrip(id, start, end, passengersNum, tariff, startTime))
         return;
-    taxiCenter->addTrip(id, start, end, passengersNum, tariff, startTime);
+    Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
+    pthread_mutex_lock(&taxiCenterLock);
+    taxiCenter->addTrip(trip);
+    pthread_mutex_unlock(&taxiCenterLock);
 }
 
 /**
@@ -524,10 +525,9 @@ TaxiCenter* ServerFlow::getTaxiCenter() {
  * this fnction returns the map member of serverflow.
  * @param map the map.
  */
-void ServerFlow::setMap(Map* map) {
+void ServerFlow::setMap(Map map) {
     this->map = map;
 }
-
 /**
  * this function updates the time of the world now, attaches trip to drivers in which the time
  * is now, and move one step all the drivers.
