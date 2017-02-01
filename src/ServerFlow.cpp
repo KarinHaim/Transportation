@@ -416,6 +416,7 @@ void ServerFlow::printDriversLocation() {
         location = taxiCenter->getLocationOfDriver(id);
     }catch(...) {
         cout << "-1" << endl;
+        pthread_mutex_unlock(&taxiCenterLock);
         return;
     }
     pthread_mutex_unlock(&taxiCenterLock);

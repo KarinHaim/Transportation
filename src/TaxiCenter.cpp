@@ -127,7 +127,7 @@ void TaxiCenter::addTrip(Trip* trip) {
                  sleep(1);
              }
             //means that a route was not found.
-            if (!this->trips[i]->getRoad()->getRoad().empty()) {
+            if (this->trips[i]->getRoad()->getRoad().empty()) {
                 this->trips.erase(this->trips.begin() + i);
                 continue;
             }
