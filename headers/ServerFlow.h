@@ -33,15 +33,10 @@ private:
     bool parseTrip(int &id, Point &start, Point &end, int &passengersNum, double &tariff, int &startTime);
     CarManufacturer parseCarManufacturer(char manufacturer);
     Color parseColor(char color);
-    //void parseId(int &id);
-   // void validatePositiveNumber(int num);
     int validateCabKind(int num);
-    //void validatePositiveNoneZeroNumber(int num);
-    //void validatePointInRangeOfMap(int x, int y);
     bool checkTripValidity(std::vector<std::string> &arguments);
     bool checkTaxiValidity(std::vector<std::string> &arguments);
     int checkObstaclesNumValidity(int &numOfObstacles);
-    //bool isNumber(const std::string &s);
 public:
     ServerFlow();
     ~ServerFlow();

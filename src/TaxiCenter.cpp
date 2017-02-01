@@ -107,6 +107,7 @@ void TaxiCenter::addTrip(Trip* trip) {
     calculateRoads.push_back(calculateRoad);
     Task* calculateTripsRoad = new Task(CalculateRoadThread::callCalculateRoad, calculateRoad);
     tasks.push_back(calculateTripsRoad);
+    threadPool->addTask(calculateTripsRoad);
 }
 
 /**
@@ -151,7 +152,11 @@ void TaxiCenter::addTrip(Trip* trip) {
  * this function returns the location of a specific driver.
  */
 Point TaxiCenter::getLocationOfDriver(int driverID) {
-    Location* location = this->locations.find(driverID)->second;
+    std::map<int, Location*>::iterator it = this->locations.find(driverID);
+    //means the id have not found
+    if(it == this->locations.end())
+        throw "id not exist";
+    Location* location = it->second;
     LOG(DEBUG) << "location is " << location << "\n";
     Point point = location->getPosition();
     LOG(DEBUG) << "point is %p\n" << point << "\n";

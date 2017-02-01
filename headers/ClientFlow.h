@@ -24,9 +24,6 @@ private:
     Driver* driver;
     void parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID);
     MeritalStatus parseMeritalStatus(char status);
-   // void parseId(int &id);
-    //void validatePositiveNumber(int num);
-    //void validatePositiveNoneZeroNumber(int num);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
 public:
     ClientFlow();

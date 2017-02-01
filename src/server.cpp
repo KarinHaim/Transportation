@@ -17,8 +17,6 @@ _INITIALIZE_EASYLOGGINGPP
  */
 int main(int argc, char* argv[]) {
     int port = atoi(argv[1]);
-
-
     ServerFlow mainFlow = ServerFlow();
     mainFlow.setWorldRepresentation();
 	mainFlow.setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
@@ -27,8 +25,6 @@ int main(int argc, char* argv[]) {
 	try {
 		while(true) {
 			do {
-				//std::cin.clear();
-				//std::cin >> operationNum;
 				getline(cin, operationNum);
 				if(!isNumber(operationNum)){
 					cout << "-1" << endl;
@@ -37,11 +33,6 @@ int main(int argc, char* argv[]) {
 				break;
 			} while (true);
 			int newOperationNum = stoi(operationNum);
-			/*if (std::cin.fail())
-				throw "not a number";
-			if (newOperationNum < 1 || newOperationNum > 9 || newOperationNum == 5 || newOperationNum == 6
-					|| newOperationNum == 8)
-				throw "invalid operation number";*/
 			switch (newOperationNum) {
 				case 1:
 					LOG(DEBUG) << "addDrivers\n";
@@ -66,6 +57,7 @@ int main(int argc, char* argv[]) {
 					break;
 				case 9:
 					mainFlow.updateTime();
+                    break;
 				default:
 					cout << "-1" << endl;
 					break;
@@ -75,9 +67,4 @@ int main(int argc, char* argv[]) {
         LOG(DEBUG) << "the exception is " << s;
 	}
 }
-/*
-static bool isNumber(const std::string &s) {
-	std::string::const_iterator it = s.begin();
-	while (it != s.end() && std::isdigit(*it)) ++it;
-	return !s.empty() && it == s.end();
-}*/
+

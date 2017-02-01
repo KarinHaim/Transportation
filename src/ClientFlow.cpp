@@ -20,30 +20,6 @@ ClientFlow::~ClientFlow() {
 }
 
 /**
- * this function ensure that the number 'num' is a positive number.
- * if the input is invalid, exit the program on the client side.
- * @param num - the number to check
- *//*
-
-void ClientFlow::validatePositiveNumber(int num) {
-    if (num < 0)
-        exit(1);
-}
-
-*/
-/**
- * this function ensure that the number 'num' is a positive and not zero number.
- * if the input is invalid, exit the program on the client side.
- * @param num - the number to check
- *//*
-
-void ClientFlow::validatePositiveNoneZeroNumber(int num) {
-    if (num <= 0)
-        exit(1);
-}
-*/
-
-/**
  * this function parses the merital status.
  * if the input is invalid, exit the program on the client side.
  * @param status - the char to parse.
@@ -71,10 +47,8 @@ MeritalStatus ClientFlow::parseMeritalStatus(char status) {
  */
 void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments) {
     std::string input;
-    //bool error = false;
     getline(cin, input);
     boost::algorithm::trim(input);
-    //boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 5)
         exit(1);
@@ -104,15 +78,6 @@ void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, in
     if (id < 0 || age < 0 || yearsOfExp < 0 || cabID < 0)
         exit(1);
 }
-
-/**
- * this function parses the input of the id.
- * @param id - the id
- */
-//void ClientFlow::parseId(int &id) {
-//    std::cin >> id;
-//    validatePositiveNumber(id);
-//}
 
 /**
  * this function scan a new driver and validate the input.

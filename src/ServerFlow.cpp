@@ -10,13 +10,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-//#pragma GCC diagnostic ignored "-Wno-deprecated-declarations"
-
 /**
  * this function is a constructor of the serverflow.
  */
 ServerFlow::ServerFlow() {
-    //socket = s;
     taxiCenter = new TaxiCenter();
     map = Map();
     pthread_mutex_init(&clientHandleMessagesLock, NULL);
@@ -43,73 +40,13 @@ ServerFlow::~ServerFlow() {
 }
 
 /**
- * this function ensure that the number 'num' is a positive number.
- * @param num - the number to check
- *//*
-
-void ServerFlow::validatePositiveNumber(int num) {
-    do {
-        std::cin >> num;
-        if(std::cin.fail() && EINTR == errno) {
-            cout << "-1" << endl;
-            continue;
-        }
-        else  {
-            if (num < 0) {
-                cout << "-1" << endl;
-                continue;
-            }
-            break;
-        }
-    } while (true);
-
-}
-
-*/
-/**
- * this function ensure that the number 'num' is a positive and not zero number.
- * @param num - the number to check
- *//*
-
-void ServerFlow::validatePositiveNoneZeroNumber(int num) {
-
-    do {
-        std::cin >> num;
-        if(std::cin.fail() && EINTR == errno) {
-            cout << "-1" << endl;
-            continue;
-        }
-        else  {
-            if (num <= 0) {
-                cout << "-1" << endl;
-                continue;
-            }
-            break;
-        }
-    } while (true);
-}
-*/
-
-/**
- * this function ensure that the point 'point' is a valid point that is in the range of the map.
- * @param point - the point to check.
- */
-/*void ServerFlow::validatePointInRangeOfMap(int x, int y) {
-    if (x >= map.getWidth() || y >= map.getHeight())
-        throw "point coordinated are out of map range";
-}*/
-
-/**
  * this function parses the map from an input file.
  * @param width - the width of the map.
  * @param height - the height of the map.
  */
 void ServerFlow::checkMapValidity(std::vector<std::string> &arguments) {
-    /*validatePositiveNoneZeroNumber(width);
-    validatePositiveNoneZeroNumber(height);*/
 
     std::string input;
-    //std::string splitted;
     do {
         getline(cin, input);
         boost::algorithm::trim(input);
@@ -131,7 +68,6 @@ int ServerFlow::checkObstaclesNumValidity(int &numOfObstacles) {
     do {
         getline(cin, input);
         boost::algorithm::trim(input);
-        cout << "inserted num " << endl;
         if (!isNumber(input))
             return 0;
         numOfObstacles = stoi(input);
@@ -151,7 +87,6 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
     getline(cin, input);
     boost::algorithm::trim(input);
     boost::split(obstaclesCoordinates, input, boost::is_any_of(","), boost::token_compress_on);
-    cout << obstaclesCoordinates[0] <<endl;
     if (obstaclesCoordinates.size() != 2)
         return 0;
     if (!isNumber(obstaclesCoordinates[0]) || !isNumber(obstaclesCoordinates[1]))
@@ -163,7 +98,6 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
     //validate that the points are in the range of the map
     if(x >= width || y >= height)
         return 0;
-    //LOG(DEBUG) <<"here"<<"\n";
     Point p(x, y);
     obstacles.push_back(p);
     return 1;
@@ -176,7 +110,6 @@ int ServerFlow::checkObstaclesValidity(std::vector<Point> &obstacles, int width,
  */
 bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     std::string input;
-    //bool error = false;
     getline(cin, input);
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
@@ -191,11 +124,6 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
         cout << "-1" << endl;
         return false;
     }
-       /* if (arguments[0]<0 || arguments[1]<0 || arguments[2]<0 || arguments[3]<0 || arguments[4]<0 ||
-                arguments[5]<0 || arguments[6]<0 || arguments[7]<=0) {
-            cout << "-1" << endl;
-            continue;
-        }*/
     return true;
 }
 
@@ -212,9 +140,7 @@ bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
         cout << "-1" << endl;
         return false;
     }
-    //int x = atoi(arguments[2].at(0));
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])){
-        //|| !isalpha((stoi(arguments[2]))) || !isalpha((stoi(arguments[3])))) {
         cout << "-1" << endl;
     return false;
 }
@@ -248,6 +174,8 @@ bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
             cout << "-1" << endl;
             return false;
         }
+        start = Point(startX, startY);
+        end = Point(endX, endY);
     }
 
     return true;
@@ -328,27 +256,6 @@ bool ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
 }
 
 /**
- * this function parses the input of the id.
- * @param id - the id
- */
-/*void ServerFlow::parseId(int &id) {
-	do {
-		std::cin.clear();
-		std::cin >> id;
-        if(std::cin.fail() && EINTR == errno) {
-            cout << "-1" << endl;
-            continue;
-        }
-        if(id < 0) {
-            cout << "-1" << endl;
-            continue;
-        }
-        break;
-
-	} while (true);
-}*/
-
-/**
  * this function sets the 'world' representation (height and width of the map and obstacles).
  */
 void ServerFlow::setWorldRepresentation() {
@@ -373,7 +280,6 @@ void ServerFlow::setWorldRepresentation() {
         }
         for(int i = 0; i < numOfObstacles; i++) {
             if(checkObstaclesValidity(obstacles, width, height)) {
-                LOG(DEBUG) <<"here"<<"\n";
                 continue;
             }
 
@@ -383,12 +289,10 @@ void ServerFlow::setWorldRepresentation() {
                 break;
             }
         }
-        LOG(DEBUG) <<"here"<<"\n";
         if(isValidObstacle)
             continue;
         break;
     }while(true);
-    LOG(DEBUG) <<"here"<<"\n";
     map = Map(width, height);
     map.updateObstacles(obstacles);
     taxiCenter->setMap(map);
@@ -456,7 +360,6 @@ void ServerFlow::addTaxi() {
     Color color;
     if (!parseTaxi(id, cabKind, manufacturer, color))
         return;
-    //validateCabKind(cabKind);
     Cab * cab;
     if (cabKind == 1)
         cab = new Cab(id, 1, manufacturer, color, 1);
@@ -496,6 +399,7 @@ void ServerFlow::addTrip() {
  */
 void ServerFlow::printDriversLocation() {
     int id;
+    Point location;
     std::string input;
     getline(cin, input);
     if (!isNumber(input)) {
@@ -508,7 +412,12 @@ void ServerFlow::printDriversLocation() {
         return;
     }
     pthread_mutex_lock(&taxiCenterLock);
-    Point location = taxiCenter->getLocationOfDriver(id);
+    try {
+        location = taxiCenter->getLocationOfDriver(id);
+    }catch(...) {
+        cout << "-1" << endl;
+        return;
+    }
     pthread_mutex_unlock(&taxiCenterLock);
     std::cout << location;
 }
@@ -589,14 +498,13 @@ void ServerFlow::updateTime() {
  * this function sends "exit" messages to all the clients.
  */
 void ServerFlow::exitSignal() {
-    for (int i=0; i<clientHandlesMessages.size(); i++) {
+    for (int i = 0; i < clientHandlesMessages.size(); i++) {
         pthread_mutex_lock(&clientHandleMessagesLock);
         clientHandlesMessages[i].push_back("exit");
         pthread_mutex_unlock(&clientHandleMessagesLock);
-		clientsHandles[i]->notify();
+        clientsHandles[i]->notify();
         clientsHandles[i]->join();
     }
-    //pthread_exit(NULL);
 }
 
 /**
