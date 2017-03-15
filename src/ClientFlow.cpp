@@ -115,6 +115,12 @@ void ClientFlow::flow() {
     while (strcmp(buffer, "exit") != 0) {
         if (strcmp(buffer, "go") == 0)
             driver->move();
+        if (strcmp(buffer, "error") == 0) {
+
+        }
+        if (strcmp(buffer, "timeUpdate") == 0) {
+
+        }
         else {
             Trip *trip = deserialize<Trip>(buffer, sizeof(buffer));
             driver->updateTrip(trip);

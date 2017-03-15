@@ -19,15 +19,19 @@ int main(int argc, char* argv[]) {
     int port = atoi(argv[1]);
     ServerFlow mainFlow = ServerFlow();
     mainFlow.setWorldRepresentation();
-	mainFlow.setSocket(new Tcp(ProcessRole::SERVER, (u_short)port));
+    Socket* socket = new Tcp(ProcessRole::SERVER, (u_short)port);
+    mainFlow.setSocket(socket);
 
     std::string operationNum;
 	try {
 		while(true) {
 			do {
-				getline(cin, operationNum);
+				//getline(cin, operationNum);
+                char buffer[40000] = { 0 };
+                socket->receiveData(buffer, sizeof(buffer));
+                std::string operationNum(buffer);
 				if(!isNumber(operationNum)){
-					cout << "-1" << endl;
+                    socket->sendData("error");
 					continue;
 				}
 				break;
@@ -46,10 +50,10 @@ int main(int argc, char* argv[]) {
 					LOG(DEBUG) << "addTaxi\n";
 					mainFlow.addTaxi();
 					break;
-				case 4:
+				/*case 4:
 					LOG(DEBUG) << "printDriversLocation\n";
 					mainFlow.printDriversLocation();
-					break;
+					break;*/
 				case 7:
 					LOG(DEBUG) << "exitSignal\n";
 					mainFlow.exitSignal();
@@ -59,7 +63,7 @@ int main(int argc, char* argv[]) {
 					mainFlow.updateTime();
                     break;
 				default:
-					cout << "-1" << endl;
+                    socket->sendData("error");
 					break;
 			}
 		}

@@ -52,11 +52,11 @@ void ServerFlow::checkMapValidity(std::vector<std::string> &arguments) {
         boost::algorithm::trim(input);
         boost::split(arguments, input, boost::is_any_of(" "), boost::token_compress_on);
         if (arguments.size() != 2) {
-            cout << "-1" << endl;
+            this->socket->sendData("error");
             continue;
         }
         if (!isNumber(arguments[0]) || !isNumber(arguments[1])) {
-            cout << "-1" << endl;
+            this->socket->sendData("error");
             continue;
         }
         break;
@@ -114,14 +114,14 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 8) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])
         || !isNumber(arguments[2]) || !isNumber(arguments[3])
         || !isNumber(arguments[4]) || !isNumber(arguments[5])
         || !isNumber(arguments[7])) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     return true;
@@ -137,11 +137,11 @@ bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if (arguments.size() != 4) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])){
-        cout << "-1" << endl;
+        this->socket->sendData("error");
     return false;
 }
     return true;
@@ -171,7 +171,7 @@ bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
         tariff = stod(arguments[6]);
         startTime = stoi(arguments[7]);
         if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
-            cout << "-1" << endl;
+            this->socket->sendData("error");
             return false;
         }
         start = Point(startX, startY);
@@ -237,19 +237,19 @@ bool ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
     id = stoi(arguments[0]);
     cabKind = stoi(arguments[1]);
     if (id < 0 || !validateCabKind(cabKind)) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     try {
         manufacturer = parseCarManufacturer(arguments[2][0]);
     } catch  (...) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     try {
         color = parseColor(arguments[3][0]);
     } catch  (...) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return false;
     }
     return true;
@@ -302,17 +302,20 @@ void ServerFlow::setWorldRepresentation() {
  * this function add drivers to the serverflow and attaches them with cabs.
  */
 void ServerFlow::addDrivers() {
-    int numOfDrivers;
-    std::string input;
-    getline(cin, input);
-    boost::algorithm::trim(input);
+    char buffer[40000] = { 0 };
+    this->socket->receiveData(buffer, sizeof(buffer));
+    //int numOfDrivers = atoi(buffer);
+    std::string input(buffer);
+    //std::string input;
+    //getline(cin, input);
+    //boost::algorithm::trim(input);
     if (!isNumber(input)) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return;
     }
     numOfDrivers = stoi(input);
     if(numOfDrivers <= 0) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return;
     }
 
@@ -403,19 +406,19 @@ void ServerFlow::printDriversLocation() {
     std::string input;
     getline(cin, input);
     if (!isNumber(input)) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return;
     }
     id = stoi(input);
     if(id < 0) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         return;
     }
     pthread_mutex_lock(&taxiCenterLock);
     try {
         location = taxiCenter->getLocationOfDriver(id);
     }catch(...) {
-        cout << "-1" << endl;
+        this->socket->sendData("error");
         pthread_mutex_unlock(&taxiCenterLock);
         return;
     }
@@ -493,6 +496,7 @@ void ServerFlow::updateTime() {
             }
         }
     }
+    this->socket->sendData("timeUpdate");
 }
 
 /**
