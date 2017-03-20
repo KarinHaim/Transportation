@@ -49,6 +49,8 @@ public:
     //int getCurrentTime();
     void updateTime();
     Clock* getClock();
+    bool isCabIdExist(int id);
+    bool isTripIdExist(int id);
 };
 
 #endif //TRANSPORTATION_TAXICENTER_H

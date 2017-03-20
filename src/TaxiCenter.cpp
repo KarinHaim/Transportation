@@ -76,16 +76,34 @@ void TaxiCenter::addTaxi(Cab* cab) {
     this->cabs.push_back(cab);
 }
 
+bool TaxiCenter::isCabIdExist(int id) {
+    for (int i = 0; i < this->cabs.size(); i++) {
+        if(this->cabs[i]->getID() == id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TaxiCenter::isTripIdExist(int id) {
+    for (int i = 0; i < this->trips.size(); i++) {
+        if(this->trips[i]->getID() == id) {
+            return true;
+        }
+    }
+    return false;
+}
+
 /**
  * this function attaches a taxi to a driver.
  * @param driver
  * @param cabID
  */
 Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
-    if (std::find(this->drivers.begin(), this->drivers.end(),driver) == this->drivers.end()) {
+    /*if (std::find(this->drivers.begin(), this->drivers.end(),driver) == this->drivers.end()) {
         //means the driver not found
         throw "driver not found";
-    }
+    }*/
     for (int i = 0; i < this->cabs.size(); i++) {
         if(this->cabs[i]->getID() == cabID) {
             driver->attachCab(this->cabs[i]);
@@ -93,7 +111,7 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
             return cabs[i];
         }
     }
-    throw "cab with id not found";
+    //throw "cab with id not found";
 }
 
 /**
