@@ -18,6 +18,7 @@
 class ServerFlow {
 private:
     Socket* socket;
+    Socket* guiClient;
     TaxiCenter* taxiCenter;
     Map map;
     pthread_mutex_t clientHandleMessagesLock;
@@ -50,6 +51,8 @@ public:
     void updateTime();
     void exitSignal();
     void setSocket(Socket* s);
+    void acceptGuiClient();
+    void flow();
 };
 bool isNumber(const std::string &s);
 

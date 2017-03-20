@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <cstring>
 
 /**
  * this function is a constructor of the serverflow.
@@ -36,6 +37,7 @@ ServerFlow::~ServerFlow() {
 
     delete taxiCenter;
 
+    delete(this->guiClient);
     delete(this->socket);
 }
 
@@ -52,29 +54,28 @@ void ServerFlow::checkMapValidity(std::vector<std::string> &arguments) {
         boost::algorithm::trim(input);
         boost::split(arguments, input, boost::is_any_of(" "), boost::token_compress_on);
         if (arguments.size() != 2) {
-            this->socket->sendData("error");
+            cout << "-1" << endl;
             continue;
         }
         if (!isNumber(arguments[0]) || !isNumber(arguments[1])) {
-            this->socket->sendData("error");
+            cout << "-1" << endl;
             continue;
         }
         break;
-    }while(true);
+    } while(true);
 }
 
 int ServerFlow::checkObstaclesNumValidity(int &numOfObstacles) {
     std::string input;
-    do {
-        getline(cin, input);
-        boost::algorithm::trim(input);
-        if (!isNumber(input))
-            return 0;
-        numOfObstacles = stoi(input);
-        if(numOfObstacles < 0)
-            return 0;
-        return 1;
-    }while(true);
+
+    getline(cin, input);
+    boost::algorithm::trim(input);
+    if (!isNumber(input))
+        return 0;
+    numOfObstacles = stoi(input);
+    if(numOfObstacles < 0)
+        return 0;
+    return 1;
 }
 /**
  * this function parses the obstacles from an input file.
@@ -114,14 +115,14 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 8) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])
         || !isNumber(arguments[2]) || !isNumber(arguments[3])
         || !isNumber(arguments[4]) || !isNumber(arguments[5])
         || !isNumber(arguments[7])) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     return true;
@@ -137,11 +138,11 @@ bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if (arguments.size() != 4) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])){
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
     return false;
 }
     return true;
@@ -171,7 +172,7 @@ bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
         tariff = stod(arguments[6]);
         startTime = stoi(arguments[7]);
         if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
-            this->socket->sendData("error");
+            this->guiClient->sendData("error");
             return false;
         }
         start = Point(startX, startY);
@@ -237,19 +238,19 @@ bool ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
     id = stoi(arguments[0]);
     cabKind = stoi(arguments[1]);
     if (id < 0 || !validateCabKind(cabKind)) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     try {
         manufacturer = parseCarManufacturer(arguments[2][0]);
     } catch  (...) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     try {
         color = parseColor(arguments[3][0]);
     } catch  (...) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return false;
     }
     return true;
@@ -266,7 +267,7 @@ void ServerFlow::setWorldRepresentation() {
 
     //check if the map and obstacles are valid, if not than re-scan them.
     do {
-        isValidObstacle = false;
+        isValidObstacle = true;
         checkMapValidity(arguments);
         width = stoi(arguments[0]);
         height = stoi(arguments[1]);
@@ -285,11 +286,11 @@ void ServerFlow::setWorldRepresentation() {
 
             else {
                 cout << "-1" << endl;
-                isValidObstacle = true;
+                isValidObstacle = false;
                 break;
             }
         }
-        if(isValidObstacle)
+        if(!isValidObstacle)
             continue;
         break;
     }while(true);
@@ -303,19 +304,19 @@ void ServerFlow::setWorldRepresentation() {
  */
 void ServerFlow::addDrivers() {
     char buffer[40000] = { 0 };
-    this->socket->receiveData(buffer, sizeof(buffer));
+    this->guiClient->receiveData(buffer, sizeof(buffer));
     //int numOfDrivers = atoi(buffer);
     std::string input(buffer);
     //std::string input;
     //getline(cin, input);
     //boost::algorithm::trim(input);
     if (!isNumber(input)) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return;
     }
-    numOfDrivers = stoi(input);
+    int numOfDrivers = stoi(input);
     if(numOfDrivers <= 0) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return;
     }
 
@@ -406,19 +407,19 @@ void ServerFlow::printDriversLocation() {
     std::string input;
     getline(cin, input);
     if (!isNumber(input)) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return;
     }
     id = stoi(input);
     if(id < 0) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         return;
     }
     pthread_mutex_lock(&taxiCenterLock);
     try {
         location = taxiCenter->getLocationOfDriver(id);
     }catch(...) {
-        this->socket->sendData("error");
+        this->guiClient->sendData("error");
         pthread_mutex_unlock(&taxiCenterLock);
         return;
     }
@@ -455,8 +456,9 @@ void ServerFlow::updateTime() {
     std::vector<Driver *> attachedTripsDrivers = taxiCenter->attachTripsToDrivers();
     pthread_mutex_unlock(&taxiCenterLock);
 
-
     for (int i = 0; i < drivers.size(); i++) {
+        this->guiClient->sendData("updateTime");
+
         vector<Driver *>::iterator driversIndex = std::find(attachedTripsDrivers.begin(), attachedTripsDrivers.end(),
                                                             drivers[i]);
         pthread_mutex_lock(&driversToClientHandlesMapLock);
@@ -496,7 +498,6 @@ void ServerFlow::updateTime() {
             }
         }
     }
-    this->socket->sendData("timeUpdate");
 }
 
 /**
@@ -529,4 +530,71 @@ bool isNumber(const std::string &s) {
     std::string::const_iterator it = s.begin();
     while (it != s.end() && std::isdigit(*it)) ++it;
     return !s.empty() && it == s.end();
+}
+
+void ServerFlow::acceptGuiClient() {
+    Tcp* tcpSocket = static_cast<Tcp*>(socket);
+    if (tcpSocket == NULL) {
+        perror("error casting to tcp socket");
+    }
+    int newSocketDescriptor = tcpSocket->acceptClient();
+    guiClient = new Tcp(*tcpSocket);
+    guiClient->setSocketDescriptor(newSocketDescriptor);
+
+    std::string message = to_string(this->map.getWidth());
+    message.append(" ");
+    message.append(to_string(this->map.getHeight()));
+    message.append("\n");
+    this->guiClient->sendData(message);
+}
+
+void ServerFlow::flow() {
+    std::string operationNum;
+    try {
+        while(true) {
+            do {
+                //getline(cin, operationNum);
+                char buffer[40000] = { 0 };
+                guiClient->receiveData(buffer, sizeof(buffer));
+                std::string operationNum(buffer);
+                if(!isNumber(operationNum)){
+                    guiClient->sendData("error");
+                    continue;
+                }
+                break;
+            } while (true);
+            int newOperationNum = stoi(operationNum);
+            switch (newOperationNum) {
+                case 1:
+                    LOG(DEBUG) << "addDrivers\n";
+                    addDrivers();
+                    break;
+                case 2:
+                    LOG(DEBUG) << "addTrip\n";
+                    addTrip();
+                    break;
+                case 3:
+                    LOG(DEBUG) << "addTaxi\n";
+                    addTaxi();
+                    break;
+                    /*case 4:
+                        LOG(DEBUG) << "printDriversLocation\n";
+                        mainFlow.printDriversLocation();
+                        break;*/
+                case 7:
+                    LOG(DEBUG) << "exitSignal\n";
+                    exitSignal();
+                    return;
+                    break;
+                case 9:
+                    updateTime();
+                    break;
+                default:
+                    guiClient->sendData("error");
+                    break;
+            }
+        }
+    } catch (const char * s) {
+        LOG(DEBUG) << "the exception is " << s;
+    }
 }
