@@ -319,6 +319,7 @@ void ServerFlow::addDrivers() {
         this->guiClient->sendData("error");
         return;
     }
+    this->guiClient->sendData("validInput");
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
 	if (tcpSocket == NULL) {
@@ -328,6 +329,7 @@ void ServerFlow::addDrivers() {
     LOG(DEBUG) << "size before " << clientHandlesMessages.size() << "\n";
 	clientHandlesMessages.resize(clientHandlesMessages.size() + numOfDrivers);
     LOG(DEBUG) << "size after " << clientHandlesMessages.size() << "\n";
+
 
     for (int i = 0; i < numOfDrivers; i++) {
 
@@ -365,6 +367,7 @@ void ServerFlow::addTaxi() {
     if (!parseTaxi(id, cabKind, manufacturer, color)) {
         return;
     }
+    this->guiClient->sendData("validInput");
     Cab * cab;
     if (cabKind == 1)
         cab = new Cab(id, 1, manufacturer, color, 1);
@@ -393,6 +396,7 @@ void ServerFlow::addTrip() {
     //if there was an error, back to the menu.
     if(!parseTrip(id, start, end, passengersNum, tariff, startTime))
         return;
+    this->guiClient->sendData("validInput");
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
     pthread_mutex_lock(&taxiCenterLock);
     try {
@@ -571,6 +575,7 @@ void ServerFlow::flow() {
                 }
                 break;
             } while (true);
+            this->guiClient->sendData("validInput");
             int newOperationNum = stoi(operationNum);
             switch (newOperationNum) {
                 case 1:
