@@ -18,15 +18,15 @@ int main(int argc, char* argv[]) {
 	try {
 		const char * ip = argv[1];
 		int port = atoi(argv[2]);
-        std::vector<std::string> DriverArguments;
-        DriverArguments[0] = argv[3];
-        DriverArguments[1] = argv[4];
-        DriverArguments[2] = argv[5];
-        DriverArguments[3] = argv[6];
-        DriverArguments[4] = argv[7];
+        std::vector<std::string> driverArguments;
+        driverArguments[0] = argv[3];
+        driverArguments[1] = argv[4];
+        driverArguments[2] = argv[5];
+        driverArguments[3] = argv[6];
+        driverArguments[4] = argv[7];
 
 		ClientFlow mainFlow = ClientFlow();
-		Driver* driver = mainFlow.scanDriver(DriverArguments);
+		Driver* driver = mainFlow.scanDriver(driverArguments);
 		mainFlow.setSocket(new Tcp(ProcessRole::CLIENT, (u_short)port, ip));
 		mainFlow.addDriver(driver);
 		mainFlow.flow();

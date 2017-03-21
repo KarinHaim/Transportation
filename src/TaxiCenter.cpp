@@ -76,24 +76,6 @@ void TaxiCenter::addTaxi(Cab* cab) {
     this->cabs.push_back(cab);
 }
 
-bool TaxiCenter::isCabIdExist(int id) {
-    for (int i = 0; i < this->cabs.size(); i++) {
-        if(this->cabs[i]->getID() == id) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool TaxiCenter::isTripIdExist(int id) {
-    for (int i = 0; i < this->trips.size(); i++) {
-        if(this->trips[i]->getID() == id) {
-            return true;
-        }
-    }
-    return false;
-}
-
 /**
  * this function attaches a taxi to a driver.
  * @param driver
@@ -119,6 +101,10 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  * @param trip
  */
 void TaxiCenter::addTrip(Trip* trip) {
+    for (int i = 0; i < this->trips.size(); i++) {
+        if(this->trips[i]->getID() == trip->getID[]) {
+            throw "trip with this id was already inserted";
+        }
     this->trips.push_back(trip);
 
     CalculateRoadThread* calculateRoad = new CalculateRoadThread(trip, this->map);

@@ -175,10 +175,6 @@ bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
             this->guiClient->sendData("error");
             return false;
         }
-        if(!taxiCenter->isTripIdExist(id)) {
-            this->guiClient->sendData("error");
-            return false;
-        }
         start = Point(startX, startY);
         end = Point(endX, endY);
     }
@@ -367,11 +363,6 @@ void ServerFlow::addTaxi() {
     CarManufacturer manufacturer;
     Color color;
     if (!parseTaxi(id, cabKind, manufacturer, color)) {
-        this->guiClient->sendData("error");
-        return;
-    }
-    if(!taxiCenter->isCabIdExist(id)) {
-        this->guiClient->sendData("error");
         return;
     }
     Cab * cab;
@@ -388,7 +379,7 @@ void ServerFlow::addTaxi() {
     catch (...) {
         pthread_mutex_unlock(&taxiCenterLock);
         delete(cab);
-        throw;
+        this->guiClient->sendData("error");
     }
 }
 
@@ -404,8 +395,15 @@ void ServerFlow::addTrip() {
         return;
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
     pthread_mutex_lock(&taxiCenterLock);
-    taxiCenter->addTrip(trip);
-    pthread_mutex_unlock(&taxiCenterLock);
+    try {
+        taxiCenter->addTrip(trip);
+        pthread_mutex_unlock(&taxiCenterLock);
+    }
+    catch (...) {
+        pthread_mutex_unlock(&taxiCenterLock);
+        delete(trip);
+        this->guiClient->sendData("error");
+    }
 }
 
 /**
