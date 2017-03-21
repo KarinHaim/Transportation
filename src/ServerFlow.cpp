@@ -568,7 +568,7 @@ void ServerFlow::flow() {
                 //getline(cin, operationNum);
                 char buffer[40000] = { 0 };
                 guiClient->receiveData(buffer, sizeof(buffer));
-                std::string operationNum(buffer);
+                operationNum = std::string(buffer);
                 if(!isNumber(operationNum)){
                     guiClient->sendData("error");
                     continue;
