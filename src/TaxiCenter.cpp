@@ -52,10 +52,10 @@ void TaxiCenter::setMap(Map& map) {
  */
 void TaxiCenter::addDriver(Driver* driver) {
     //check if the driver's id already exists
-    for (int i = 0; i < this->drivers.size(); i++) {
+    /*for (int i = 0; i < this->drivers.size(); i++) {
         if(this->drivers[i]->getID() == driver->getID())
             throw "driver with this id was already inserted";
-    }
+    }*/
     this->drivers.push_back(driver);
 
     this->locations[driver->getID()] = driver->getLocation();
@@ -102,17 +102,18 @@ Cab* TaxiCenter::attachTaxiToDriver(Driver* driver, int cabID) {
  */
 void TaxiCenter::addTrip(Trip* trip) {
     for (int i = 0; i < this->trips.size(); i++) {
-        if(this->trips[i]->getID() == trip->getID[]) {
+        if (this->trips[i]->getID() == trip->getID())
             throw "trip with this id was already inserted";
-        }
+    }
     this->trips.push_back(trip);
 
-    CalculateRoadThread* calculateRoad = new CalculateRoadThread(trip, this->map);
+    CalculateRoadThread *calculateRoad = new CalculateRoadThread(trip, this->map);
     calculateRoads.push_back(calculateRoad);
-    Task* calculateTripsRoad = new Task(CalculateRoadThread::callCalculateRoad, calculateRoad);
+    Task *calculateTripsRoad = new Task(CalculateRoadThread::callCalculateRoad, calculateRoad);
     tasks.push_back(calculateTripsRoad);
     threadPool->addTask(calculateTripsRoad);
 }
+
 
 /**
  * this function attaches the trips to the drivers.

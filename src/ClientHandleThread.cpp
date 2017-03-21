@@ -51,15 +51,15 @@ void ClientHandleThread::addDriver() {
     pthread_mutex_lock(driversToClientHandlesMapLock);
     (*driversIdToClientHandlesIdMap)[driver->getID()] = id;
     pthread_mutex_unlock(driversToClientHandlesMapLock);
-    try {
+   // try {
         pthread_mutex_lock(taxiCenterLock);
         taxiCenter->addDriver(driver);
         pthread_mutex_unlock(taxiCenterLock);
-    }
+   /* }
     catch (...) {
         delete(driver);
         throw;
-    }
+    }*/
     pthread_mutex_lock(taxiCenterLock);
     Cab* cab = taxiCenter->attachTaxiToDriver(driver, driver->getCabID());
     pthread_mutex_unlock(taxiCenterLock);
