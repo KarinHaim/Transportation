@@ -22,13 +22,13 @@ class ClientFlow {
 private:
     Socket* socket;
     Driver* driver;
-    void parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID, std::vector<std::string> driverArguments);
+    void parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID, std::string driverArguments);
     MeritalStatus parseMeritalStatus(char status);
     void absorptionOfSeveralArgumentsInALine(std::vector<std::string> &arguments);
 public:
     ClientFlow();
     ~ClientFlow();
-    Driver* scanDriver(std::vector<std::string> DriverArguments);
+    Driver* scanDriver(std::string driverArguments);
     void flow();
     void setSocket(Socket* s);
     void addDriver(Driver* paramDriver);

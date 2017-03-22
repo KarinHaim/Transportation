@@ -68,14 +68,22 @@ void ClientFlow::absorptionOfSeveralArgumentsInALine(std::vector<std::string> &a
  * @param yearsOfExp - years of experiance of the driver
  * @param cabID - cab id of the driver
  */
-void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID, std::vector<std::string> driverArguments) {
-    /*std::vector<std::string> arguments;
-    absorptionOfSeveralArgumentsInALine(arguments);*/
-    id = stoi(driverArguments[0]);
-    age = stoi(driverArguments[1]);
-    meritalStatus = parseMeritalStatus(driverArguments[2][0]);
-    yearsOfExp = stoi(driverArguments[3]);
-    cabID = stoi(driverArguments[4]);
+void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, int &yearsOfExp, int& cabID, std::string driverArguments) {
+    std::vector<std::string> arguments;
+    //absorptionOfSeveralArgumentsInALine(arguments);
+    boost::split(arguments, driverArguments, boost::is_any_of(","), boost::token_compress_on);
+    if(arguments.size() != 5)
+        exit(1);
+    if (!isNumber(arguments[0]) || !isNumber(arguments[1])
+        || !isNumber(arguments[3])
+        || !isNumber(arguments[4]))
+        exit(1);
+
+    id = stoi(arguments[0]);
+    age = stoi(arguments[1]);
+    meritalStatus = parseMeritalStatus(arguments[2][0]);
+    yearsOfExp = stoi(arguments[3]);
+    cabID = stoi(arguments[4]);
     if (id < 0 || age < 0 || yearsOfExp < 0 || cabID < 0)
         exit(1);
 }
@@ -84,7 +92,7 @@ void ClientFlow::parseDriver(int &id, int &age, MeritalStatus &meritalStatus, in
  * this function scan a new driver and validate the input.
  * @return the driver.
  */
-Driver* ClientFlow::scanDriver(std::vector<std::string> driverArguments) {
+Driver* ClientFlow::scanDriver(std::string driverArguments) {
     int id, age, yearsOfExp, cabID;
     MeritalStatus meritalStatus;
     parseDriver(id, age, meritalStatus, yearsOfExp, cabID, driverArguments);

@@ -115,14 +115,14 @@ bool ServerFlow::checkTripValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if(arguments.size() != 8) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])
         || !isNumber(arguments[2]) || !isNumber(arguments[3])
         || !isNumber(arguments[4]) || !isNumber(arguments[5])
         || !isNumber(arguments[7])) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     return true;
@@ -138,11 +138,11 @@ bool ServerFlow::checkTaxiValidity(std::vector<std::string> &arguments) {
     boost::algorithm::trim(input);
     boost::split(arguments, input, boost::is_any_of(","), boost::token_compress_on);
     if (arguments.size() != 4) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     if (!isNumber(arguments[0]) || !isNumber(arguments[1])){
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
     return false;
 }
     return true;
@@ -172,7 +172,7 @@ bool ServerFlow::parseTrip(int &id, Point &start, Point &end, int &passengersNum
         tariff = stod(arguments[6]);
         startTime = stoi(arguments[7]);
         if (id<0 || startX<0 || startY<0 || endX<0 || endY<0 || passengersNum<0 || tariff<0 || startTime<=0) {
-            this->guiClient->sendData("error");
+            this->guiClient->sendData("error\n");
             return false;
         }
         start = Point(startX, startY);
@@ -238,19 +238,19 @@ bool ServerFlow::parseTaxi(int &id, int &cabKind, CarManufacturer &manufacturer,
     id = stoi(arguments[0]);
     cabKind = stoi(arguments[1]);
     if (id < 0 || !validateCabKind(cabKind)) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     try {
         manufacturer = parseCarManufacturer(arguments[2][0]);
     } catch  (...) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     try {
         color = parseColor(arguments[3][0]);
     } catch  (...) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return false;
     }
     return true;
@@ -311,15 +311,14 @@ void ServerFlow::addDrivers() {
     //getline(cin, input);
     //boost::algorithm::trim(input);
     if (!isNumber(input)) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return;
     }
     int numOfDrivers = stoi(input);
     if(numOfDrivers <= 0) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return;
     }
-    this->guiClient->sendData("validInput");
 
     Tcp* tcpSocket = static_cast<Tcp*>(socket);
 	if (tcpSocket == NULL) {
@@ -367,7 +366,6 @@ void ServerFlow::addTaxi() {
     if (!parseTaxi(id, cabKind, manufacturer, color)) {
         return;
     }
-    this->guiClient->sendData("validInput");
     Cab * cab;
     if (cabKind == 1)
         cab = new Cab(id, 1, manufacturer, color, 1);
@@ -382,7 +380,7 @@ void ServerFlow::addTaxi() {
     catch (...) {
         pthread_mutex_unlock(&taxiCenterLock);
         delete(cab);
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
     }
 }
 
@@ -396,7 +394,6 @@ void ServerFlow::addTrip() {
     //if there was an error, back to the menu.
     if(!parseTrip(id, start, end, passengersNum, tariff, startTime))
         return;
-    this->guiClient->sendData("validInput");
     Trip* trip = new Trip(id, start, end, this->map, passengersNum, tariff, startTime);
     pthread_mutex_lock(&taxiCenterLock);
     try {
@@ -406,7 +403,7 @@ void ServerFlow::addTrip() {
     catch (...) {
         pthread_mutex_unlock(&taxiCenterLock);
         delete(trip);
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
     }
 }
 
@@ -419,19 +416,19 @@ void ServerFlow::printDriversLocation() {
     std::string input;
     getline(cin, input);
     if (!isNumber(input)) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return;
     }
     id = stoi(input);
     if(id < 0) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         return;
     }
     pthread_mutex_lock(&taxiCenterLock);
     try {
         location = taxiCenter->getLocationOfDriver(id);
     }catch(...) {
-        this->guiClient->sendData("error");
+        this->guiClient->sendData("error\n");
         pthread_mutex_unlock(&taxiCenterLock);
         return;
     }
@@ -462,6 +459,7 @@ void ServerFlow::updateTime() {
     pthread_mutex_lock(&taxiCenterLock);
     //attach trips to drivers when it's trip time
     taxiCenter->updateTime();
+    this->guiClient->sendData("updateTime\n");
 
     std::vector<Driver *> drivers = taxiCenter->getDrivers();
 
@@ -469,8 +467,6 @@ void ServerFlow::updateTime() {
     pthread_mutex_unlock(&taxiCenterLock);
 
     for (int i = 0; i < drivers.size(); i++) {
-        this->guiClient->sendData("updateTime");
-
         vector<Driver *>::iterator driversIndex = std::find(attachedTripsDrivers.begin(), attachedTripsDrivers.end(),
                                                             drivers[i]);
         pthread_mutex_lock(&driversToClientHandlesMapLock);
@@ -480,8 +476,8 @@ void ServerFlow::updateTime() {
             Trip *trip = drivers[i]->getTrip();
 
             LOG(DEBUG) << "id is " << trip->getID() << "\n";
-            LOG(DEBUG) <<  "startP is " << trip->getStartP();
-            LOG(DEBUG) <<  "endP is " << trip->getEndP();
+            LOG(DEBUG) << "startP is " << trip->getStartP();
+            LOG(DEBUG) << "endP is " << trip->getEndP();
             LOG(DEBUG) << "passengers are " << trip->getPassengersNum() << "\n";
             LOG(DEBUG) << "tariff is " << trip->getTariff() << "\n";
             LOG(DEBUG) << "road is %p" << trip->getRoad() << "\n";
@@ -507,6 +503,13 @@ void ServerFlow::updateTime() {
 				clientsHandles[clientHandleId]->notify();
 
                 drivers[i]->move();
+                std::string driversLocation = to_string(drivers[i]->getID());
+                driversLocation.append(" ");
+                driversLocation.append(to_string(drivers[i]->getLocation()->getPosition().getX()));
+                driversLocation.append(" ");
+                driversLocation.append(to_string(drivers[i]->getLocation()->getPosition().getY()));
+                driversLocation.append("\n");
+                this->guiClient->sendData(driversLocation);
             }
         }
     }
@@ -553,11 +556,11 @@ void ServerFlow::acceptGuiClient() {
     guiClient = new Tcp(*tcpSocket);
     guiClient->setSocketDescriptor(newSocketDescriptor);
 
-    std::string message = to_string(this->map.getWidth());
-    message.append(" ");
-    message.append(to_string(this->map.getHeight()));
-    message.append("\n");
-    this->guiClient->sendData(message);
+    std::string mapDimensions = to_string(this->map.getWidth());
+    mapDimensions.append(" ");
+    mapDimensions.append(to_string(this->map.getHeight()));
+    mapDimensions.append("\n");
+    this->guiClient->sendData(mapDimensions);
 }
 
 void ServerFlow::flow() {
@@ -570,12 +573,11 @@ void ServerFlow::flow() {
                 guiClient->receiveData(buffer, sizeof(buffer));
                 operationNum = std::string(buffer);
                 if(!isNumber(operationNum)){
-                    guiClient->sendData("error");
+                    guiClient->sendData("error\n");
                     continue;
                 }
                 break;
             } while (true);
-            this->guiClient->sendData("validInput");
             int newOperationNum = stoi(operationNum);
             switch (newOperationNum) {
                 case 1:
@@ -603,7 +605,7 @@ void ServerFlow::flow() {
                     updateTime();
                     break;
                 default:
-                    guiClient->sendData("error");
+                    guiClient->sendData("error\n");
                     break;
             }
         }
